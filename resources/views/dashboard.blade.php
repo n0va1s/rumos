@@ -4,7 +4,7 @@
             {{ __('Emaús Nacional') }}
         </h2>
     </x-slot>
-
+    @section('title', 'Painel')
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -73,7 +73,7 @@
                                     <p class="mt-1 text-sm font-medium text-gray-900">Visualizar os dados de um curso</p>
                                 </a>
 
-                                <a href="#" class="group">
+                                <a href="{{route('groups.index')}}" class="group">
                                     <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
                                         <img src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg" alt="Hand holding black machined steel mechanical pencil with brass tip and top." class="h-full w-full object-cover object-center group-hover:opacity-75">
                                     </div>

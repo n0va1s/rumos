@@ -3,65 +3,57 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use App\Models\Option;
 
 class OptionsSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
-        DB::table('options')->insert(['title' => 'Fixo', 'group' => 'CNT']);
-        DB::table('options')->insert(['title' => 'Celular', 'group' => 'CNT']);
-        DB::table('options')->insert(['title' => 'Email', 'group' => 'CNT']);
-        DB::table('options')->insert(['title' => 'Instagram', 'group' => 'CNT']);
-        DB::table('options')->insert(['title' => 'Facebook', 'group' => 'CNT']);
-        DB::table('options')->insert(['title' => 'Da minha paróquia (VEM, Segue-me)', 'group' => 'OTG']);
-        DB::table('options')->insert(['title' => 'Da minha escola', 'group' => 'OTG']);
-        DB::table('options')->insert(['title' => 'Da RCC (Canção Nova, Jovens com Cristo) ', 'group' => 'OTG']);
-        DB::table('options')->insert(['title' => 'Da (Arqui)Diocese (EJA, Pastoral da Juventude) ', 'group' => 'OTG']);
-        DB::table('options')->insert(['title' => 'Fundamental', 'group' => 'LVL']);
-        DB::table('options')->insert(['title' => 'Médio', 'group' => 'LVL']);
-        DB::table('options')->insert(['title' => 'Superior', 'group' => 'LVL']);
-        DB::table('options')->insert(['title' => 'Pós-Graduação', 'group' => 'LVL']);
-        DB::table('options')->insert(['title' => 'Bagé', 'group' => 'CMN']);
-        DB::table('options')->insert(['title' => 'Brasília', 'group' => 'CMN']);
-        DB::table('options')->insert(['title' => 'Brusque', 'group' => 'CMN']);
-        DB::table('options')->insert(['title' => 'Cachoeira do Sul', 'group' => 'CMN']);
-        DB::table('options')->insert(['title' => 'Caxias do Sul', 'group' => 'CMN']);
-        DB::table('options')->insert(['title' => 'Cruz Alta', 'group' => 'CMN']);
-        DB::table('options')->insert(['title' => 'Florianópolis', 'group' => 'CMN']);
-        DB::table('options')->insert(['title' => 'Frederico Westphalen', 'group' => 'CMN']);
-        DB::table('options')->insert(['title' => 'Itapetininga', 'group' => 'CMN']);
-        DB::table('options')->insert(['title' => 'Joinville', 'group' => 'CMN']);
-        DB::table('options')->insert(['title' => 'Juiz de Fora', 'group' => 'CMN']);
-        DB::table('options')->insert(['title' => 'Jundiaí', 'group' => 'CMN']);
-        DB::table('options')->insert(['title' => 'Lavras', 'group' => 'CMN']);
-        DB::table('options')->insert(['title' => 'Mariana', 'group' => 'CMN']);
-        DB::table('options')->insert(['title' => 'Pelotas', 'group' => 'CMN']);
-        DB::table('options')->insert(['title' => 'Porto Alegre', 'group' => 'CMN']);
-        DB::table('options')->insert(['title' => 'Rio Grande', 'group' => 'CMN']);
-        DB::table('options')->insert(['title' => 'Santo Ângelo', 'group' => 'CMN']);
-        DB::table('options')->insert(['title' => 'São João Del-Rei', 'group' => 'CMN']);
-        DB::table('options')->insert(['title' => 'São Paulo', 'group' => 'CMN']);
-        DB::table('options')->insert(['title' => 'Sorocaba', 'group' => 'CMN']);
-        DB::table('options')->insert(['title' => 'Diretor Espiritual', 'group' => 'RLE']);
-        DB::table('options')->insert(['title' => 'Timoneiro', 'group' => 'RLE']);
-        DB::table('options')->insert(['title' => 'Cerimoniário', 'group' => 'RLE']);
-        DB::table('options')->insert(['title' => 'Monitor', 'group' => 'RLE']);
-        DB::table('options')->insert(['title' => 'Palestrante', 'group' => 'RLE']);
-        DB::table('options')->insert(['title' => 'Cantor', 'group' => 'RLE']);
-        DB::table('options')->insert(['title' => 'Cozinha', 'group' => 'TEM']);
-        DB::table('options')->insert(['title' => 'Apoio', 'group' => 'TEM']);
-        DB::table('options')->insert(['title' => 'Semanal', 'group' => 'FRQ']);
-        DB::table('options')->insert(['title' => 'Mensal', 'group' => 'FRQ']);
-        DB::table('options')->insert(['title' => 'Masculino', 'group' => 'GND']);
-        DB::table('options')->insert(['title' => 'Feminino', 'group' => 'GND']);
-
-
-
+        Option::create(['title' => 'Fixo', 'group' => 'CNT']);
+        Option::create(['title' => 'Celular', 'group' => 'CNT']);
+        Option::create(['title' => 'Email', 'group' => 'CNT']);
+        Option::create(['title' => 'Instagram', 'group' => 'CNT']);
+        Option::create(['title' => 'Facebook', 'group' => 'CNT']);
+        Option::create(['title' => 'Da minha paróquia (VEM, Segue-me)', 'group' => 'OTG']);
+        Option::create(['title' => 'Da minha escola', 'group' => 'OTG']);
+        Option::create(['title' => 'Da RCC (Canção Nova, Jovens com Cristo) ', 'group' => 'OTG']);
+        Option::create(['title' => 'Da (Arqui)Diocese (EJA, Pastoral da Juventude) ', 'group' => 'OTG']);
+        Option::create(['title' => 'Fundamental', 'group' => 'LVL']);
+        Option::create(['title' => 'Médio', 'group' => 'LVL']);
+        Option::create(['title' => 'Superior', 'group' => 'LVL']);
+        Option::create(['title' => 'Pós-Graduação', 'group' => 'LVL']);
+        Option::create(['title' => 'Bagé', 'group' => 'CMN']);
+        Option::create(['title' => 'Brasília', 'group' => 'CMN']);
+        Option::create(['title' => 'Brusque', 'group' => 'CMN']);
+        Option::create(['title' => 'Cachoeira do Sul', 'group' => 'CMN']);
+        Option::create(['title' => 'Caxias do Sul', 'group' => 'CMN']);
+        Option::create(['title' => 'Cruz Alta', 'group' => 'CMN']);
+        Option::create(['title' => 'Florianópolis', 'group' => 'CMN']);
+        Option::create(['title' => 'Frederico Westphalen', 'group' => 'CMN']);
+        Option::create(['title' => 'Itapetininga', 'group' => 'CMN']);
+        Option::create(['title' => 'Joinville', 'group' => 'CMN']);
+        Option::create(['title' => 'Juiz de Fora', 'group' => 'CMN']);
+        Option::create(['title' => 'Jundiaí', 'group' => 'CMN']);
+        Option::create(['title' => 'Lavras', 'group' => 'CMN']);
+        Option::create(['title' => 'Mariana', 'group' => 'CMN']);
+        Option::create(['title' => 'Pelotas', 'group' => 'CMN']);
+        Option::create(['title' => 'Porto Alegre', 'group' => 'CMN']);
+        Option::create(['title' => 'Rio Grande', 'group' => 'CMN']);
+        Option::create(['title' => 'Santo Ângelo', 'group' => 'CMN']);
+        Option::create(['title' => 'São João Del-Rei', 'group' => 'CMN']);
+        Option::create(['title' => 'São Paulo', 'group' => 'CMN']);
+        Option::create(['title' => 'Sorocaba', 'group' => 'CMN']);
+        Option::create(['title' => 'Diretor Espiritual', 'group' => 'RLE']);
+        Option::create(['title' => 'Timoneiro', 'group' => 'RLE']);
+        Option::create(['title' => 'Cerimoniário', 'group' => 'RLE']);
+        Option::create(['title' => 'Monitor', 'group' => 'RLE']);
+        Option::create(['title' => 'Palestrante', 'group' => 'RLE']);
+        Option::create(['title' => 'Cantor', 'group' => 'RLE']);
+        Option::create(['title' => 'Cozinha', 'group' => 'TEM']);
+        Option::create(['title' => 'Apoio', 'group' => 'TEM']);
+        Option::create(['title' => 'Semanal', 'group' => 'FRQ']);
+        Option::create(['title' => 'Mensal', 'group' => 'FRQ']);
+        Option::create(['title' => 'Masculino', 'group' => 'GND']);
+        Option::create(['title' => 'Feminino', 'group' => 'GND']);
     }
 }

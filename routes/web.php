@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\GroupController as AdminGroupController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\GroupController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +22,8 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::resource('groups', GroupController::class)
+    ->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';

@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'emaus.org.br') }}</title>
+        <title>Emaús - @yield('title')</title>
         <meta name="description" content="Uma das maiores e mais antigas comunidades jovens do Brasil, uma verdadeira pós-graduação na fé. Venha conhecer" />
         <meta name="keywords" content="cristão, cristã, católico, católica, Igreja Apóstolica Romana, Igreja de Cristo, Igreja de Roma, Emaús, Comunidade" />
         <meta name="author" content="joaopaulonovais <jp.trabalho@gmail.com>" />
@@ -34,6 +34,6 @@
             </main>
         </div>
         <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}"></script>
+        @vite(['resources/js/app.js'])
     </body>
 </html>
