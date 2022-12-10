@@ -7,8 +7,9 @@
         <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
             <!-- Validation Errors -->
             <x-auth-validation-errors class="mb-4" :errors="$errors" />
-            <form method="POST" action="groups.update">
+            <form method="POST" action="{{ route('groups.update', $model->id) }}">
                 @csrf
+                @method('PUT')
                 @include('includes._formGroup');
             </form>
         </div>

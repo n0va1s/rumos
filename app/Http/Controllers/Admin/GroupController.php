@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Admin\GroupRequest;
 use App\Models\Group;
 use App\Models\Option;
-use Illuminate\Support\Facades\DB;
 
 class GroupController extends CrudController
 {
@@ -13,8 +12,8 @@ class GroupController extends CrudController
     {
         $this->middleware(['auth','verified']);
         $this->className = Group::class;
-        $this->types['communities'] = Option::where('group',"CMN")->get();
-        $this->types['frequencies'] = Option::where('group',"FRQ")->get();
+        $this->options['communities'] = Option::where('group',"CMN")->get();
+        $this->options['frequencies'] = Option::where('group',"FRQ")->get();
         $this->viewName = 'group';
         $this->routeIndex = 'groups.index';
         $this->validatorName = GroupRequest::class;

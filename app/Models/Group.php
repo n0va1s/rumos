@@ -8,8 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Group extends Model
 {
-    use HasFactory;
-    use UsesUuid;
+    use HasFactory, UsesUuid;
 
     public $timestamps = false;
 

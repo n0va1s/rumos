@@ -27,9 +27,9 @@ abstract class CrudController extends Controller
 
     public function create()
     {
-        if (isset($this->types)) {
-            $data = $this->types;
-            return view($this->viewName.'.new', compact('data'));
+        if (isset($this->options)) {
+            $options = $this->options;
+            return view($this->viewName.'.new', compact('options'));
         }
         return view($this->viewName.'.new');
     }
@@ -41,33 +41,34 @@ abstract class CrudController extends Controller
         return redirect()->route($this->routeIndex);
     }
 
-    public function edit(string $code)
+    public function edit($id)
     {
-        $data = $this->className::where('code', $code)->first();
-        if (is_null($data)) {
-            return back();
+        if (! $model = $this->className::find($id)) {
+            return redirect()->back();
         }
-        if (isset($this->types)) {
-            $types = $this->types::all();
-            return view($this->viewName.'.edit', compact('data', 'types'));
+        if (isset($this->options)) {
+            $options = $this->options;
+            return view($this->viewName.'.edit', compact('model', 'options'));
         }
-        return view($this->viewName.'.edit', compact('data'));        
+        return view($this->viewName.'.edit');        
     }
 
-    public function update(Request $req, string $code)
+    public function update(Request $req, $id)
     {
-        $data = $req->except('_token');
-        $this->validate($req, (new $this->validatorName)->rules());
-        $this->className::where('code', $code)->first()->update($data);
+        if (! $model = $this->className::find($id)) {
+            return redirect()->back();
+        }
+        $data = $this->validate($req, (new $this->validatorName)->rules());
+        $model->update($data);
         return redirect()->route($this->routeIndex);
     }
 
-    public function destroy(string $code)
+    public function destroy($id)
     {
-        $qtd = $this->className::where('code', $code)->first()->delete();
-        if ($qtd === 0) {
-            return back();
+        if (! $model = $this->className::find($id)) {
+            return redirect()->back();
         }
+        $model->delete();
         return redirect()->route($this->routeIndex);
     }
 }

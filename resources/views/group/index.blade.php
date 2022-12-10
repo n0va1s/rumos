@@ -19,48 +19,59 @@
                     </button>
                 </div>
             </div>
-            @forelse ($data as $group)
-            <div class="p-6 flex space-x-2">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                </svg>
-                <div class="flex-1">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <span class="text-gray-800">Secretariado de {{ $group->community->title }}</span>
-                            <small class="ml-2 text-sm text-gray-600">{{ $group->frequency->title }}</small>
+            <div class="flex flex-col">
+                <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full">
+                                <thead class="border-b">
+                                    <tr>
+                                        <th scope="col" class="text-base font-extrabold text-gray-900 px-6 py-4 text-left">
+                                            Secretariado
+                                        </th>
+                                        <th scope="col" class="text-base font-extrabold text-gray-900 px-6 py-4 text-left">
+                                            Frequência
+                                        </th>
+                                        <th scope="col" class="text-base font-extrabold text-gray-900 px-6 py-4 text-left">
+                                            Ações
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($data as $group)
+                                    <tr class="border-b">
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                            {{ $group->community->title }}
+                                        </td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                            {{ $group->frequency->title }}
+                                        </td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                            <button type="submit" class="inline-flex rounded-md border border-transparent bg-white py-2 px-4 text-sm font-medium text-blue-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-50 focus:ring-offset-2">
+                                                <a href="{{route('groups.edit', $group)}}">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#4D61AB" class="w-6 h-6">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                    </svg>
+                                                </a>
+                                            </button>
+                                            <form action="{{route('groups.destroy', $group)}}" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button type="submit" class="inline-flex rounded-md border border-transparent bg-white py-2 px-4 text-sm font-medium text-blue-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-50 focus:ring-offset-2" onclick="return confirm('Confirma a exclusão?');">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#B63F46" class="w-6 h-6 fill: red">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                    </svg>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
-                        <x-dropdown>
-                            <x-slot name="trigger">
-                                <button>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
-                                        <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                                    </svg>
-                                </button>
-                            </x-slot>
-                            <x-slot name="content">
-                                <x-dropdown-link :href="route('groups.edit', $group)">
-                                    {{ __('Edit') }}
-                                </x-dropdown-link>
-                                <form method="POST" action="{{ route('groups.destroy', $group) }}">
-                                    @csrf
-                                    @method('delete')
-                                    <x-dropdown-link :href="route('groups.destroy', $group)" onclick="event.preventDefault(); this.closest('form').submit();">
-                                        {{ __('Delete') }}
-                                    </x-dropdown-link>
-                                </form>
-                            </x-slot>
-                        </x-dropdown>
                     </div>
-                    <p class="mt-4 text-lg text-gray-900">{{ $group->information }}</p>
                 </div>
             </div>
-            @empty
-            <div class="p-6 flex space-x-2">
-                <h2>Nada cadastrado ainda...</h2>
-            </div>
-            @endforelse
         </div>
     </div>
 </x-app-layout>
