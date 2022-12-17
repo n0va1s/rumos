@@ -16,13 +16,14 @@
         
         <!-- Styles -->
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     </head>
     <body>
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>
-        <!-- Scripts -->
-        @vite(['resources/js/app.js'])
     </body>
+    <!-- Scripts -->
+    @vite(['resources/js/app.js'])
+    <script src=" {{ asset('/js/app.js') }}"></script>
 </html>

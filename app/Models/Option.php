@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use App\Traits\UsesUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Option extends Model
 {
-    use HasFactory, UsesUuid;
+    use HasFactory;
 
     public $timestamps = false;
 

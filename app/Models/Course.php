@@ -19,7 +19,6 @@ class Course extends Model
         'number',
         'starts_at',
         'ends_at',
-        'photo',
         'information',
     ];
 

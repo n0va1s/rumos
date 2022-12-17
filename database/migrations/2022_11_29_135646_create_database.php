@@ -113,7 +113,7 @@ class CreateDatabase extends Migration
             'course_photo', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('course_id')->unique()->comment('Identifica o curso da foto. Ex: Ex: 55/2022 Bage');
-                $table->binary('photo')->comment('Foto oficial do curso. Ex: SP-2022-87.jpg');
+                $table->string('photo')->comment('Foto oficial do curso. Ex: SP-2022-87.jpg');
                 $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
             }
         );

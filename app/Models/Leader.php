@@ -10,6 +10,7 @@ class Leader extends Model
     use HasFactory;
 
     public $timestamps = false;
+    protected $table = 'course_leaders';
 
     protected $fillable = [
         'course_id',

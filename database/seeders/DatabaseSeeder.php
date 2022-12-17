@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             [
                 OptionsSeeder::class,
                 UserSeeder::class,
+                CourseSeeder::class,
             ]
         );
     }

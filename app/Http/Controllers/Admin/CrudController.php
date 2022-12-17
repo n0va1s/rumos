@@ -21,6 +21,10 @@ abstract class CrudController extends Controller
         if (isset($this->paginateGrid)) {
             $data = $this->className::paginate($this->paginateGrid);    
         }
+        if (isset($this->options)) {
+            $options = $this->options;
+            return view($this->viewName.'.index', compact('data','options'));
+        }
         return view($this->viewName.'.index', compact('data'));
         
     }

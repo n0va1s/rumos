@@ -10,6 +10,7 @@ class Team extends Model
     use HasFactory;
 
     public $timestamps = false;
+    protected $table = 'course_teams';
 
     protected $fillable = [
         'course_id',

@@ -10,7 +10,7 @@
             <x-auth-validation-errors class="mb-4" :errors="$errors" />
             <form method="POST" action="{{ route('groups.store') }}">
                 @csrf
-                @include('includes._formGroup');
+                @include('group.includes._form');
             </form>
         </div>
     </div>

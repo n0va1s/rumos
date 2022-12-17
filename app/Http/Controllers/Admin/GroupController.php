@@ -12,8 +12,8 @@ class GroupController extends CrudController
     {
         $this->middleware(['auth','verified']);
         $this->className = Group::class;
-        $this->options['communities'] = Option::where('group',"CMN")->get();
-        $this->options['frequencies'] = Option::where('group',"FRQ")->get();
+        $this->options['communities'] = Option::where('group', "CMN")->get();
+        $this->options['frequencies'] = Option::where('group', "FRQ")->get();
         $this->viewName = 'group';
         $this->routeIndex = 'groups.index';
         $this->validatorName = GroupRequest::class;
