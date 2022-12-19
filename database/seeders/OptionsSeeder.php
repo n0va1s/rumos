@@ -55,5 +55,32 @@ class OptionsSeeder extends Seeder
         Option::create(['title' => 'Mensal', 'group' => 'FRQ']);
         Option::create(['title' => 'Masculino', 'group' => 'GND']);
         Option::create(['title' => 'Feminino', 'group' => 'GND']);
+        Option::create(['title' => 'AC', 'group' => 'UFS']);
+        Option::create(['title' => 'AL', 'group' => 'UFS']);
+        Option::create(['title' => 'AP', 'group' => 'UFS']);
+        Option::create(['title' => 'AM', 'group' => 'UFS']);
+        Option::create(['title' => 'BA', 'group' => 'UFS']);
+        Option::create(['title' => 'CE', 'group' => 'UFS']);
+        Option::create(['title' => 'DF', 'group' => 'UFS']);
+        Option::create(['title' => 'ES', 'group' => 'UFS']);
+        Option::create(['title' => 'GO', 'group' => 'UFS']);
+        Option::create(['title' => 'MA', 'group' => 'UFS']);
+        Option::create(['title' => 'MT', 'group' => 'UFS']);
+        Option::create(['title' => 'MS', 'group' => 'UFS']);
+        Option::create(['title' => 'MG', 'group' => 'UFS']);
+        Option::create(['title' => 'PA', 'group' => 'UFS']);
+        Option::create(['title' => 'PB', 'group' => 'UFS']);
+        Option::create(['title' => 'PR', 'group' => 'UFS']);
+        Option::create(['title' => 'PE', 'group' => 'UFS']);
+        Option::create(['title' => 'PI', 'group' => 'UFS']);
+        Option::create(['title' => 'RJ', 'group' => 'UFS']);
+        Option::create(['title' => 'RN', 'group' => 'UFS']);
+        Option::create(['title' => 'RS', 'group' => 'UFS']);
+        Option::create(['title' => 'RO', 'group' => 'UFS']);
+        Option::create(['title' => 'RR', 'group' => 'UFS']);
+        Option::create(['title' => 'SC', 'group' => 'UFS']);
+        Option::create(['title' => 'SP', 'group' => 'UFS']);
+        Option::create(['title' => 'SE', 'group' => 'UFS']);
+        Option::create(['title' => 'TO', 'group' => 'UFS']);
     }
 }

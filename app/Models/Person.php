@@ -11,13 +11,18 @@ class Person extends Model
     use HasFactory, UsesUuid;
 
     public $timestamps = false;
+    protected $table = 'person';
 
     protected $fillable = [
         'other_group_id',
         'level_id',
-        'name',
+        'gender_id',
+        'first_name',
+        'last_name',
+        'email',
+        'phone',
+        'social',
         'birth_at',
-        'gender',
         'father',
         'mother',
         'community',
@@ -33,12 +38,17 @@ class Person extends Model
 
     public function otherGroup()
     {
-        return $this->belongsTo(Option::class);
+        return $this->belongsTo(Option::class, "other_group_id");
     }
 
     public function level()
     {
-        return $this->belongsTo(Option::class);
+        return $this->belongsTo(Option::class, "level_id");
+    }
+
+    public function gender()
+    {
+        return $this->belongsTo(Option::class, "gender_id");
     }
 
     public function address()

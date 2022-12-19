@@ -10,6 +10,7 @@ class Address extends Model
     use HasFactory;
 
     public $timestamps = false;
+    protected $table = 'person_addresses';
 
     protected $fillable = [
         'person_id',

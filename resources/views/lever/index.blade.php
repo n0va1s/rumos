@@ -7,8 +7,8 @@
         <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
             <div class="grid grid-cols-2">
                 <div class="p-6">
-                    <h3 class="text-lg font-medium leading-6 text-gray-900">Alavancas</h3>
-                    <p class="mt-1 text-sm text-gray-600">Veja as alavancas enviadas para um curso</p>
+                    <h3 class="text-2xl px-6 py-6">Alavancas</h3>
+                    <p class="px-6 mt-1 text-sm text-gray-600">Veja as alavancas enviadas para um curso</p>
                 </div>
             </div>
             

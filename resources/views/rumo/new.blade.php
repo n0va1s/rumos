@@ -10,7 +10,7 @@
             <x-auth-validation-errors class="mb-4" :errors="$errors" />
             <form method="POST" action="{{ route('rumos.create') }}">
                 @csrf
-                @include('rumo.includes._form');
+                @include('rumo.includes._formCourse');
             </form>
         </div>
     </div>

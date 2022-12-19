@@ -1,10 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\GroupController;
 use App\Http\Controllers\Lever\PrintLeverController;
-use App\Http\Controllers\Rumo\RumoController;
-use App\Http\Controllers\Rumo\PhotoController;
+use App\Http\Controllers\Admin\{
+    GroupController, PersonController
+};
+use App\Http\Controllers\Rumo\{
+    RumoController, PhotoController, OrientationController, KitchenController, SupportController
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +31,9 @@ Route::get('/dashboard', function () {
 Route::resource('groups', GroupController::class)
     ->middleware(['auth', 'verified']);
 
+Route::resource('people', PersonController::class)
+    ->middleware(['auth', 'verified']);
+
 Route::get(
     '/rumos',
     [RumoController::class, 'index']
@@ -40,26 +46,43 @@ Route::post(
     '/rumos',
     [RumoController::class, 'store']
 )->name('rumos.store');
+
 Route::post(
     '/rumos/search',
     [RumoController::class, 'search']
 )->name('rumos.search');
+
 Route::get(
+    '/rumos/{id}/orientation',
+    [OrientationController::class, 'create']
+)->name('rumos.orientation.create');
+Route::post(
     '/rumos/orientation',
-    [RumoController::class, 'orientation']
-)->name('rumos.orientation');
+    [OrientationController::class, 'store']
+)->name('rumos.orientation.store');
+
 Route::get(
+    '/rumos/{id}/kitchen',
+    [KitchenController::class, 'create']
+)->name('rumos.kitchen.create');
+Route::post(
     '/rumos/kitchen',
-    [RumoController::class, 'kitchen']
-)->name('rumos.kitchen');
+    [KitchenController::class, 'store']
+)->name('rumos.kitchen.store');
+
 Route::get(
+    '/rumos/{id}/support',
+    [SupportController::class, 'create']
+)->name('rumos.support.create');
+Route::post(
     '/rumos/support',
-    [RumoController::class, 'support']
-)->name('rumos.support');
+    [SupportController::class, 'store']
+)->name('rumos.support.store');
+
 Route::get(
     '/rumos/{id}/photo',
-    [PhotoController::class, 'index']
-)->name('rumos.photo.index');
+    [PhotoController::class, 'create']
+)->name('rumos.photo.create');
 Route::post(
     '/rumos/photo',
     [PhotoController::class, 'store']

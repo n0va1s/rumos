@@ -54,7 +54,7 @@ abstract class CrudController extends Controller
             $options = $this->options;
             return view($this->viewName.'.edit', compact('model', 'options'));
         }
-        return view($this->viewName.'.edit');        
+        return view($this->viewName.'.edit', compact('model'));        
     }
 
     public function update(Request $req, $id)

@@ -11,6 +11,7 @@ class Record extends Model
     use HasFactory, UsesUuid;
 
     public $timestamps = false;
+    protected $table = 'person_records';
 
     protected $fillable = [
         'person_id',
