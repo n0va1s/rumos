@@ -22,18 +22,40 @@ class PersonController extends CrudController
         $this->listGrid = Person::with(['gender', 'address'])->get();
     }
 
+    public function clearFormat(string $input)
+    {
+        $find = array("(", ")", "-", ".", " ", "/");
+        $replace = array("", "", "", "", "", "");
+        return str_replace($find, $replace, $input);
+
+    }
+
     public function store(Request $req)
     {
         $data = $this->validate($req, (new $this->validatorName)->rules());
-        $data['person_id'] = $this->className::create($data)->id;
-        Address::create([
-            'person_id'=>$data['person_id'],
-            'description'=>$data['description'],
-            'number'=>$data['number'],
-            'city'=>$data['city'],
-            'zipcode'=>$data['zipcode'],
-            'state_id'=>$data['uf_id'],
-        ]);
+        $id = Person::create(
+            [
+                'first_name' => $data['first_name'],
+                'last_name' => $data['last_name'],
+                'email' => $data['email'],
+                'phone' => $this->clearFormat($data['phone']),
+                'social' => $data['social'],
+                'birth_at' => $data['birth_at'],
+                'gender_id' => $data['gender_id'],
+            ]
+        )->id;
+        if (isset($id)) {
+            Address::create(
+                [
+                    'person_id' => $id,
+                    'description' => $data['description'],
+                    'number' => $data['number'],
+                    'city' => $data>['city'],
+                    'zipcode' => $this->clearFormat($data['zipcode']),
+                    'state_id' => $data['uf_id'],
+                ]
+            );
+        }
         return redirect()->route($this->routeIndex);
     }
 
@@ -43,11 +65,20 @@ class PersonController extends CrudController
             return redirect()->back();
         }
         $data = $this->validate($req, (new $this->validatorName)->rules());
+        $model->first_name = $data['first_name'];
+        $model->last_name = $data['last_name'];
+        $model->email = $data['email'];
+        $model->phone = $this->clearFormat($data['phone']);
+        $model->social = $data['social'];
+        $model->birth_at = $data['birth_at'];
+        $model->gender_id = $data['gender_id'];
         $model->address->description = $data['description'];
         $model->address->number = $data['number'];
         $model->address->city = $data['city'];
-        $model->address->zipcode = $data['zipcode'];
+        $model->address->zipcode = $this->clearFormat($data['zipcode']);
         $model->address->state_id = $data['uf_id'];
+        //Don't save related models
+        //$model->save();
         $model->push();       
         return redirect()->route($this->routeIndex);
     }
@@ -57,7 +88,9 @@ class PersonController extends CrudController
         if (! $model = $this->className::find($id)) {
             return redirect()->back();
         }
-        $model->address->delete();
+        if ($model->address->id > 0) {
+            $model->address->delete();
+        }
         $model->delete();
         return redirect()->route($this->routeIndex);
     }

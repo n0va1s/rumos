@@ -6,7 +6,7 @@
                 <select name="community_id" autocomplete="função" class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
                     <option value="">Selecione</option>
                     @foreach ($roles as $role)
-                    <option value="{{ $role->id }}" @if(isset($role_id) and ($role->id == old('role_id'))) selected @endif>{{ $role->title }}</option>
+                    <option value="{{ $role->id }}" @if(isset($course) and ($role->id == old('role_id'))) selected @endif>{{ $role->title }}</option>
                     @endforeach
                 </select>
             </div>
@@ -16,7 +16,7 @@
                 <select name="person_id" autocomplete="nome" class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
                     <option value="">Selecione</option>
                     @foreach ($people as $person)
-                    <option value="{{ $person->id }}" @if(isset($person_id) and ($person->id == old('person_id'))) selected @endif>{{ $person->name }}</option>
+                    <option value="{{ $person->id }}" @if(isset($person_id) and ($person->id == old('person_id'))) selected @endif>{{ $person->first_name }} {{ $person->last_name }}</option>
                     @endforeach
                 </select>
             </div>

@@ -18,7 +18,7 @@ class OrientationController extends Controller
     {
         $course = Course::find($id);
         $roles = Option::where('group', "RLE")->get();
-        $people = Person::all();
+        $people = Person::with('address')->get();
         return view('rumo.orientation', compact('course', 'roles', 'people'));
     }
 

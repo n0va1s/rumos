@@ -18,7 +18,7 @@ class KitchenController extends Controller
     {
         $course = Course::find($id);
         $teams = Option::where('group', "TEM")->get();
-        $people = Person::all();
+        $people = Person::with('address')->get();
         return view('rumo.kitchen', compact('course', 'teams', 'people'));
     }
 
