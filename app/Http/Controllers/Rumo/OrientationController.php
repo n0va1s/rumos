@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Rumo;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Models\Leader;
 use App\Models\Option;
 use App\Models\Person;
 use Illuminate\Http\Request;
@@ -30,22 +31,28 @@ class OrientationController extends Controller
 
         $validated = $request->validate(
             [
-                'photo' => 'file|required|mimes:jpg,png|max:1024',
+                "course_id" => ['required', 'string'],
+                "role_id" => ['required', 'numeric'],
+                "person_id" => ['required', 'string'],
+                "information" => ['nullable', 'string'],
             ]
         );
 
         if (! $validated) {
-            return redirect()->back()->with('message', 'Essa foto não é válida. Tente novamente');
+            return redirect()->back()->with('message', 'Ops... não consegui salvar. Tente novamente');
         }
-/*
-        XXX::create(
+
+        Leader::create(
             [
-                "course_id" => $course->id,
-                "photo" => $path,
+                "role_id" => $validated['role_id'],
+                "person_id" => $validated['person_id'],
+                "information" => $validated['information'],
+                "course_id" => $validated['course_id'],
             ]
         );
-*/
-        $communities = Option::where('group', "CMN")->get();
-        return view('rumo.index', compact('communities'));
+
+        $roles = Option::where('group', "RLE")->get();
+        $people = Person::with('address')->get();
+        return view('rumo.orientation', compact('course', 'roles', 'people'));
     }
 }

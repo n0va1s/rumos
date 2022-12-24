@@ -41,19 +41,21 @@ class PhotoController extends Controller
         $community = mb_strtolower(
             str_replace($find, $replace, $course->community->title)
         );
+        
         $extension = $request->photo->extension();
         $path = $request->photo->storeAs(
-            "cursos",
+            "public/cursos",
             "$community/$course->year-$course->number.$extension"
         );
+        
         Photo::create(
             [
                 "course_id" => $course->id,
-                "photo" => $path,
+                "url" => $path,
             ]
         );
 
-        $communities = Option::where('group', "CMN")->get();
+        $communities = Option::where('group', "SEC")->get();
         return view('rumo.index', compact('communities'));
     }
 }

@@ -17,6 +17,7 @@ class Person extends Model
         'other_group_id',
         'level_id',
         'gender_id',
+        'community_id',
         'first_name',
         'last_name',
         'email',

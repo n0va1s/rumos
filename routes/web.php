@@ -34,6 +34,10 @@ Route::resource('groups', GroupController::class)
 Route::resource('people', PersonController::class)
     ->middleware(['auth', 'verified']);
 
+Route::resource('rumos', RumoController::class)
+    ->middleware(['auth', 'verified']);
+
+    /*
 Route::get(
     '/rumos',
     [RumoController::class, 'index']
@@ -46,11 +50,15 @@ Route::post(
     '/rumos',
     [RumoController::class, 'store']
 )->name('rumos.store');
-
+*/
 Route::post(
     '/rumos/search',
     [RumoController::class, 'search']
 )->name('rumos.search');
+Route::get(
+    '/rumos/{id}/show',
+    [RumoController::class, 'show']
+)->name('rumos.show');
 
 Route::get(
     '/rumos/{id}/orientation',
@@ -60,15 +68,6 @@ Route::post(
     '/rumos/orientation',
     [OrientationController::class, 'store']
 )->name('rumos.orientation.store');
-
-Route::get(
-    '/rumos/{id}/kitchen',
-    [KitchenController::class, 'create']
-)->name('rumos.kitchen.create');
-Route::post(
-    '/rumos/kitchen',
-    [KitchenController::class, 'store']
-)->name('rumos.kitchen.store');
 
 Route::get(
     '/rumos/{id}/support',

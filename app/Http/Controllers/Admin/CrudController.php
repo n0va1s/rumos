@@ -40,7 +40,9 @@ abstract class CrudController extends Controller
 
     public function store(Request $req)
     {
-        $data = $this->validate($req, (new $this->validatorName)->rules());
+        if (isset($this->validatorName)) {
+            $data = $this->validate($req, (new $this->validatorName)->rules());
+        }
         $this->className::create($data);
         return redirect()->route($this->routeIndex);
     }
@@ -62,7 +64,9 @@ abstract class CrudController extends Controller
         if (! $model = $this->className::find($id)) {
             return redirect()->back();
         }
-        $data = $this->validate($req, (new $this->validatorName)->rules());
+        if (isset($this->validatorName)) {
+            $data = $this->validate($req, (new $this->validatorName)->rules());
+        }
         $model->update($data);
         return redirect()->route($this->routeIndex);
     }

@@ -16,6 +16,7 @@ class PersonController extends CrudController
         $this->className = Person::class;
         $this->options['genders'] = Option::where('group', "GND")->get();
         $this->options['ufs'] = Option::where('group', "UFS")->get();
+        $this->options['communities'] = Option::where('group', "SEC")->get();
         $this->viewName = 'person';
         $this->routeIndex = 'people.index';
         $this->validatorName = PersonRequest::class;
@@ -42,9 +43,10 @@ class PersonController extends CrudController
                 'social' => $data['social'],
                 'birth_at' => $data['birth_at'],
                 'gender_id' => $data['gender_id'],
+                'community_id' => $data['community_id'],
             ]
         )->id;
-        if (isset($id)) {
+        if (isset($id) && !empty($data['zipcode'])) {
             Address::create(
                 [
                     'person_id' => $id,
@@ -88,7 +90,7 @@ class PersonController extends CrudController
         if (! $model = $this->className::find($id)) {
             return redirect()->back();
         }
-        if ($model->address->id > 0) {
+        if (! empty($model->address)) {
             $model->address->delete();
         }
         $model->delete();

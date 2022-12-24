@@ -13,7 +13,7 @@ class PrintLeverController extends Controller
 {
     public function index()
     {
-        $communities = Option::where('group', "CMN")->get();
+        $communities = Option::where('group', "SEC")->get();
         return view('lever.index', compact('communities'));
     }
 
@@ -33,7 +33,7 @@ class PrintLeverController extends Controller
             }
         )->get();
 
-        $communities = Option::where('group', "CMN")->get();
+        $communities = Option::where('group', "SEC")->get();
 
         if (($community_id > 0) and (!emptY($course_id))) {
             $levers = Lever::with(

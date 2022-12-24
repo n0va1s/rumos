@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Option;
 use App\Models\Person;
+use App\Models\Team;
 use Illuminate\Http\Request;
 
 class SupportController extends Controller
@@ -27,25 +28,31 @@ class SupportController extends Controller
         if (! $course = Course::find($request->input("course_id"))) {
             return redirect()->back()->with('message', 'Curso não encontrado. Tente novamente');
         }
-
+        
         $validated = $request->validate(
             [
-                'photo' => 'file|required|mimes:jpg,png|max:1024',
+                "course_id" => ['required', 'string'],
+                "team_id" => ['required', 'numeric'],
+                "person_id" => ['required', 'string'],
+                "information" => ['nullable', 'string'],
             ]
         );
 
         if (! $validated) {
-            return redirect()->back()->with('message', 'Essa foto não é válida. Tente novamente');
+            return redirect()->back()->with('message', 'Ops... não consegui salvar. Tente novamente');
         }
-/*
-        XXX::create(
+
+        Team::create(
             [
-                "course_id" => $course->id,
-                "photo" => $path,
+                "course_id" => $validated['course_id'],
+                "team_id" => $validated['team_id'],
+                "person_id" => $validated['person_id'],
+                "information" => $validated['information'],
             ]
         );
-*/
-        $communities = Option::where('group', "CMN")->get();
-        return view('rumo.index', compact('communities'));
+
+        $teams = Option::where('group', "TEM")->get();
+        $people = Person::with('address')->get();
+        return view('rumo.support', compact('course', 'teams', 'people'));
     }
 }

@@ -56,4 +56,8 @@ class Course extends Model
     {
         return $this->hasMany(Lever::class, "course_id");
     }
+
+    public function photo() {
+        return $this->hasOne(Photo::class, "course_id");
+    }
 }

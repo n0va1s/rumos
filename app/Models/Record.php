@@ -37,11 +37,11 @@ class Record extends Model
 
     public function person()
     {
-        return $this->belongsTo(People::class, "person_id");
+        return $this->belongsTo(Person::class, "person_id");
     }
 
     public function presenter()
     {
-        return $this->belongsTo(People::class, "presenter_id");
+        return $this->belongsTo(Person::class, "presenter_id");
     }
 }

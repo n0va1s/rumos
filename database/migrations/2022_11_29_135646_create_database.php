@@ -30,11 +30,12 @@ class CreateDatabase extends Migration
                 $table->unsignedInteger('other_group_id')->nullable()->comment('Identifica outro grupo jovem que a pessoa já frequentou. Ex: Segue-me, EJC');
                 $table->unsignedInteger('level_id')->nullable()->comment('Identfica o grau de escolaridade. Ex: Fundamental, Médio, Superior');
                 $table->unsignedInteger('gender_id')->comment('Identifica o genero. Ex: Masculino ou Feminino');
+                $table->unsignedInteger('community_id')->comment('Identifica o secretariado mais próximo. Ex: Brasília');
                 $table->string('first_name')->comment('Descreve o primeiro da pessoa. Ex: João Paulo');
                 $table->string('last_name')->comment('Descreve os sobrenomes da pessoa. Ex: de Novais');
-                $table->string('email',100)->comment('Descreve o email da pessoa. Ex: fulano@gmail.com');
+                $table->string('email', 100)->comment('Descreve o email da pessoa. Ex: fulano@gmail.com');
                 $table->string('phone', 20)->comment('Descreve o celular da pessoa com DDD. Ex: 61988776655');
-                $table->string('social',100)->comment('Descreve a rede social principal da pessoa. Ex: https://instagram.com/fulanadetal');
+                $table->string('social', 100)->nullable()->comment('Descreve a rede social principal da pessoa. Ex: https://instagram.com/fulanadetal');
                 $table->date('birth_at')->comment('Data de aniversário. Ex: 01/07/1980');
                 $table->string('father', 150)->nullable()->comment('Nome completo do pai. Ex: José da Silva');
                 $table->string('mother', 150)->nullable()->comment('Nome completo da mãe. Ex: Maria da Silva');
@@ -45,6 +46,7 @@ class CreateDatabase extends Migration
                 $table->foreign('other_group_id')->references('id')->on('options');
                 $table->foreign('level_id')->references('id')->on('options');
                 $table->foreign('gender_id')->references('id')->on('options');
+                $table->foreign('community_id')->references('id')->on('options');
                 $table->softDeletes();
             }
         );
@@ -118,7 +120,7 @@ class CreateDatabase extends Migration
             'course_photos', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('course_id')->unique()->comment('Identifica o curso da foto. Ex: Ex: 55/2022 Bage');
-                $table->string('photo')->comment('Foto oficial do curso. Ex: SP-2022-87.jpg');
+                $table->string('url')->comment('Foto oficial do curso. Ex: SP-2022-87.jpg');
                 $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
             }
         );

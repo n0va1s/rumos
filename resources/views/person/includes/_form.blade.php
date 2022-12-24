@@ -32,7 +32,16 @@
             </div>
             <div class="col-span-6 sm:col-span-3">
                 <label for="social" class="block text-sm font-medium text-gray-700">Rede Social</label>
-                <input type="url" name="social" placeholder="https://instagram.com/XXXX" autocomplete="rede social" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{isset($model) ? $model->social : old('social')}}" required>
+                <input type="url" name="social" placeholder="https://instagram.com/XXXX" autocomplete="rede social" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{isset($model) ? $model->social : old('social')}}">
+            </div>
+            <div class="col-span-6 sm:col-span-3">
+                <label for="community_id" class="block text-sm font-medium text-gray-700">Emaús mais próximo</label>
+                <select name="community_id" autocomplete="gênero" class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" required>
+                    <option value="">Selecione</option>
+                    @foreach ($options['communities'] as $community)
+                    <option value="{{ $community->id }}" @if(isset($model) and ($model->community_id == $community->id)) selected @endif>{{ $community->title }}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="col-span-6 sm:col-span-3">
                 <label for="uf_id" class="block text-sm font-medium text-gray-700">UF</label>

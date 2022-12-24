@@ -8,7 +8,7 @@
             <h2 class="text-2xl px-6 py-6">Novo Curso</h2>
             <!-- Validation Errors -->
             <x-auth-validation-errors class="mb-4" :errors="$errors" />
-            <form method="POST" action="{{ route('rumos.create') }}">
+            <form method="POST" action="{{ route('rumos.store') }}">
                 @csrf
                 @include('rumo.includes._formCourse');
             </form>
