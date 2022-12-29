@@ -88,6 +88,7 @@ class CreateDatabase extends Migration
                 $table->text('reason')->comment('Descreve o porquê o dono da ficha deseja fazer Emaús. Ex: Quero crescer na fé católica');
                 $table->tinyText('other_information')->nullable()->comment('Descreve alguma outra observação. Ex: Candidato já teve contato com drogas ilíticas ');
                 $table->boolean('has_agreement')->default(false)->comment('Indica se o candidato concordou com as regras do curso. Ex: sim/não');
+                $table->boolean('has_acceptance')->default(false)->comment('Indica se o candidato concordou com o processamento dos dados (LGPD). Ex: sim/não');
                 $table->boolean('has_first_communion')->default(false)->comment('Indica se o candidato fez primeira comunhão. Ex: sim/não');
                 $table->boolean('has_chrism')->default(false)->comment('Indica se o candidato fez crisma. Ex: sim/não');
                 $table->boolean('is_approved')->default(false)->comment('Indica se a ficha está aprovada pelo secretariado. Ex: sim/não');

@@ -26,6 +26,7 @@ class Photo extends Model
     /**
      * Get the url without public/ string on path
      * this is important to show the image correctly
+     * public/ is necessary to storage folder
      * wrong: public/cursos/brasilia/2022-1000.jpg
      * right: cursos/brasilia/2022-1000.jpg
      * @return string

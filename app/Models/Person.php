@@ -52,6 +52,11 @@ class Person extends Model
         return $this->belongsTo(Option::class, "gender_id");
     }
 
+    public function community()
+    {
+        return $this->belongsTo(Option::class, "community_id");
+    }
+
     public function address()
     {
         return $this->hasOne(Address::class, "person_id");

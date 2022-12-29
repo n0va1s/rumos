@@ -19,6 +19,7 @@ class Record extends Model
         'reason',
         'other_information',
         'has_agreement',
+        'has_acceptance',
         'has_first_communion',
         'has_chrism',
         'is_approved',
@@ -30,6 +31,7 @@ class Record extends Model
 
     protected $casts = [
         'has_agreement' => 'boolean',
+        'has_acceptance' => 'boolean',
         'has_first_communion' => 'boolean',
         'has_chrism' => 'boolean',
         'is_approved' => 'boolean',

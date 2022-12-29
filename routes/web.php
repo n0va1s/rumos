@@ -3,10 +3,15 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Lever\PrintLeverController;
 use App\Http\Controllers\Admin\{
-    GroupController, PersonController
+    GroupController,
+    PersonController,
+    RecordController
 };
 use App\Http\Controllers\Rumo\{
-    RumoController, PhotoController, OrientationController, KitchenController, SupportController
+    RumoController,
+    PhotoController,
+    OrientationController,
+    SupportController
 };
 
 /*
@@ -37,7 +42,20 @@ Route::resource('people', PersonController::class)
 Route::resource('rumos', RumoController::class)
     ->middleware(['auth', 'verified']);
 
-    /*
+Route::resource('records', RecordController::class)
+    ->only('index', 'edit', 'update', 'destroy')
+    ->middleware(['auth', 'verified']);
+
+Route::get(
+    '/records/create',
+    [RecordController::class, 'create']
+)->name('records.create');
+Route::post(
+    '/records',
+    [RecordController::class, 'store']
+)->name('records.store');
+
+/*
 Route::get(
     '/rumos',
     [RumoController::class, 'index']
