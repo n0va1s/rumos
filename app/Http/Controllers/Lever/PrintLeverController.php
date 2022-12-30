@@ -23,7 +23,8 @@ class PrintLeverController extends Controller
         $course_id = (string) $request->input('course_id');
         
         if (! $community = Option::find($community_id)) {
-            return redirect()->back()->with('message', 'Secretariado não encontrado. Tente novamente');
+            return redirect()->back()->with('error', 'Secretariado não encontrado. Tente novamente');
+            return redirect()->back()->with('error', 'Secretariado não encontrado. Tente novamente');
         }
         
         $courses = Course::whereHas(
@@ -44,7 +45,7 @@ class PrintLeverController extends Controller
 
             if (! $levers->isEmpty()) {
                 return redirect()->back()->with(
-                    'message', 'Não há alavancas para o curso deste secretariado'
+                    'error', 'Não há alavancas para o curso deste secretariado'
                 );
             }
 

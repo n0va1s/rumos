@@ -18,5 +18,6 @@ class GroupController extends CrudController
         $this->routeIndex = 'groups.index';
         $this->validatorName = GroupRequest::class;
         $this->listGrid = Group::with(['community', 'frequency'])->get();
+        $this->object = 'Reunião de grupo';
     }
 }

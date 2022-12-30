@@ -4,9 +4,9 @@
     </x-slot>
     @section('title', 'Ficha de Inscrição')
     <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
+        <!-- Validation Errors -->
+        <x-auth-validation-errors class="mb-4" :errors="$errors" />
         <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
-            <!-- Validation Errors -->
-            <x-auth-validation-errors class="mb-4" :errors="$errors" />
             <form method="POST" action="{{ route('records.update', $model->id) }}">
                 @csrf
                 @method('PUT')

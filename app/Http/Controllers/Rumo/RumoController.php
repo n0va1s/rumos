@@ -21,6 +21,7 @@ class RumoController extends CrudController
         $this->routeIndex = 'rumos.index';
         $this->validatorName = CourseRequest::class;
         $this->listGrid = Course::with(['leaders', 'teams'])->get();
+        $this->object = 'Rumo';
     }
 
     public function index()
@@ -34,7 +35,7 @@ class RumoController extends CrudController
         $community_id = (int) $request->input('community_id');
         
         if (! $community = Option::find($community_id)) {
-            return redirect()->back()->with('message', 'Secretariado não encontrado. Tente novamente');
+            return redirect()->back()->with('error', 'Secretariado não encontrado. Tente novamente');
         }
         
         $courses = Course::whereHas(

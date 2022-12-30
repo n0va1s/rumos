@@ -4,6 +4,8 @@
     </x-slot>
     @section('title', 'Rumos')
     <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
+        <!-- Validation Errors -->
+        <x-auth-validation-errors class="mb-4" :errors="$errors" />
         <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
             <div class="grid grid-cols-2">
                 <div class="p-10">
@@ -21,8 +23,6 @@
                 </div>
                 @endif
             </div>
-            <!-- Validation Errors -->
-            <x-auth-validation-errors class="mb-4" :errors="$errors" />
             <form method="POST" action="{{ route('rumos.search') }}">
                 @csrf
                 <div class="bg-white p-6">

@@ -23,7 +23,7 @@ class PhotoController extends Controller
     public function store(Request $request)
     {
         if (! $course = Course::find($request->input("course_id"))) {
-            return redirect()->back()->with('message', 'Curso não encontrado. Tente novamente');
+            return redirect()->back()->with('error', 'Curso não encontrado. Tente novamente');
         }
 
         $validated = $request->validate(
@@ -33,7 +33,7 @@ class PhotoController extends Controller
         );
 
         if (! $validated) {
-            return redirect()->back()->with('message', 'Essa foto não é válida. Tente novamente');
+            return redirect()->back()->with('error', 'Essa foto não é válida. Tente novamente');
         }
 
         $find = array("à", "á", "â", "ã", "é", "ê", "ì", "í", "ò", "ó", "ô", "õ", "ú", " ");

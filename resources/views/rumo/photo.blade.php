@@ -4,11 +4,11 @@
     </x-slot>
     @section('title', 'Rumos')
     <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
+        <!-- Validation Errors -->
+        <x-auth-validation-errors class="mb-4" :errors="$errors" />
         <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
             <h2 class="text-2xl px-6 py-6">Foto Oficial</h2>
             <p class="px-6 mt-1 text-sm text-gray-600">Curso de {{ $course->community->title }}-{{ $course->number}}/{{$course->year }}</p>
-            <!-- Validation Errors -->
-            <x-auth-validation-errors class="mb-4" :errors="$errors" />
             <form method="POST" action="{{ route('rumos.photo.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">

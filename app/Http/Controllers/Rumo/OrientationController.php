@@ -26,7 +26,7 @@ class OrientationController extends Controller
     public function store(Request $request)
     {
         if (! $course = Course::find($request->input("course_id"))) {
-            return redirect()->back()->with('message', 'Curso não encontrado. Tente novamente');
+            return redirect()->back()->with('error', 'Curso não encontrado. Tente novamente');
         }
 
         $validated = $request->validate(
@@ -39,7 +39,7 @@ class OrientationController extends Controller
         );
 
         if (! $validated) {
-            return redirect()->back()->with('message', 'Ops... não consegui salvar. Tente novamente');
+            return redirect()->back()->with('error', 'Ops... não consegui salvar. Tente novamente');
         }
 
         Leader::create(

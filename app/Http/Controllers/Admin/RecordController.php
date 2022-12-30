@@ -21,6 +21,7 @@ class RecordController extends CrudController
         $this->listGrid = Record::with(
             ['person', 'presenter', 'person.community']
         )->where('is_approved', '0')->get();
+        $this->object = 'Ficha';
     }
 
     public function store(Request $req)

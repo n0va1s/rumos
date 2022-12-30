@@ -9,7 +9,7 @@ abstract class CrudController extends Controller
 {
     
     protected $className, $validatorName, $viewName, $routeIndex, $types, $listGrid, 
-    $paginateGrid;
+    $paginateGrid, $object;
     
     public function index()
     {
@@ -44,7 +44,9 @@ abstract class CrudController extends Controller
             $data = $this->validate($req, (new $this->validatorName)->rules());
         }
         $this->className::create($data);
-        return redirect()->route($this->routeIndex);
+        return redirect()->route($this->routeIndex)->with(
+            'success', $this->object.' cadastrado(a) com sucesso'
+        );
     }
 
     public function edit($id)
@@ -68,7 +70,9 @@ abstract class CrudController extends Controller
             $data = $this->validate($req, (new $this->validatorName)->rules());
         }
         $model->update($data);
-        return redirect()->route($this->routeIndex);
+        return redirect()->route($this->routeIndex)->with(
+            'success', $this->object.' atualizado(a) com sucesso'
+        );
     }
 
     public function destroy($id)
@@ -77,6 +81,8 @@ abstract class CrudController extends Controller
             return redirect()->back();
         }
         $model->delete();
-        return redirect()->route($this->routeIndex);
+        return redirect()->route($this->routeIndex)->with(
+            'success', $this->object.' excluído(a) com sucesso'
+        );;
     }
 }

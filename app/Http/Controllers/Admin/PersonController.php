@@ -21,6 +21,7 @@ class PersonController extends CrudController
         $this->routeIndex = 'people.index';
         $this->validatorName = PersonRequest::class;
         $this->listGrid = Person::with(['gender', 'address'])->get();
+        $this->object = 'Pessoa';
     }
 
     public function clearFormat(string $input)
