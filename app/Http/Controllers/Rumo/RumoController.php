@@ -70,6 +70,29 @@ class RumoController extends CrudController
         return view('rumo.show', compact('course'));
     }
 
+    public function back($id)
+    {
+        $course = Course::with(['leaders', 'teams', 'type', 'community'])->find($id);
+        $community_id = $course->community->id;
+        $courses = Course::whereHas(
+            'community', 
+            function (Builder $query) use ($community_id) {
+                $query->where('id', '=', $community_id);
+            }
+        )->get();
+
+        $communities = Option::where('group', "SEC")->get();
+        
+        return view(
+            'rumo.index', 
+            compact(
+                'communities', 
+                'community_id', 
+                'courses'
+            )
+        );
+    }
+
     public function destroy($id)
     {
         if (! $model = $course = Course::find($id)) {

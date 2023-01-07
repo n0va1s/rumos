@@ -7,8 +7,10 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
         <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
-            <h2 class="text-2xl px-6 py-6">Foto Oficial</h2>
-            <p class="px-6 mt-1 text-sm text-gray-600">Curso de {{ $course->community->title }}-{{ $course->number}}/{{$course->year }}</p>
+            <div class="p-10">
+                <h3 class="text-2xl px-6 py-6">Foto Oficial</h3>
+                <p class="px-6 text-sm text-gray-600">Curso de {{ $course->community->title }}-{{ $course->number}}/{{$course->year }}</p>
+            </div>
             <form method="POST" action="{{ route('rumos.photo.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
@@ -27,7 +29,7 @@
                 <input type="hidden" name="course_id" value="{{ $course->id  }}">
                 <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
                     <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Salvar</button>
-                    <a href="{{ route('rumos.index') }}"><button type="button" class="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Voltar</button></a>
+                    <a href="{{ route('rumos.back', $course) }}"><button type="button" class="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Voltar</button></a>
                 </div>
             </form>
         </div>

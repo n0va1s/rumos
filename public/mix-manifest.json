@@ -1,8 +1,13 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/img/bible.jpg": "/img/bible.jpg",
+    "/img/boat.jpg": "/img/boat.jpg",
     "/img/candles.jpg": "/img/candles.jpg",
+    "/img/cross.jpg": "/img/cross.jpg",
     "/img/emaus-colorido.png": "/img/emaus-colorido.png",
+    "/img/letter.jpg": "/img/letter.jpg",
+    "/img/person.jpg": "/img/person.jpg",
     "/img/priest.jpg": "/img/priest.jpg",
     "/img/teens.jpg": "/img/teens.jpg"
 }

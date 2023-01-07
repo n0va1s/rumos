@@ -27,7 +27,7 @@ use App\Http\Controllers\Rumo\{
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -55,20 +55,6 @@ Route::post(
     [RecordController::class, 'store']
 )->name('records.store');
 
-/*
-Route::get(
-    '/rumos',
-    [RumoController::class, 'index']
-)->name('rumos.index');
-Route::get(
-    '/rumos/create',
-    [RumoController::class, 'create']
-)->name('rumos.create');
-Route::post(
-    '/rumos',
-    [RumoController::class, 'store']
-)->name('rumos.store');
-*/
 Route::post(
     '/rumos/search',
     [RumoController::class, 'search']
@@ -77,6 +63,10 @@ Route::get(
     '/rumos/{id}/show',
     [RumoController::class, 'show']
 )->name('rumos.show');
+Route::get(
+    '/rumos/{id}/back',
+    [RumoController::class, 'back']
+)->name('rumos.back');
 
 Route::get(
     '/rumos/{id}/orientation',

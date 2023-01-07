@@ -5,8 +5,10 @@
     @section('title', 'Rumos')
     <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
         <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
-            <h2 class="text-2xl px-6 py-6">Rumo</h2>
-            <p class="px-6 mt-1 text-sm text-gray-600">Curso de {{ $course->community->title }}-{{ $course->number}}/{{$course->year }}</p>
+            <div class="p-10">
+                <h3 class="text-2xl px-6 py-6">Rumo</h3>
+                <p class="px-6 mt-1 text-sm text-gray-600">Curso de {{ $course->community->title }}-{{ $course->number}}/{{$course->year }}</p>
+            </div>
             <div class="overflow-hidden bg-white shadow sm:rounded-lg">
                 <div class="px-4 py-5 sm:px-6">
                     <h3 class="text-lg font-medium leading-6 text-gray-900">Equipe de orientação</h3>
@@ -108,8 +110,7 @@
                 </div>
                 @endif
                 <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
-                    <a href="{{ route('rumos.index') }}"><button type="button" class="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Voltar</button></a>
-                </div>
+                <a href="{{ route('rumos.back', $course) }}"><button type="button" class="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Voltar</button></a>
             </div>
         </div>
     </div>

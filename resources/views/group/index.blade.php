@@ -20,6 +20,7 @@
                     </button>
                 </div>
             </div>
+            @if($data->count() > 0)
             <div class="flex flex-col">
                 <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
@@ -73,6 +74,18 @@
                     </div>
                 </div>
             </div>
+            @else
+            <div class="max-w-2xl mx-auto">
+                <div class="bg-white shadow-sm rounded-lg divide-y">
+                    <div class="grid grid-cols-2">
+                        <div class="p-6">
+                            <p>Mensagem</p>
+                            <small>Não há reuniões de grupo cadastradas</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
         </div>
     </div>
 </x-app-layout>

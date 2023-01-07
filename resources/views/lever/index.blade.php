@@ -43,7 +43,7 @@
                     <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Pesquisar</button>
                 </div>
             </form>
-            @isset($levers)
+            @if($levers->count() > 0)
             <div class="flex flex-col">
                 <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
@@ -82,7 +82,7 @@
                     </div>
                 </div>
             </div>
-            @if(empty($levers))
+            @else
             <div class="max-w-2xl mx-auto">
                 <div class="bg-white shadow-sm rounded-lg divide-y">
                     <div class="grid grid-cols-2">
@@ -94,7 +94,6 @@
                 </div>
             </div>
             @endif
-            @endisset
         </div>
     </div>
 </x-app-layout>

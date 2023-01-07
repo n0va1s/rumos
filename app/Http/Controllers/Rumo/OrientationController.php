@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Rumo;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Rumo\OrientationRequest;
 use App\Models\Course;
 use App\Models\Leader;
 use App\Models\Option;
 use App\Models\Person;
-use Illuminate\Http\Request;
 
 class OrientationController extends Controller
 {
@@ -23,21 +23,13 @@ class OrientationController extends Controller
         return view('rumo.orientation', compact('course', 'roles', 'people'));
     }
 
-    public function store(Request $request)
+    public function store(OrientationRequest $request)
     {
         if (! $course = Course::find($request->input("course_id"))) {
             return redirect()->back()->with('error', 'Curso não encontrado. Tente novamente');
         }
-
-        $validated = $request->validate(
-            [
-                "course_id" => ['required', 'string'],
-                "role_id" => ['required', 'numeric'],
-                "person_id" => ['required', 'string'],
-                "information" => ['nullable', 'string'],
-            ]
-        );
-
+        $validated = $this->validate($request, $request->rules());
+        
         if (! $validated) {
             return redirect()->back()->with('error', 'Ops... não consegui salvar. Tente novamente');
         }

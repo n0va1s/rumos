@@ -10,7 +10,7 @@
             <div class="grid grid-cols-2">
                 <div class="p-10">
                     <h3 class="text-2xl px-6 py-6">Cadastro da Equipe de Apoio e Cozinha</h3>
-                    <p class="px-6 mt-1 text-sm text-gray-600">Curso de {{ $course->community->title }}-{{ $course->number}}/{{$course->year }}</p>
+                    <p class="px-6 text-sm text-gray-600">Curso de {{ $course->community->title }}-{{ $course->number}}/{{$course->year }}</p>
                 </div>
                 <div class="p-2 px-6 py-6 text-right">
                     <button type="submit" class="inline-flex rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
