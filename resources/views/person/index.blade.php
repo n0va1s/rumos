@@ -8,7 +8,7 @@
             <div class="grid grid-cols-2">
                 <div class="p-10">
                     <h3 class="text-2xl px-6 py-6">Pessoas</h3>
-                    <p class="px-6 mt-1 text-sm text-gray-600">Cadastre alguém que trabalhou ou um cursista</p>
+                    <p class="px-6 mt-1 text-sm text-gray-600">Cadastre alguém que trabalhou em um Curso de Emaús ou novo(a) um cursista</p>
                 </div>
                 <div class="p-2 px-6 py-6 text-right">
                     <button type="submit" class="inline-flex rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
@@ -19,6 +19,7 @@
                     </button>
                 </div>
             </div>
+            @if(count($data) > 0)
             <div class="flex flex-col">
                 <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
@@ -78,6 +79,18 @@
                     </div>
                 </div>
             </div>
+            @else
+            <div class="max-w-2xl mx-auto">
+                <div class="bg-white shadow-sm rounded-lg divide-y">
+                    <div class="grid grid-cols-2">
+                        <div class="p-6">
+                            <p>Mensagem</p>
+                            <small>Não há pessoas cadastradas</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
         </div>
     </div>
 </x-app-layout>

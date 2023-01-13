@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Admin\GroupRequest;
 use App\Models\Group;
 use App\Models\Option;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class GroupController extends CrudController
 {
@@ -18,6 +20,6 @@ class GroupController extends CrudController
         $this->routeIndex = 'groups.index';
         $this->validatorName = GroupRequest::class;
         $this->listGrid = Group::with(['community', 'frequency'])->get();
-        $this->object = 'Reunião de grupo';
+        $this->title = 'Reunião de grupo';
     }
 }

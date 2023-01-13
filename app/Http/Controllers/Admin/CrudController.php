@@ -8,8 +8,8 @@ use App\Http\Controllers\Controller;
 abstract class CrudController extends Controller
 {
     
-    protected $className, $validatorName, $viewName, $routeIndex, $types, $listGrid, 
-    $paginateGrid, $object;
+    protected $className, $validatorName, $viewName, $routeIndex, $options, $listGrid, 
+    $paginateGrid, $title;
     
     public function index()
     {
@@ -23,7 +23,7 @@ abstract class CrudController extends Controller
         }
         if (isset($this->options)) {
             $options = $this->options;
-            return view($this->viewName.'.index', compact('data','options'));
+            return view($this->viewName.'.index', compact('data', 'options'));
         }
         return view($this->viewName.'.index', compact('data'));
         
@@ -45,7 +45,7 @@ abstract class CrudController extends Controller
         }
         $this->className::create($data);
         return redirect()->route($this->routeIndex)->with(
-            'success', $this->object.' cadastrado(a) com sucesso'
+            'success', $this->title.' cadastrado(a) com sucesso'
         );
     }
 
@@ -71,7 +71,7 @@ abstract class CrudController extends Controller
         }
         $model->update($data);
         return redirect()->route($this->routeIndex)->with(
-            'success', $this->object.' atualizado(a) com sucesso'
+            'success', $this->title.' atualizado(a) com sucesso'
         );
     }
 
@@ -82,7 +82,7 @@ abstract class CrudController extends Controller
         }
         $model->delete();
         return redirect()->route($this->routeIndex)->with(
-            'success', $this->object.' excluído(a) com sucesso'
+            'success', $this->title.' excluído(a) com sucesso'
         );;
     }
 }

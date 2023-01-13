@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Option;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
@@ -15,6 +16,7 @@ class UserSeeder extends Seeder
                 'name'=>'João Paulo Novais',
                 'email'=>'jp.trabalho@gmail.com',
                 'password'=> Hash::make('linux1'),
+                'community_id' => Option::where('group', 'SEC')->first()->id,
             ]
         );
     }

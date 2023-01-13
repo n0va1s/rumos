@@ -16,12 +16,11 @@ class PersonController extends CrudController
         $this->className = Person::class;
         $this->options['genders'] = Option::where('group', "GND")->get();
         $this->options['ufs'] = Option::where('group', "UFS")->get();
-        $this->options['communities'] = Option::where('group', "SEC")->get();
         $this->viewName = 'person';
         $this->routeIndex = 'people.index';
         $this->validatorName = PersonRequest::class;
         $this->listGrid = Person::with(['gender', 'address'])->get();
-        $this->object = 'Pessoa';
+        $this->title = 'Pessoa';
     }
 
     public function clearFormat(string $input)
@@ -43,8 +42,7 @@ class PersonController extends CrudController
                 'phone' => $this->clearFormat($data['phone']),
                 'social' => $data['social'],
                 'birth_at' => $data['birth_at'],
-                'gender_id' => $data['gender_id'],
-                'community_id' => $data['community_id'],
+                'gender_id' => $data['gender_id']
             ]
         )->id;
         if (isset($id) && !empty($data['zipcode'])) {

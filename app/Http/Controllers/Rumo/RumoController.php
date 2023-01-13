@@ -21,7 +21,7 @@ class RumoController extends CrudController
         $this->routeIndex = 'rumos.index';
         $this->validatorName = CourseRequest::class;
         $this->listGrid = Course::with(['leaders', 'teams'])->get();
-        $this->object = 'Rumo';
+        $this->title = 'Rumo';
     }
 
     public function index()

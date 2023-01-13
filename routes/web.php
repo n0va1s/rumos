@@ -34,13 +34,13 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::resource('groups', GroupController::class)
-    ->middleware(['auth', 'verified']);
+->middleware(['auth', 'verified']);
 
 Route::resource('people', PersonController::class)
-    ->middleware(['auth', 'verified']);
+->middleware(['auth', 'verified']);
 
 Route::resource('rumos', RumoController::class)
-    ->middleware(['auth', 'verified']);
+->middleware(['auth', 'verified']);
 
 Route::resource('records', RecordController::class)
     ->only('index', 'edit', 'update', 'destroy')
