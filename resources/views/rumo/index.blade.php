@@ -14,12 +14,7 @@
                 </div>
                 @if(isset($courses))
                 <div class="p-2 px-6 py-6 text-right">
-                    <button type="submit" class="inline-flex rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                        </svg>
-                        <a href="{{route('rumos.create')}}">Cadastrar</a>
-                    </button>
+                    <x-button.new  action="rumos.create"></x-button.new>
                 </div>
                 @endif
             </div>
@@ -27,20 +22,20 @@
                 @csrf
                 <div class="bg-white p-6">
                     <div class="grid grid-cols-6 gap-6">
-                    <x-select-community 
+                    <x-select 
                         class="col-span-6 sm:col-span-3"
                         label="Secretariado" 
                         :options="$communities" 
                         :selected="Auth::user()->community_id"
                         :disabled="true">
-                    </x-select-community>
+                    </x-select>
                     </div>
                 </div>
                 <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
-                    <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Pesquisar</button>
+                    <x-button.search></x-button.search>
                 </div>
             </form>
-            @if(count($courses) > 0)
+            @if(isset($courses))
             <div class="flex flex-col">
                 <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
@@ -65,9 +60,9 @@
                                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                             {{ $course->community->title }}
                                         </td>
-                                        <td class="text-sm text-gray-900 font-light px-6 py-4">
+                                        <td class="text-sm text-gray-900 font-light px-2 py-2">
                                             <p>{{$course->type->title}} - {{$course->number}} / {{$course->year}}</p>
-                                            <small>{{ date('d-m-Y', strtotime($course->starts_at)) }} - {{ date('d-m-Y', strtotime($course->ends_at)) }}</small>
+                                            <small>{{ date('d-m-Y', strtotime($course->starts_at)) }} a {{ date('d-m-Y', strtotime($course->ends_at)) }}</small>
                                         </td>
                                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                             <button type="submit" title="Trabalhei na equipe de orientação" class="inline-flex rounded-md border border-transparent bg-white py-2 px-4 text-sm font-medium text-blue-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-50 focus:ring-offset-2">
@@ -101,7 +96,7 @@
                                             <form action="{{route('rumos.destroy', $course)}}" method="POST">
                                                 @method('DELETE')
                                                 @csrf
-                                                <button type="submit" title="Excluir o curso" class="inline-flex rounded-md border border-transparent bg-white py-2 px-4 text-sm font-medium text-blue-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-50 focus:ring-offset-2">
+                                                <button type="submit" onclick="return confirm('Confirma a exclusão?');" title="Excluir o curso" class="inline-flex rounded-md border border-transparent bg-white py-2 px-4 text-sm font-medium text-blue-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-50 focus:ring-offset-2">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                         <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
                                                     </svg>
@@ -121,7 +116,7 @@
                 <div class="bg-white shadow-sm rounded-lg divide-y">
                     <div class="grid grid-cols-2">
                         <div class="p-6">
-                            <p>Mensagem</p>
+                            <p>Ops...</p>
                             <small>Não há cursos cadastrados</small>
                         </div>
                     </div>

@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class SelectCommunity extends Component
+class Select extends Component
 {
     public $label;
     public $options;
@@ -21,6 +21,6 @@ class SelectCommunity extends Component
 
     public function render()
     {
-        return view('components.select-community');
+        return view('components.select');
     }
 }

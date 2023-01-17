@@ -21,7 +21,7 @@
             </div>
             <div class="col-span-6 sm:col-span-6">
                 <label for="reason" class="block text-sm font-medium text-gray-700">Preparação para a entrevista</label>
-                <textarea name="reason" rows="10" class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="Por que deseja fazer o Emaús?" @if(isset($model)) disabled @endif>{{ $model->reason }}</textarea>
+                <textarea name="reason" rows="10" class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="Por que deseja fazer o Emaús?" @if(isset($model)) disabled @endif>{{ isset($model) ? $model->reason : old('reason') }}</textarea>
             </div>
             <div class="col-span-6 sm:col-span-6">
                 <fieldset class="mt-2">
@@ -30,7 +30,7 @@
                     <div class="mt-4 space-y-4">
                         <div class="flex items-start">
                             <div class="flex h-5 items-center">
-                                <input name="has_first_communion" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" value="1" @if($model) disabled @endif @if($model->has_first_communion) checked @endif>
+                                <input name="has_first_communion" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" value="1" @if(isset($model)) disabled @endif @if(isset($model) and $model->has_first_communion) checked @endif>
                             </div>
                             <div class="ml-3 text-sm">
                                 <label for="has_first_communion" class="font-medium text-gray-700">Primeira Comunhão</label>
@@ -39,7 +39,7 @@
                         </div>
                         <div class="flex items-start">
                             <div class="flex h-5 items-center">
-                                <input name="has_chrism" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" value="1" @if($model) disabled @endif @if($model->has_chrism) checked @endif>
+                                <input name="has_chrism" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" value="1" @if(isset($model)) disabled @endif @if(isset($model) and $model->has_chrism) checked @endif>
                             </div>
                             <div class="ml-3 text-sm">
                                 <label for="has_chrism" class="font-medium text-gray-700">Crisma</label>
@@ -48,7 +48,7 @@
                         </div>
                     </div>
                 </fieldset>
-                @if(!$model)
+                @if(! isset($model))
                 <fieldset class="mt-2">
                     <legend class="sr-only">Estou de acordo</legend>
                     <p class="text-sm text-gray-500">Para terminar, você precisa concordar com estes termos</p>
@@ -97,8 +97,8 @@
             </div>
         </div>
         <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
-            <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">@if(!$model) Salvar @else Aprovar @endif</button>
-            <!--<a href="{{ route('records.index') }}"><button type="button" class="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Voltar</button></a>-->
+            <x-button.save></x-button.save>
+            <x-button.back  action="records.index"></x-button.back>
         </div>
     </div>
 </div>

@@ -11,12 +11,7 @@
                     <p class="px-6 mt-1 text-sm text-gray-600">Se inscreva para o Curso de Emaús</p>
                 </div>
                 <div class="p-2 px-6 py-6 text-right">
-                    <button type="submit" class="inline-flex rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                        </svg>
-                        <a href="{{route('records.create')}}">Cadastrar</a>
-                    </button>
+                    <x-button.new action="records.create"></x-button.new>
                 </div>
             </div>
             <div class="flex flex-col">
@@ -53,22 +48,8 @@
                                             {{ $record->presenter->first_name }} {{ $record->presenter->last_name }}
                                         </td>
                                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                            <button type="submit" class="inline-flex rounded-md border border-transparent bg-white py-2 px-4 text-sm font-medium text-blue-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-50 focus:ring-offset-2">
-                                                <a href="{{route('records.edit', $record)}}">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#4D61AB" class="w-6 h-6">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
-                                                    </svg>
-                                                </a>
-                                            </button>
-                                            <form action="{{route('records.destroy', $record)}}" method="POST">
-                                                @method('DELETE')
-                                                @csrf
-                                                <button type="submit" class="inline-flex rounded-md border border-transparent bg-white py-2 px-4 text-sm font-medium text-blue-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-50 focus:ring-offset-2" onclick="return confirm('Confirma a exclusão?');">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#B63F46" class="w-6 h-6 fill: red">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                    </svg>
-                                                </button>
-                                            </form>
+                                            <x-button.edit action="records.edit" id="{{ $record->id }}" class="mt-2"></x-button.edit>
+                                            <x-button.del action="records.destroy" id="{{ $record->id }}" class="mt-2"></x-button.del>
                                         </td>
                                     </tr>
                                     @endforeach
