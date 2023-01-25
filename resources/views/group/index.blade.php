@@ -6,13 +6,13 @@
     <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
         @include('layouts.flash-message')
         <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
-            <div class="grid grid-cols-2">
-                <div class="p-10">
-                    <h3 class="text-2xl px-6 py-6">Reuniões de Grupo</h3>
-                    <p class="px-6 mt-1 text-sm text-gray-600">Crie uma nova reunião de grupo</p>
+            <div class="flex px-4 py-12">
+                <div class="w-full basis-5/6">
+                    <h3 class="p-4 text-2xl">Reuniões de Grupo</h3>
+                    <p class="px-4 text-sm text-gray-600">Crie uma nova reunião de grupo</p>
                 </div>
-                <div class="p-2 px-6 py-6 text-right">
-                    <x-button.new  action="groups.create"></x-button.new>
+                <div class="basis-1/6 p-6">
+                    <x-button.new action="groups.create"></x-button.new>
                 </div>
             </div>
             @if(count($data) > 0)

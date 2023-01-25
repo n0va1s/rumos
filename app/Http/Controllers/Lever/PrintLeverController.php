@@ -11,6 +11,11 @@ use Illuminate\Http\Request;
 
 class PrintLeverController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth','verified']);
+    }
+    
     public function index()
     {
         $communities = Option::where('group', "SEC")->get();
@@ -23,7 +28,6 @@ class PrintLeverController extends Controller
         $course_id = (string) $request->input('course_id');
         
         if (! $community = Option::find($community_id)) {
-            return redirect()->back()->with('error', 'Secretariado não encontrado. Tente novamente');
             return redirect()->back()->with('error', 'Secretariado não encontrado. Tente novamente');
         }
         

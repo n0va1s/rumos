@@ -23,9 +23,9 @@ class Member extends Model
         'id',
     ];
 
-    public function courseLeader()
+    public function monitor()
     {
-        return $this->belongsTo(courseLeader::class, "course_leader_id");
+        return $this->belongsTo(Leader::class, "course_leader_id");
     }
 
     public function person()

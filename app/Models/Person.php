@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\UtilService;
 use App\Traits\UsesUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -37,6 +38,45 @@ class Person extends Model
         'deleted_at',
     ];
 
+    public function getFullName(User $user)
+    {
+        return $user->first_name.' '.$user->last_name;
+    }
+    
+    public static function saveOrUpdate(array $data)
+    {
+        $person = Person::updateOrCreate(
+            [
+                'email' => $data['email'],
+                'phone' => UtilService::clearFormat($data['phone'])],
+            [
+                'first_name' => $data['first_name'],
+                'last_name' => $data['last_name'],
+                'email' => $data['email'],
+                'phone' => UtilService::clearFormat($data['phone']),
+                'social' => $data['social'],
+                'birth_at' => $data['birth_at'],
+                'gender_id' => $data['gender_id']
+            ]
+        );
+        if ($person->id && !empty($data['zipcode'])) {
+            Address::updateOrCreate(
+                [
+                    'zipcode' => UtilService::clearFormat($data['zipcode']),
+                ],
+                [
+                    'person_id' => $person->id,
+                    'description' => $data['description'],
+                    'number' => $data['number'],
+                    'city' => $data>['city'],
+                    'zipcode' => UtilService::clearFormat($data['zipcode']),
+                    'state_id' => $data['uf_id'],
+                ]
+            );
+        }
+        return $person;
+    }
+    
     public function otherGroup()
     {
         return $this->belongsTo(Option::class, "other_group_id");

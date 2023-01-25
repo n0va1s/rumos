@@ -32,8 +32,8 @@ class CreateDatabase extends Migration
                 $table->unsignedInteger('gender_id')->comment('Identifica o genero. Ex: Masculino ou Feminino');
                 $table->string('first_name')->comment('Descreve o primeiro da pessoa. Ex: João Paulo');
                 $table->string('last_name')->comment('Descreve os sobrenomes da pessoa. Ex: de Novais');
-                $table->string('email', 100)->comment('Descreve o email da pessoa. Ex: fulano@gmail.com');
-                $table->string('phone', 20)->comment('Descreve o celular da pessoa com DDD. Ex: 61988776655');
+                $table->string('email', 50)->unique()->comment('Descreve o email da pessoa. Ex: fulano@gmail.com');
+                $table->string('phone', 20)->unique()->comment('Descreve o celular da pessoa com DDD. Ex: 61988776655');
                 $table->string('social', 100)->nullable()->comment('Descreve a rede social principal da pessoa. Ex: https://instagram.com/fulanadetal');
                 $table->date('birth_at')->comment('Data de aniversário. Ex: 01/07/1980');
                 $table->string('father', 150)->nullable()->comment('Nome completo do pai. Ex: José da Silva');
@@ -82,7 +82,7 @@ class CreateDatabase extends Migration
             'person_records', function (Blueprint $table) {
                 $table->uuid('id')->primary();
                 $table->string('person_id')->comment('Identifica o dono da ficha. Ex: Fulana');
-                $table->string('presenter_id')->comment('Identifica quem está apresentando a ficha. Ex: Apresentante');
+                $table->string('presenter_id')->nullable()->comment('Identifica quem está apresentando a ficha. Ex: Apresentante');
                 $table->text('reason')->comment('Descreve o porquê o dono da ficha deseja fazer Emaús. Ex: Quero crescer na fé católica');
                 $table->tinyText('other_information')->nullable()->comment('Descreve alguma outra observação. Ex: Candidato já teve contato com drogas ilíticas ');
                 $table->boolean('has_agreement')->default(false)->comment('Indica se o candidato concordou com as regras do curso. Ex: sim/não');

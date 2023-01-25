@@ -10,10 +10,6 @@ use Illuminate\Http\Request;
 
 class PhotoController extends Controller
 {
-    public function __construct()
-    {
-    }
-
     public function create($id)
     {
         $course = Course::find($id);

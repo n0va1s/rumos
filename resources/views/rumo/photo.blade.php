@@ -7,8 +7,8 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
         <div class="bg-white shadow-sm rounded-lg">
-            <div class="flex flex-row">
-                <div class="basis-5/6 mb-4">
+            <div class="flex">
+                <div class="w-full basis-5/6">
                     <h3 class="p-4 text-2xl">Foto Oficial</h3>
                     <x-course-detail :course="$course"></x-course-detain>
                 </div>
@@ -35,7 +35,7 @@
             <input type="hidden" name="course_id" value="{{ $course->id  }}">
             <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
                 <x-button.save></x-button.save>
-                <x-button.back  action="rumos.back" :id="$course->id"></x-button.back>
+                <x-button.back action="rumos.back" :id="$course->id"></x-button.back>
             </div>
         </form>
     </div>

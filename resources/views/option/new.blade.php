@@ -7,10 +7,10 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
         <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
-            <form method="POST" action="{{ route('groups.update', $model->id) }}">
+            <h3 class="text-2xl px-6 py-6">Nova Opção de Configuração</h3>
+            <form method="POST" action="{{ route('options.store') }}">
                 @csrf
-                @method('PUT')
-                @include('group.includes._form')
+                @include('option.includes._form')
             </form>
         </div>
     </div>

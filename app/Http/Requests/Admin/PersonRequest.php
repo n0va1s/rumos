@@ -16,7 +16,7 @@ class PersonRequest extends FormRequest
         return [
             'first_name' => ['required', 'string', 'max:100'],
             'last_name' => ['required', 'string', 'max:100'],
-            'birth_at' => ['required', 'date'],
+            'birth_at' => ['required', 'date', 'before:18 years ago'],
             'gender_id' => ['required', 'numeric'],
             'email' => ['required', 'e-mail', 'min:5'],
             'phone' => ['required', 'numeric', 'min:11'],

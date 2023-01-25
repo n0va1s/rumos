@@ -7,10 +7,10 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
         <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
-            <h2 class="text-2xl px-6 py-6">Nova Reunião de Grupo</h2>
+            <h3 class="text-2xl px-6 py-6">Nova Reunião de Grupo</h3>
             <form method="POST" action="{{ route('groups.store') }}">
                 @csrf
-                @include('group.includes._form');
+                @include('group.includes._form')
             </form>
         </div>
     </div>

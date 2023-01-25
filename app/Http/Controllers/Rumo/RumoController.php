@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Rumo;
 use App\Http\Controllers\Admin\CrudController;
 use App\Http\Requests\Rumo\CourseRequest;
 use App\Models\Course;
+use App\Models\Member;
 use App\Models\Option;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -66,13 +67,18 @@ class RumoController extends CrudController
 
     public function show($id)
     {
-        $course = Course::with(['leaders', 'teams', 'type', 'community'])->find($id);
-        return view('rumo.show', compact('course'));
+        $members = (new Course())->getMembers($id);
+        $course = Course::with(
+            ['leaders', 'teams', 'type', 'community']
+        )->find($id);
+        return view('rumo.show', compact('course', 'members'));
     }
 
     public function back($id)
     {
-        $course = Course::with(['leaders', 'teams', 'type', 'community'])->find($id);
+        $course = Course::with(
+            ['leaders', 'teams', 'type', 'community']
+        )->find($id);
         $community_id = $course->community->id;
         $courses = Course::whereHas(
             'community', 

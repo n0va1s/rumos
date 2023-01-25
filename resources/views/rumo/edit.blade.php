@@ -10,7 +10,7 @@
             <form method="POST" action="{{ route('rumos.update', $model->id) }}">
                 @csrf
                 @method('PUT')
-                @include('rumo.includes._formCourse');
+                @include('rumo.includes._formCourse')
             </form>
         </div>
     </div>

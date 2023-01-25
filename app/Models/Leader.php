@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,9 +25,26 @@ class Leader extends Model
         'id',
     ];
 
+    public function getMonitors($id)
+    {
+
+        return Leader::whereHas(
+            'role',
+            function (Builder $query) {
+                $query->where('title', '=', 'Monitor');
+            }
+        )->where('course_id', $id)
+            ->get();
+    }
+
     public function course()
     {
         return $this->belongsTo(Course::class, "course_id");
+    }
+
+    public function members()
+    {
+        return $this->hasMany(Member::class, "course_leader_id");
     }
 
     public function person()

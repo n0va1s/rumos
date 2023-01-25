@@ -5,18 +5,19 @@
     @section('title', 'Rumos')
     <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
         <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
-            <div class="p-10">
+            <div class="w-full mb-4">
                 <h3 class="text-2xl px-6 py-6">Rumo</h3>
-                <p class="px-6 mt-1 text-sm text-gray-600">Curso de {{ $course->community->title }}-{{ $course->number}}/{{$course->year }}</p>
+                <x-course-detail :course="$course"></x-course-detain>
             </div>
             <div class="overflow-hidden bg-white shadow sm:rounded-lg">
                 <div class="px-4 py-5 sm:px-6">
-                    <h3 class="text-lg font-medium leading-6 text-gray-900">Equipe de orientação</h3>
+                    <h3 class="text-lg font-bold leading-6 text-gray-900">Equipe de orientação</h3>
                 </div>
                 <div class="flex flex-col">
                     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
                             <div class="overflow-x-auto">
+                                @if(count($course->leaders) > 0)
                                 <table class="min-w-full">
                                     <thead class="border-b">
                                         <tr>
@@ -47,17 +48,30 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                @else
+                                <div class="w-full">
+                                    <div class="bg-white shadow-sm rounded-lg divide-y">
+                                        <div class="grid grid-cols-2">
+                                            <div class="p-6">
+                                                <p>Ops...</p>
+                                                <small>Equipe não cadastrada ainda</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="px-4 py-5 sm:px-6">
-                    <h3 class="text-lg font-medium leading-6 text-gray-900">Equipe de apoio e serviço</h3>
+                    <h3 class="text-lg font-bold leading-6 text-gray-900">Equipe de apoio e serviço</h3>
                 </div>
                 <div class="flex flex-col">
                     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
                             <div class="overflow-x-auto">
+                                @if(count($course->teams) > 0)
                                 <table class="min-w-full">
                                     <thead class="border-b">
                                         <tr>
@@ -88,12 +102,72 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                @else
+                                <div class="w-full">
+                                    <div class="bg-white shadow-sm rounded-lg divide-y">
+                                        <div class="grid grid-cols-2">
+                                            <div class="p-6">
+                                                <p>Ops...</p>
+                                                <small>Equipe não cadastrada ainda</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="px-4 py-5 sm:px-6">
-                    <h3 class="text-lg font-medium leading-6 text-gray-900">Foto Oficial</h3>
+                    <h3 class="text-lg font-bold leading-6 text-gray-900">Cursistas</h3>
+                </div>
+                <div class="flex flex-col">
+                    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                            <div class="overflow-x-auto">
+                                @if(count($members) > 0)
+                                <table class="min-w-full">
+                                    <thead class="border-b">
+                                        <tr>
+                                            <th scope="col" class="text-base font-extrabold text-gray-900 px-6 py-4 text-left">
+                                                Monitor
+                                            </th>
+                                            <th scope="col" class="text-base font-extrabold text-gray-900 px-6 py-4 text-left">
+                                                Cursista
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($members as $member)
+                                        <tr class="border-b">
+                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                {{ $member->monitor->person->first_name }}
+                                            </td>
+                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                {{ $member->person->first_name }} {{ $member->person->last_name }}
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                @else
+                                <div class="w-full">
+                                    <div class="bg-white shadow-sm rounded-lg divide-y">
+                                        <div class="grid grid-cols-2">
+                                            <div class="p-6">
+                                                <p>Ops...</p>
+                                                <small>Equipe não cadastrada ainda</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-4 py-5 sm:px-6">
+                    <h3 class="text-lg font-bold leading-6 text-gray-900">Foto Oficial</h3>
                 </div>
                 @if(isset($course->photo))
                 <div class="px-4 py-5 sm:px-6">
@@ -110,7 +184,7 @@
                 </div>
                 @endif
                 <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
-                    <x-button.back  action="rumos.back" :id="$course->id"></x-button.back>
+                    <x-button.back action="rumos.back" :id="$course->id"></x-button.back>
                 </div>
             </div>
         </div>

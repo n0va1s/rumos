@@ -10,7 +10,7 @@
             <h2 class="text-2xl px-6 py-6">Novo Curso</h2>
             <form method="POST" action="{{ route('rumos.store') }}">
                 @csrf
-                @include('rumo.includes._formCourse');
+                @include('rumo.includes._formCourse')
             </form>
         </div>
     </div>

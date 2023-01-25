@@ -17,8 +17,7 @@ class CourseRequest extends FormRequest
             "community_id" => ['required', 'numeric'],
             "type_id" => ['required', 'numeric'],
             "number" => ['required', 'numeric'],
-            "year" => ['required', 'numeric'],
-            "starts_at" => ['required', 'date'],
+            "starts_at" => ['required', 'date', ],
             "ends_at" => ['required', 'date'],
             "information" => ['nullable', 'string'],
         ];
@@ -30,7 +29,6 @@ class CourseRequest extends FormRequest
             'community_id' => 'secretariado',
             'type_id' => 'tipo de curso',
             'number' => 'número do curso',
-            'year' => 'ano do curso',
             'starts_at' => 'começa em',
             'ends_at' => 'termina em',
             'information' => 'informação',

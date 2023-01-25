@@ -1,17 +1,22 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Lever\PrintLeverController;
+use App\Http\Controllers\Lever\{
+    PrintLeverController,
+    SendLeverController
+};
 use App\Http\Controllers\Admin\{
     GroupController,
     PersonController,
-    RecordController
+    RecordController,
+    OptionController
 };
 use App\Http\Controllers\Rumo\{
     RumoController,
     PhotoController,
     OrientationController,
-    SupportController
+    SupportController,
+    MemberController
 };
 
 /*
@@ -37,10 +42,43 @@ Route::middleware(['web'])->group(
             '/records/create',
             [RecordController::class, 'create']
         )->name('records.create');
+        Route::get(
+            '/records/presenter',
+            [RecordController::class, 'presenter']
+        )->name('records.presenter');
+        Route::get(
+            '/records/religion',
+            [RecordController::class, 'religion']
+        )->name('records.religion');
         Route::post(
-            '/records',
+            '/records/store',
             [RecordController::class, 'store']
         )->name('records.store');
+        Route::post(
+            '/records/candidate',
+            [RecordController::class, 'storeCandidate']
+        )->name('records.candidate.store');
+        Route::post(
+            '/records/presenter',
+            [RecordController::class, 'storePresenter']
+        )->name('records.presenter.store');
+        Route::get(
+            '/records/done',
+            [RecordController::class, 'done']
+        )->name('records.done');
+
+        Route::get(
+            '/levers/create',
+            [SendLeverController::class, 'create']
+        )->name('levers.create');
+        Route::get(
+            '/levers/{id}/message',
+            [SendLeverController::class, 'message']
+        )->name('levers.message');
+        Route::post(
+            '/levers/store',
+            [SendLeverController::class, 'store']
+        )->name('levers.store');
     }
 );
 
@@ -56,6 +94,7 @@ Route::middleware(['auth'])->group(
         Route::resource('rumos', RumoController::class);
         Route::resource('records', RecordController::class)
         ->only('index', 'edit', 'update', 'destroy');
+        Route::resource('options', OptionController::class);
 
         Route::post(
             '/rumos/search',
@@ -87,6 +126,15 @@ Route::middleware(['auth'])->group(
             '/rumos/support',
             [SupportController::class, 'store']
         )->name('rumos.support.store');
+
+        Route::get(
+            '/rumos/{id}/member',
+            [MemberController::class, 'create']
+        )->name('rumos.member.create');
+        Route::post(
+            '/rumos/member',
+            [MemberController::class, 'store']
+        )->name('rumos.member.store');
         
         Route::get(
             '/rumos/{id}/photo',

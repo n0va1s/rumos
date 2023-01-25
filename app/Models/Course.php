@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\UsesUuid;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,7 +16,6 @@ class Course extends Model
     protected $fillable = [
         'community_id',
         'type_id',
-        'year',
         'number',
         'starts_at',
         'ends_at',
@@ -42,11 +42,6 @@ class Course extends Model
         return $this->hasMany(Leader::class, "course_id");
     }
 
-    public function members()
-    {
-        return $this->hasMany(Member::class, "course_id");
-    }
-    
     public function teams()
     {
         return $this->hasMany(Team::class, "course_id");
@@ -57,7 +52,18 @@ class Course extends Model
         return $this->hasMany(Lever::class, "course_id");
     }
 
-    public function photo() {
+    public function photo()
+    {
         return $this->hasOne(Photo::class, "course_id");
+    }
+
+    public function getMembers($id)
+    {
+        return Member::whereHas(
+            'monitor',
+            function (Builder $query) use ($id) {
+                $query->where('course_id', '=', $id);
+            }
+        )->with('person')->get();
     }
 }

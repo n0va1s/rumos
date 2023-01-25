@@ -15,7 +15,7 @@ class RecordRequest extends FormRequest
     {
         return [
             'person_id' => ['required', 'string', 'min:30'],
-            'presenter_id' => ['required', 'string', 'min:30'],
+            'presenter_id' => ['nullable', 'string', 'min:30'],
             'reason' => ['required', 'string'],
             'other_information' => ['nullable', 'string'],
             'has_agreement' => ['required', 'accepted'],
