@@ -18,7 +18,6 @@ class CourseSeeder extends Seeder
             [
                 'community_id' => 15, 
                 'type_id' => 45, 
-                'year'=>2022, 
                 'number'=>88, 
                 'starts_at'=> '2022-10-01', 
                 'ends_at'=>'2022-10-04'

@@ -18,6 +18,8 @@ use App\Http\Controllers\Rumo\{
     SupportController,
     MemberController
 };
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -154,6 +156,18 @@ Route::middleware(['auth'])->group(
             '/levers',
             [PrintLeverController::class, 'search']
         )->name('levers.search');
+});
+
+Route::get('/mail/birthday', function () {
+    $person = [
+        'first_name' => 'Fulana'
+    ];
+    \Illuminate\Support\Facades\Mail::to(
+        "jp.trabalho@gmail.com"
+    )->send(
+        new \App\Mail\BirthdayMail($person)
+    );
+    dd("Email enviado");
 });
 
 require __DIR__ . '/auth.php';

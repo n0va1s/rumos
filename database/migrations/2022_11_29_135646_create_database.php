@@ -103,7 +103,6 @@ class CreateDatabase extends Migration
                 $table->uuid('id')->primary();
                 $table->unsignedInteger('community_id')->comment('Identifica o secretariado que está realizando o curso. Ex: Florianópolis');
                 $table->unsignedInteger('type_id')->comment('Identifica o tipo do curso. Ex: Feminino');
-                $table->integer('year')->comment('Descreve o ano de realização do curso. Ex: 2022');
                 $table->integer('number')->comment('Descreve o número do curso naquele secretariado. Ex: 87');
                 $table->date('starts_at')->comment('Descreve quando começou o curso. Ex: 15/04/2022');
                 $table->date('ends_at')->comment('Descreve quando terminou o curso. Ex: 18/04/2022');

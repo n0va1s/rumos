@@ -3,13 +3,14 @@
     <div class="bg-white">
         <div class="mx-auto grid max-w-2xl grid-cols-1 items-center gap-y-16 gap-x-8 py-24 px-4 sm:px-6 sm:py-32 lg:max-w-7xl lg:grid-cols-2 lg:px-8">
             <div>
-                <div class="grid grid-cols-2 mb-4 gap-y-8 gap-x-8 py-8 px-4">
-                    <!--
-                    <div class="w-20 h-20">
-                        <img src="{{ asset('img/emaus-colorido.png') }}" alt="Logo colorido do Emaús. Ele apresenta a ilustração de Jesus ao centro com dois discípulos um de cada lado" class="rounded-lg bg-gray-100">
+                <div class="grid grid-cols-3 mb-4 gap-2 py-8 px-4">
+                    <!-- Logo -->
+                    <div class="inline-flex items-center justify-center">
+                        <a href="{{ route('welcome') }}">
+                            <x-jet-application-mark class="block h-9 w-auto" />
+                        </a>
                     </div>
-                    -->
-                    <div>
+                    <div class="text-center">
                         <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Emaús Nacional</h2>
                         <p class="mt-1 text-sm font-medium text-gray-900">Você está no portal emaus.org.br</p>
                     </div>
@@ -17,19 +18,19 @@
                     <!--<div class="fixed top-0 right-0 px-6 py-4">-->
                     @auth
                     <div class="inline-flex items-center justify-center">
-                        <a href="{{ url('/dashboard') }}" class="rounded-md border border-transparent bg-indigo-600 px-5 py-3 text-base font-medium text-white hover:bg-indigo-700">
+                        <a href="{{ url('/dashboard') }}" class="rounded-md border border-transparent bg-indigo-600 p-4 text-base font-medium text-white hover:bg-indigo-700">
                             Ir para a área restrita
                             <span class="text-indigo-200" aria-hidden="true">&rarr;</span>
                         </a>
                     </div>
                     @else
                     <div class="inline-flex items-center justify-center">
-                        <a href="{{ route('login') }}" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-5 py-3 text-base font-medium text-white hover:bg-indigo-700">
+                        <a href="{{ route('login') }}" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 mr-2 p-4 text-base font-medium text-white hover:bg-indigo-700">
                             Acesso
                             <span class="text-indigo-200" aria-hidden="true">&rarr;</span>
                         </a>
                         @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="inline-flex items-center justify-center rounded-md border border-transparent bg-white px-5 py-3 text-base font-medium text-indigo-600 hover:bg-indigo-50">
+                        <a href="{{ route('register') }}" class="inline-flex items-center justify-center rounded-md border border-transparent bg-white p-4 text-base font-medium text-indigo-600 hover:bg-indigo-50">
                             Cadastro
                             <span class="text-indigo-200" aria-hidden="true">&rarr;</span>
                         </a>
@@ -38,7 +39,7 @@
                     @endauth
                 </div>
                 <div class="w-full">
-                    <h3>O que posso fazer sem login</h3>
+                    <h3 class="font-bold text-gray-900">O que posso fazer sem login</h3>
                 </div>
                 <div class="flex">
                     <div class="inline-flex align-center p-2">
@@ -80,10 +81,10 @@
                 </dl>
             </div>
             <div class="grid grid-cols-2 grid-rows-2 gap-4 sm:gap-6 lg:gap-8">
-                <img src="{{ asset('img/cross.jpg') }}" alt="Photo by Sven Mieke on Unsplash" class="max-h-24 rounded-lg bg-gray-100">
-                <img src="{{ asset('img/teens.jpg') }}" alt="Photo by Joel Muniz on Unsplash" class="max-h-24 rounded-lg bg-gray-100">
-                <img src="{{ asset('img/priest.jpg') }}" alt="Photo by Jacob Bentzinger on Unsplash" class="max-h-24 rounded-lg bg-gray-100">
-                <img src="{{ asset('img/candles.jpg') }}" alt="Photo by Anita Austvika on Unsplash" class="max-h-24 rounded-lg bg-gray-100">
+                <img src="{{ asset('img/cross.jpg') }}" alt="Photo by Sven Mieke on Unsplash" class="h-full w-full object-cover object-center group-hover:opacity-75">
+                <img src="{{ asset('img/teens.jpg') }}" alt="Photo by Joel Muniz on Unsplash" class="h-full w-full object-cover object-center group-hover:opacity-75">
+                <img src="{{ asset('img/priest.jpg') }}" alt="Photo by Jacob Bentzinger on Unsplash" class="h-full w-full object-cover object-center group-hover:opacity-75">
+                <img src="{{ asset('img/candles.jpg') }}" alt="Photo by Anita Austvika on Unsplash" class="h-full w-full object-cover object-center group-hover:opacity-75">
             </div>
         </div>
     </div>
