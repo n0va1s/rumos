@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\Admin\GroupRequest;
+use App\Http\Controllers\Controller;
 use App\Models\Group;
 use App\Models\Option;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 
-class GroupController extends CrudController
+class GroupController extends Controller
 {
+    /*
     public function __construct()
     {
         $this->middleware(['auth','verified']);
@@ -21,5 +20,15 @@ class GroupController extends CrudController
         $this->validatorName = GroupRequest::class;
         $this->listGrid = Group::with(['community', 'frequency'])->get();
         $this->title = 'Reunião de grupo';
+    }*/
+
+    public function index()
+    {
+        return view('livewire.group',
+        [
+            'groups'=> Group::paginate(10),
+            'communities' => Option::where('group', "SEC")->get(),
+            'frequencies' => Option::where('group', "FRQ")->get()
+        ]);
     }
 }

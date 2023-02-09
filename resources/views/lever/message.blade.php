@@ -14,7 +14,7 @@
         <form method="POST" action="{{ route('levers.store') }}">
             @csrf
             <div class="overflow-hidden sm:rounded-md">
-                <div class="grid grid-cols-6 gap-6 bg-white p-6">
+                <div class="grid grid-cols-1 gap-6 bg-white p-6">
                     <div class="col-span-6 sm:col-span-3">
                         <label for="sender" class="block text-sm font-bold text-gray-700">Email (obrigatório)</label>
                         <input type="email" name="sender" autocomplete="nome" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{ old('sender') }}" placeholder="Qual o email do remetente" required autofocus>
