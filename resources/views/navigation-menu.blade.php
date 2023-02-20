@@ -17,6 +17,21 @@
                     </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('people.index') }}" :active="request()->routeIs('people.index')">
+                        {{ __('Pessoas') }}
+                    </x-jet-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('rumos.index') }}" :active="request()->routeIs('rumos.index')">
+                        {{ __('Rumos') }}
+                    </x-jet-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('levers.index') }}" :active="request()->routeIs('levers.index')">
+                        {{ __('Alavancas') }}
+                    </x-jet-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('groups.index') }}" :active="request()->routeIs('groups.index')">
                         {{ __('Reuniões de Grupo') }}
                     </x-jet-nav-link>

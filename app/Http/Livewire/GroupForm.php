@@ -2,22 +2,18 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Group as GroupModel;
+use App\Models\Group;
 use App\Models\Option;
 use Livewire\Component;
-use Livewire\WithPagination;
 
-class Group extends Component
+class GroupForm extends Component
 {
-    use WithPagination;
-    
     public $group_id;
     public $community_id;
     public $frequency_id;
     public $information;
-    public $search = '';
     public $showingModal = false;
-    public $showingConfirmation = false;
+
 
     protected $rules = [
         'community_id' => 'required|numeric',
@@ -31,21 +27,26 @@ class Group extends Component
         'information' => 'informação',
     ];
 
-    public function updatingSearch()
-    {
-        $this->resetPage();
-    }
-
+    protected $listeners = [
+        'showingModal' => 'open',
+        'edit' => 'edit',
+        'destroy' => 'destroy',
+    ];
+    
     public function render()
     {
-        return view('livewire.group')
-        ->with('groups', GroupModel::paginate(5))
-        ->with('communities', Option::where('group', "SEC")->get())
-        ->with('frequencies', Option::where('group', "FRQ")->get());
+        return view('livewire.group-form')
+            ->with('communities', Option::where('group', "SEC")->get())
+            ->with('frequencies', Option::where('group', "FRQ")->get());
     }
-    
+
+    public function open()
+    {
+        $this->showingModal = true;
+    }
+
     public function edit($id){
-        if(! $group = GroupModel::find($id)){
+        if(! $group = Group::find($id)){
             session()->flash('error', 'Ops... indentificado inválido. Fale com alguém da comunicação');
         }
         $this->group_id = $group->id;
@@ -57,7 +58,7 @@ class Group extends Component
 
     public function save(){
         $validated = $this->validate();
-        GroupModel::updateOrCreate(
+        Group::updateOrCreate(
             [
                 'id'   => $this->group_id,
             ],
@@ -74,7 +75,7 @@ class Group extends Component
     }
 
     public function destroy($id){
-        if(! $group = GroupModel::find($id)){
+        if(! $group = Group::find($id)){
             session()->flash('error', 'Ops... indentificado inválido. Fale com alguém da comunicação');
         }
         $group->delete();

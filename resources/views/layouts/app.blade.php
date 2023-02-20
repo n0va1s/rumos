@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" h-full bg-gray-100 dark:bg-gray-900>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>@yield('title')</title>
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -15,12 +15,9 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         @livewireStyles
         
-        <!-- Scripts -->
-        <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-        
-        
+        {{--@stack('customer-scripts')--}}
     </head>
-    <body class="font-sans antialiased">
+    <body class="min-h-screen">
         <x-jet-banner />
 
         <div class="min-h-screen bg-gray-100">
@@ -45,5 +42,7 @@
 
         @livewireScripts
     </body>
+    <!-- Scripts -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src=" {{ asset('/js/app.js') }}"></script>
 </html>

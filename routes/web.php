@@ -6,6 +6,7 @@ use App\Http\Controllers\Lever\{
     SendLeverController
 };
 use App\Http\Controllers\Admin\{
+    GroupController,
     PersonController,
     RecordController,
     OptionController
@@ -17,7 +18,9 @@ use App\Http\Controllers\Rumo\{
     SupportController,
     MemberController
 };
-use App\Http\Livewire\Group;
+use App\Http\Livewire\{
+    GroupForm
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -89,8 +92,18 @@ Route::middleware(['auth'])->group(
             return view('dashboard');
         })->name('dashboard');
 
-        //Route::resource('groups', GroupController::class);
-        Route::get('/groups', Group::class)->name('groups.index');
+        Route::get(
+            '/groups',
+            [GroupController::class, 'index']
+        )->name('groups.index');
+        Route::get(
+            '/groups/{id}/edit',
+            GroupForm::class
+        )->name('groups.edit');
+        Route::delete(
+            '/groups/{id}/destroy',
+            GroupForm::class
+        )->name('groups.edit');
         Route::resource('people', PersonController::class);
         Route::resource('rumos', RumoController::class);
         Route::resource('records', RecordController::class)

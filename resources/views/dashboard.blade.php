@@ -11,6 +11,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="bg-white">
                         <div class="max-w-2xl p-6 mx-auto lg:max-w-7xl lg:px-8">
+                            <x-offline></x-offline>
                             <h2 class="pb-6 text-lg font-bold text-gray-700">Números do Emaús</h2>
                             <div class="grid grid-cols-1 gap-2 md:grid-cols-3 md:gap-1">
                                 <div class="p-4 font-medium text-center bg-gray-200 border-b border-gray-600 rounded">

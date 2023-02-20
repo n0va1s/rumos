@@ -83,6 +83,6 @@ abstract class CrudController extends Controller
         $model->delete();
         return redirect()->route($this->routeIndex)->with(
             'success', $this->title.' excluído(a) com sucesso'
-        );;
+        );
     }
 }

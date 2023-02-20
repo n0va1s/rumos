@@ -3,10 +3,11 @@
         <h1 class="text-2xl">Emaús Nacional</h1>
     </x-slot>
     @section('title', 'Rumos')
-    <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
-        <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
+    <div class="max-w-2xl p-4 mx-auto sm:p-6 lg:p-8">
+        <div class="mt-6 bg-white divide-y rounded-lg shadow-sm">
+            <x-offline></x-offline>
             <div class="w-full mb-4">
-                <h3 class="text-2xl px-6 py-6">Rumo</h3>
+                <h3 class="px-6 py-6 text-2xl">Rumo</h3>
                 <x-course-detail :course="$course"></x-course-detain>
             </div>
             <div class="overflow-hidden bg-white shadow sm:rounded-lg">
@@ -15,19 +16,19 @@
                 </div>
                 <div class="flex flex-col">
                     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                        <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                        <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                             <div class="overflow-x-auto">
                                 @if(count($course->leaders) > 0)
                                 <table class="min-w-full">
                                     <thead class="border-b">
                                         <tr>
-                                            <th scope="col" class="text-base font-extrabold text-gray-900 px-6 py-4 text-left">
+                                            <th scope="col" class="px-6 py-4 text-base font-extrabold text-left text-gray-900">
                                                 Secretariado
                                             </th>
-                                            <th scope="col" class="text-base font-extrabold text-gray-900 px-6 py-4 text-left">
+                                            <th scope="col" class="px-6 py-4 text-base font-extrabold text-left text-gray-900">
                                                 Função
                                             </th>
-                                            <th scope="col" class="text-base font-extrabold text-gray-900 px-6 py-4 text-left">
+                                            <th scope="col" class="px-6 py-4 text-base font-extrabold text-left text-gray-900">
                                                 Nome
                                             </th>
                                         </tr>
@@ -35,13 +36,13 @@
                                     <tbody>
                                         @foreach ($course->leaders as $leader)
                                         <tr class="border-b">
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                            <td class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
                                                 {{ $leader->course->community->title }}
                                             </td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                            <td class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
                                                 {{ $leader->role->title }}
                                             </td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                            <td class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
                                                 {{ $leader->person->first_name }} {{ $leader->person->last_name }}
                                             </td>
                                         </tr>
@@ -50,7 +51,7 @@
                                 </table>
                                 @else
                                 <div class="w-full">
-                                    <div class="bg-white shadow-sm rounded-lg divide-y">
+                                    <div class="bg-white divide-y rounded-lg shadow-sm">
                                         <div class="grid grid-cols-2">
                                             <div class="p-6">
                                                 <p>Ops...</p>
@@ -69,19 +70,19 @@
                 </div>
                 <div class="flex flex-col">
                     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                        <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                        <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                             <div class="overflow-x-auto">
                                 @if(count($course->teams) > 0)
                                 <table class="min-w-full">
                                     <thead class="border-b">
                                         <tr>
-                                            <th scope="col" class="text-base font-extrabold text-gray-900 px-6 py-4 text-left">
+                                            <th scope="col" class="px-6 py-4 text-base font-extrabold text-left text-gray-900">
                                                 Secretariado
                                             </th>
-                                            <th scope="col" class="text-base font-extrabold text-gray-900 px-6 py-4 text-left">
+                                            <th scope="col" class="px-6 py-4 text-base font-extrabold text-left text-gray-900">
                                                 Função
                                             </th>
-                                            <th scope="col" class="text-base font-extrabold text-gray-900 px-6 py-4 text-left">
+                                            <th scope="col" class="px-6 py-4 text-base font-extrabold text-left text-gray-900">
                                                 Nome
                                             </th>
                                         </tr>
@@ -89,13 +90,13 @@
                                     <tbody>
                                         @foreach ($course->teams as $team)
                                         <tr class="border-b">
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                            <td class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
                                                 {{ $team->course->community->title }}
                                             </td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                            <td class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
                                                 {{ $team->team->title }}
                                             </td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                            <td class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
                                                 {{ $team->person->first_name }} {{ $team->person->last_name }}
                                             </td>
                                         </tr>
@@ -104,7 +105,7 @@
                                 </table>
                                 @else
                                 <div class="w-full">
-                                    <div class="bg-white shadow-sm rounded-lg divide-y">
+                                    <div class="bg-white divide-y rounded-lg shadow-sm">
                                         <div class="grid grid-cols-2">
                                             <div class="p-6">
                                                 <p>Ops...</p>
@@ -123,16 +124,16 @@
                 </div>
                 <div class="flex flex-col">
                     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                        <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                        <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                             <div class="overflow-x-auto">
                                 @if(count($members) > 0)
                                 <table class="min-w-full">
                                     <thead class="border-b">
                                         <tr>
-                                            <th scope="col" class="text-base font-extrabold text-gray-900 px-6 py-4 text-left">
+                                            <th scope="col" class="px-6 py-4 text-base font-extrabold text-left text-gray-900">
                                                 Monitor
                                             </th>
-                                            <th scope="col" class="text-base font-extrabold text-gray-900 px-6 py-4 text-left">
+                                            <th scope="col" class="px-6 py-4 text-base font-extrabold text-left text-gray-900">
                                                 Cursista
                                             </th>
                                         </tr>
@@ -140,10 +141,10 @@
                                     <tbody>
                                         @foreach ($members as $member)
                                         <tr class="border-b">
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                            <td class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
                                                 {{ $member->monitor->person->first_name }}
                                             </td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                            <td class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
                                                 {{ $member->person->first_name }} {{ $member->person->last_name }}
                                             </td>
                                         </tr>
@@ -152,7 +153,7 @@
                                 </table>
                                 @else
                                 <div class="w-full">
-                                    <div class="bg-white shadow-sm rounded-lg divide-y">
+                                    <div class="bg-white divide-y rounded-lg shadow-sm">
                                         <div class="grid grid-cols-2">
                                             <div class="p-6">
                                                 <p>Ops...</p>
@@ -183,7 +184,7 @@
                     </div>
                 </div>
                 @endif
-                <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
+                <div class="px-4 py-3 text-right bg-gray-50 sm:px-6">
                     <x-button.back action="rumos.back" :id="$course->id"></x-button.back>
                 </div>
             </div>

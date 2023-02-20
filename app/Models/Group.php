@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\UsesUuid;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -30,5 +31,22 @@ class Group extends Model
     public function frequency()
     {
        return $this->belongsTo(Option::class, "frequency_id");
+    }
+
+    public function scopeSearch($query, $term)
+    {
+         return $query->where(
+            'information', 'like', '%'.$term.'%'
+        )->orWhereHas(
+            'community', 
+            function (Builder $query) use ($term) {
+                $query->where('title', 'like', '%'.$term.'%');
+            }
+        )->orWhereHas(
+            'frequency', 
+            function (Builder $query) use ($term) {
+                $query->where('title', 'like', '%'.$term.'%');
+            }
+        );
     }
 }
