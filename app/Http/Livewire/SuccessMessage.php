@@ -6,8 +6,6 @@ use Livewire\Component;
 
 class SuccessMessage extends Component
 {
-    public $showingMessage = false;
-
     public function close()
     {
         session()->forget('success');
