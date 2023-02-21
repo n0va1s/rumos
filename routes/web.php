@@ -93,6 +93,11 @@ Route::middleware(['auth'])->group(
         })->name('dashboard');
 
         Route::get(
+            '/message', function () {
+            return view('components.success-message');
+        })->name('message');
+
+        Route::get(
             '/groups',
             [GroupController::class, 'index']
         )->name('groups.index');

@@ -71,7 +71,7 @@ class GroupForm extends Component
         );
         session()->flash('success', 'Reunião de grupo salva com sucesso');
         $this->reset();
-        return redirect()->to('/groups');
+        return redirect()->route('groups.index');
     }
 
     public function destroy($id){
@@ -81,6 +81,6 @@ class GroupForm extends Component
         $group->delete();
         session()->flash('success', 'Reunião de grupo excluída com sucesso');
         
-        return redirect()->to('/groups');
+        return redirect()->route('groups.index');
     }
 }
