@@ -4,9 +4,9 @@
             <div class="text-gray-900">
                 <label for="search" class="sr-only">Pesquisar</label>
                 <input type="text" name="search" wire:model="search" placeholder="Digite para filtrar a tabela"
-                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             </div>
-            <div class="text-gray-900 cursor-pointer ml-2">
+            <div class="ml-2 text-gray-900 cursor-pointer">
                 <x-button wire:click="$emitTo('group-form', 'showingModal')" wire:loading.attr="disabled">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                         stroke="currentColor" class="w-4 mr-2" role="img">
@@ -16,23 +16,33 @@
                 </x-button>
             </div>
         </div>
-        <div class="overflow-x-auto">
-            <table class="w-full divide-y divide-gray-300">
-                <thead class="bg-gray-50 dark:bg-gray-800">
+        <div class="overflow-x-auto shadow-md">
+            <table class="w-full text-sm text-left text-gray-500">
+                <thead class="font-bold text-gray-700 bg-gray-50">
                     <tr>
                         @foreach ($columns as $column)
-                            <th scope="col" @class([
-                                'px-3 py-3.5 text-left text-sm font-semibold text-gray-900  dark:text-white',
-                            ])>{{ $column['label'] }}</th>
+                            <th scope="col"
+                                class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900  dark:text-white">
+                                <a href="#" wire:click.prevent="sortBy('{{ $column['column'] }}')">
+                                    <div class="flex items-center">
+                                        {{ $column['label'] }}
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" />
+                                        </svg>
+                                    </div>
+                                </a>
+                            </th>
                         @endforeach
                         @if ($edit)
                             <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                                <span class="sr-only">Edit</span>
+                                <span class="sr-only">{{$edit}}</span>
                             </th>
                         @endif
                         @if ($delete)
                             <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                                <span class="sr-only">Delete</span>
+                                <span class="sr-only">{{$delete}}</span>
                             </th>
                         @endif
                     </tr>
@@ -46,12 +56,12 @@
                             @endforeach
                             @if ($edit)
                                 <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap dark:text-white">
-                                    <x-button.edit wire:click.prevent="$emit('edit', '{{$item->id}}')"/>
+                                    <x-button.edit wire:click.prevent="$emit('edit', '{{ $item->id }}')" />
                                 </td>
                             @endif
                             @if ($delete)
                                 <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap dark:text-white">
-                                    <x-button.del wire:click.prevent="$emit('destroy', '{{$item->id}}')"/>
+                                    <x-button.del wire:click.prevent="$emit('destroy', '{{ $item->id }}')" />
                                 </td>
                             @endif
                         </tr>
@@ -59,7 +69,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="py-4">
+        <div class="p-4">
             {!! $items->links() !!}
         </div>
     </div>

@@ -5,12 +5,11 @@
         <x-offline />
         <div class="bg-white divide-y rounded-lg shadow-sm">
             <x-heading title="Reuniões de Grupo" description="Crie uma nova reunião de grupo" label="" route=""
-                    route="groups.create" />
-            <livewire:table resource="Group" :with="'community', 'frequency'" :columns="[
-                    ['label' => 'Secretariado', 'column' => 'community.title'],
-                    ['label' => 'Frequência', 'column' => 'frequency.title'],
-                ]" edit="Editar"
-                    delete="Apagar" />
+                route="groups.create" />
+            <livewire:table resource="Group" :columns="[
+                ['label' => 'Secretariado', 'column' => 'community.title'],
+                ['label' => 'Frequência', 'column' => 'frequency.title'],
+            ]" edit="Editar" delete="Apagar" />
             <livewire:group-form />
         </div>
     </div>

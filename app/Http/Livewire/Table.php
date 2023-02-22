@@ -14,15 +14,24 @@ class Table extends Component
     public string $edit;
     public string $delete;
     public string $search = '';
+    public string $sortBy = 'id';
+    public bool $sortAsc = true;
+
+    public function sortBy($name)
+    {
+        $this->sortBy = $name;
+        $this->sortAsc = !$this->sortAsc;
+    }
 
     public function render()
     {
         return view(
-            'livewire.table', 
+            'livewire.table',
             [
                 'items' => app("App\Models\\" . $this->resource)
-                ->search($this->search)
-                ->paginate(10)
+                    ->search($this->search)
+                    ->orderBy($this->sortBy, $this->sortAsc)
+                    ->simplePaginate(5)
             ]
         );
     }
