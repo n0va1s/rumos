@@ -7,8 +7,8 @@
             <x-heading title="Reuniões de Grupo" description="Crie uma nova reunião de grupo" label="" route=""
                 route="groups.create" />
             <livewire:table resource="Group" :columns="[
-                ['label' => 'Secretariado', 'column' => 'community.title'],
-                ['label' => 'Frequência', 'column' => 'frequency.title'],
+                ['label' => 'Secretariado', 'column' => 'community'],
+                ['label' => 'Frequência', 'column' => 'frequency'],
             ]" edit="Editar" delete="Apagar" />
             <livewire:group-form />
         </div>

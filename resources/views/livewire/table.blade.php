@@ -70,6 +70,6 @@
             </table>
         </div>
         <div class="p-4">
-            {!! $items->links() !!}
+           {!! $items->links() !!}
         </div>
     </div>

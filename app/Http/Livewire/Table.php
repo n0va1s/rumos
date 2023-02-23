@@ -16,7 +16,7 @@ class Table extends Component
     public string $search = '';
     public string $sortBy = 'id';
     public bool $sortAsc = true;
-
+    
     public function sortBy($name)
     {
         $this->sortBy = $name;
@@ -30,8 +30,8 @@ class Table extends Component
             [
                 'items' => app("App\Models\\" . $this->resource)
                     ->search($this->search)
-                    ->orderBy($this->sortBy, $this->sortAsc)
-                    ->simplePaginate(5)
+                    ->sort($this->sortBy, $this->sortAsc)
+                    ->paginate(5)
             ]
         );
     }
