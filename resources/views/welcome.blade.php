@@ -1,7 +1,6 @@
 <x-guest-layout>
     @section('title', 'Início')
     <div class="bg-white">
-        <x-offline></x-offline>
         <div class="grid items-center max-w-2xl grid-cols-1 px-4 py-24 mx-auto gap-y-16 gap-x-8 sm:px-6 sm:py-32 lg:max-w-7xl lg:grid-cols-2 lg:px-8">
             <div>
                 <div class="grid grid-cols-3 gap-2 px-4 py-8 mb-4">

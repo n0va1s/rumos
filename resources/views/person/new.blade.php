@@ -6,7 +6,7 @@
     <div class="max-w-2xl p-4 mx-auto sm:p-6 lg:p-8">
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
-        <x-offline></x-offline>
+        <livewire:offline />
         <div class="mt-2 bg-white divide-y rounded-lg shadow-sm">
             <h2 class="px-6 py-6 text-2xl">Novo Cursista ou Membro</h2>
             <form method="POST" action="{{ route('people.store') }}">

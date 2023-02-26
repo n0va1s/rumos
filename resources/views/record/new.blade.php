@@ -6,7 +6,7 @@
     <div class="max-w-2xl p-4 mx-auto sm:p-6 lg:p-8">
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
-        <x-offline></x-offline>
+        <livewire:offline />
         <div class="mt-2 bg-white divide-y rounded-lg shadow-sm">
             <div class="w-full p-6">
                 <h2 class="text-2xl">Nova Ficha de Inscrição (passo 1/3)</h2>

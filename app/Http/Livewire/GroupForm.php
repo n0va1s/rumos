@@ -47,7 +47,7 @@ class GroupForm extends Component
 
     public function edit($id){
         if(! $group = Group::find($id)){
-            session()->flash('error', 'Ops... indentificado inválido. Fale com alguém da comunicação');
+            abort(404, "Reunião de grupo não encontrada. Fale com alguém da Comunicação");
         }
         $this->group_id = $group->id;
         $this->community_id = $group->community_id;
@@ -76,7 +76,7 @@ class GroupForm extends Component
 
     public function destroy($id){
         if(! $group = Group::find($id)){
-            session()->flash('error', 'Ops... indentificado inválido. Fale com alguém da comunicação');
+            abort(404, "Reunião de grupo não encontrada. Fale com alguém da Comunicação");
         }
         $group->delete();
         session()->flash('success', 'Reunião de grupo excluída com sucesso');

@@ -7,7 +7,7 @@
         <success-message />
         <div class="mt-2 bg-white divide-y rounded-lg shadow-sm">
             <div class="flex px-4 py-12">
-                <x-offline></x-offline>
+                <livewire:offline />
                 <div class="w-full basis-5/6">
                     <h3 class="p-4 text-2xl">Opções</h3>
                     <p class="px-4 text-sm text-gray-600">Administrar as listas do sistema</p>

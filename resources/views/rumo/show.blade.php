@@ -5,7 +5,7 @@
     @section('title', 'Rumos')
     <div class="max-w-2xl p-4 mx-auto sm:p-6 lg:p-8">
         <div class="mt-6 bg-white divide-y rounded-lg shadow-sm">
-            <x-offline></x-offline>
+            <livewire:offline />
             <div class="w-full mb-4">
                 <h3 class="px-6 py-6 text-2xl">Rumo</h3>
                 <x-course-detail :course="$course"></x-course-detain>

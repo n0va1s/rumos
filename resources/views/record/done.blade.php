@@ -5,7 +5,7 @@
     @section('title', 'Ficha de Inscrição')
     <div class="py-4 bg-white">
         <div class="inline-block max-w-md px-6 mx-auto">
-            <x-offline></x-offline>
+            <livewire:offline />
             <div class="flex justify-end py-4">
                 <a href="{{ route('welcome') }}">
                     <x-button autofocus>

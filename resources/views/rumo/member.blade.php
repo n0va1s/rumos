@@ -6,7 +6,7 @@
     <div class="max-w-2xl mx-auto sm:p-6 lg:p-8">
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
-        <x-offline></x-offline>
+        <livewire:offline />
         <div class="bg-white rounded-lg shadow-sm">
             <div class="flex">
                 <div class="w-full basis-5/6">

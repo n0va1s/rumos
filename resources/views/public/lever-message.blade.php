@@ -1,12 +1,8 @@
 <x-guest-layout>
-    <x-slot name="header">
-        <h1 class="text-2xl">Emaús Nacional</h1>
-    </x-slot>
     @section('title', 'Alavancas')
     <div class="max-w-2xl p-4 mx-auto sm:p-6 lg:p-8">
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
-        <x-offline></x-offline>
         <div class="w-full">
             <h3 class="px-6 py-2 text-2xl">Alavancas (passo 2/2)</h3>
             <p class="px-6 mt-1 text-sm text-gray-600">Mande um incentivo ou uma mensagem carinhosa para os(as) nossos(as) cursistas</p>
@@ -14,6 +10,7 @@
         </div>
         <form method="POST" action="{{ route('levers.store') }}">
             @csrf
+            <input type="hidden" name="course_id" value="{{ $course->id }}" />
             <div class="overflow-hidden sm:rounded-md">
                 <div class="grid grid-cols-1 gap-6 p-6 bg-white">
                     <div class="col-span-6 sm:col-span-3">
@@ -22,7 +19,7 @@
                     </div>
                     <div class="col-span-6 sm:col-span-3">
                         <label for="information" class="block text-sm font-bold text-gray-700">Mensagem (obrigatória)</label>
-                        <textarea name="information" rows="10" class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="Qual a sua mensagem? Lembre-se de se identificar, tá?" required>{{ old('information') }}</textarea>
+                        <textarea name="information" rows="10" maxlength="1000" class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="Qual a sua mensagem? Lembre-se de se identificar, tá?" required>{{ old('information') }}</textarea>
                     </div>
                     <div class="col-span-6 sm:col-span-3">
                         <div class="col-span-6 sm:col-span-3">

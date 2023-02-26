@@ -1,13 +1,10 @@
 <x-guest-layout>
-    <x-slot name="header">
-        <h1 class="text-2xl">Emaús Nacional</h1>
-    </x-slot>
     @section('title', 'Alavancas')
     <div class="max-w-2xl p-4 mx-auto sm:p-6 lg:p-8">
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
         <div class="mt-2 bg-white divide-y rounded-lg">
-            <x-offline></x-offline>
+            <livewire:offline />
             <div class="w-full p-6">
                 <h3 class="text-2xl">Alavancas (passo 1/2)</h3>
                 <p class="mt-1 text-sm text-gray-600">Selecione um curso</p>

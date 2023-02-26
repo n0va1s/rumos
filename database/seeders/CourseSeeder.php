@@ -17,7 +17,7 @@ class CourseSeeder extends Seeder
         Course::create(
             [
                 'community_id' => 15, 
-                'type_id' => 45, 
+                'type_id' => 46, 
                 'number'=>88, 
                 'starts_at'=> '2022-10-01', 
                 'ends_at'=>'2022-10-04'

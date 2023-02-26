@@ -1,12 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Lever\{
-    PrintLeverController,
-    SendLeverController
-};
 use App\Http\Controllers\Admin\{
     GroupController,
+    LeverController,
     PersonController,
     RecordController,
     OptionController
@@ -72,16 +69,20 @@ Route::middleware(['web'])->group(
 
         Route::get(
             '/levers/create',
-            [SendLeverController::class, 'create']
+            [LeverController::class, 'create']
         )->name('levers.create');
         Route::get(
             '/levers/{id}/message',
-            [SendLeverController::class, 'message']
+            [LeverController::class, 'message']
         )->name('levers.message');
         Route::post(
             '/levers/store',
-            [SendLeverController::class, 'store']
+            [LeverController::class, 'store']
         )->name('levers.store');
+        Route::get(
+            '/levers/done',
+            [LeverController::class, 'done']
+        )->name('levers.done');
     }
 );
 
@@ -91,24 +92,14 @@ Route::middleware(['auth'])->group(
             '/dashboard', function () {
             return view('dashboard');
         })->name('dashboard');
-
-        Route::get(
-            '/message', function () {
-            return view('components.success-message');
-        })->name('message');
-
         Route::get(
             '/groups',
             [GroupController::class, 'index']
         )->name('groups.index');
         Route::get(
-            '/groups/{id}/edit',
-            GroupForm::class
-        )->name('groups.edit');
-        Route::delete(
-            '/groups/{id}/destroy',
-            GroupForm::class
-        )->name('groups.edit');
+            '/levers',
+            [LeverController::class, 'index']
+        )->name('levers.index');
         Route::resource('people', PersonController::class);
         Route::resource('rumos', RumoController::class);
         Route::resource('records', RecordController::class)
@@ -163,7 +154,7 @@ Route::middleware(['auth'])->group(
             '/rumos/photo',
             [PhotoController::class, 'store']
         )->name('rumos.photo.store');
-
+/*
         Route::get(
             '/levers',
             [PrintLeverController::class, 'index']
@@ -173,6 +164,7 @@ Route::middleware(['auth'])->group(
             '/levers',
             [PrintLeverController::class, 'search']
         )->name('levers.search');
+*/        
 });
 
 Route::get('/mail/birthday', function () {

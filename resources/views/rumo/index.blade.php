@@ -4,7 +4,7 @@
         <success-message />
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
-        <x-offline></x-offline>
+        <livewire:offline />
         <div class="mt-2 bg-white divide-y rounded-lg shadow-sm">
             <div class="flex px-4 py-12">
                 <div class="w-full basis-5/6">

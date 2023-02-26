@@ -9,7 +9,7 @@ class SuccessMessage extends Component
     public function close()
     {
         session()->forget('success');
-        return redirect()->route('groups.index');
+        return back();
     }
 
     public function render()
