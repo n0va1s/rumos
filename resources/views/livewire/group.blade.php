@@ -9,9 +9,9 @@
                 title="Reuniões de Grupo" 
                 description="Crie uma nova reunião de grupo"
                 label="Cadastrar"
-                route="groups.create" />
+                form="group-form" />
             </div>
-            <div class="w-full overflow-hidden md:rounded-lg px-1 py-1">
+            <div class="w-full px-1 py-1 overflow-hidden md:rounded-lg">
                 <livewire:table
                     resource="Group"
                     :with="'community', 'frequency'"

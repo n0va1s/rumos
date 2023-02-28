@@ -4,6 +4,9 @@ namespace App\Http\Livewire;
 
 use App\Models\Group;
 use App\Models\Option;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\View\View;
 use Livewire\Component;
 
 class GroupForm extends Component
@@ -13,7 +16,6 @@ class GroupForm extends Component
     public $frequency_id;
     public $information;
     public $showingModal = false;
-
 
     protected $rules = [
         'community_id' => 'required|numeric',
@@ -28,24 +30,26 @@ class GroupForm extends Component
     ];
 
     protected $listeners = [
-        'showingModal' => 'open',
-        'edit' => 'edit',
-        'destroy' => 'destroy',
+        'showingModal'  => 'open',
+        'edit'          => 'edit',
+        'destroy'       => 'destroy',
+        'refresh'       => '$refresh',
     ];
     
-    public function render()
+    public function render() : View
     {
         return view('livewire.group-form')
             ->with('communities', Option::where('group', "SEC")->get())
             ->with('frequencies', Option::where('group', "FRQ")->get());
     }
 
-    public function open()
+    public function open() : void
     {
         $this->showingModal = true;
     }
 
-    public function edit($id){
+    public function edit($id) : void
+    {
         if(! $group = Group::find($id)){
             abort(404, "Reunião de grupo não encontrada. Fale com alguém da Comunicação");
         }
@@ -56,7 +60,8 @@ class GroupForm extends Component
         $this->showingModal = true;
     }
 
-    public function save(){
+    public function save() : RedirectResponse
+    {
         $validated = $this->validate();
         Group::updateOrCreate(
             [
@@ -74,7 +79,8 @@ class GroupForm extends Component
         return redirect()->route('groups.index');
     }
 
-    public function destroy($id){
+    public function destroy($id) : RedirectResponse
+    {
         if(! $group = Group::find($id)){
             abort(404, "Reunião de grupo não encontrada. Fale com alguém da Comunicação");
         }

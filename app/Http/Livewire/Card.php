@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\View\View;
 use Livewire\Component;
 
 class Card extends Component
@@ -14,12 +15,12 @@ class Card extends Component
     protected $data;
     protected $listeners = ['courseSelected' => 'setCourse'];
 
-    public function mount()
+    public function mount() : void
     {
         $this->data = collect();        
     }
     
-    public function setCourse($id)
+    public function setCourse($id) : void
     {
         $this->data = app(
             "App\Models\\" . $this->resource
@@ -30,7 +31,7 @@ class Card extends Component
         )->paginate(10);
     }
 
-    public function render()
+    public function render() : View
     {
         return view(
             'livewire.card',

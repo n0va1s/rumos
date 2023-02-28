@@ -4,7 +4,6 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
         <div class="mt-2 bg-white divide-y rounded-lg">
-            <livewire:offline />
             <div class="w-full p-6">
                 <h3 class="text-2xl">Alavancas (passo 1/2)</h3>
                 <p class="mt-1 text-sm text-gray-600">Selecione um curso</p>

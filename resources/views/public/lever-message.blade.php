@@ -21,6 +21,7 @@
                         <label for="information" class="block text-sm font-bold text-gray-700">Mensagem (obrigatória)</label>
                         <textarea name="information" rows="10" maxlength="1000" class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="Qual a sua mensagem? Lembre-se de se identificar, tá?" required>{{ old('information') }}</textarea>
                     </div>
+                    @if($members->count() > 0)
                     <div class="col-span-6 sm:col-span-3">
                         <div class="col-span-6 sm:col-span-3">
                             <label for="member_id" class="block text-sm font-bold text-gray-700">Para quem é a mensagem (opcional)</label>
@@ -34,6 +35,7 @@
                             </select>
                         </div>
                     </div>
+                    @endif
                 </div>
                 <div class="px-4 py-3 text-right bg-gray-50 sm:px-6">
                     <x-button.save></x-button.save>

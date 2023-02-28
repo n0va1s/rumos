@@ -4,7 +4,6 @@
         <success-message />
         <div class="mt-2 bg-white divide-y rounded-lg shadow-sm">
             <div class="flex px-4 py-12">
-                <livewire:offline />
                 <div class="w-full basis-5/6">
                     <h3 class="p-4 text-2xl">Cursistas e Membros</h3>
                     <p class="px-4 text-sm text-gray-600">Cadastre alguém que trabalhou em um Curso de Emaús ou novo(a) um cursista</p>

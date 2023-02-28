@@ -1,11 +1,7 @@
 <x-guest-layout>
-    <x-slot name="header">
-        <h1 class="text-2xl">Emaús Nacional</h1>
-    </x-slot>
     @section('title', 'Ficha de Inscrição')
-    <div class="py-4 bg-white">
-        <div class="inline-block max-w-md px-6 mx-auto">
-            <livewire:offline />
+    <div class="grid max-w-sm grid-cols-1 gap-2 bg-white">
+        <div class="px-6 mx-auto">
             <div class="flex justify-end py-4">
                 <a href="{{ route('welcome') }}">
                     <x-button autofocus>

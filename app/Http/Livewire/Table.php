@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\View\View;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -14,16 +15,21 @@ class Table extends Component
     public string $edit;
     public string $delete;
     public string $search = '';
-    public string $sortBy = 'id';
-    public bool $sortAsc = true;
+    public string $sortBy= 'id';
+    public bool $sortAsc= true;
+
+    public function resetSearch() : void
+    {
+        $this->reset('search');
+    }
     
-    public function sortBy($name)
+    public function sortBy($name) : void
     {
         $this->sortBy = $name;
         $this->sortAsc = !$this->sortAsc;
     }
 
-    public function render()
+    public function render() : View
     {
         return view(
             'livewire.table',
