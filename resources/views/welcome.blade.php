@@ -3,28 +3,28 @@
     <div class="bg-white">
         <div class="grid items-center max-w-2xl grid-cols-1 px-4 py-24 mx-auto gap-y-16 gap-x-8 sm:px-6 sm:py-32 lg:max-w-7xl lg:grid-cols-2 lg:px-8">
             <div>
-                <div class="grid grid-cols-3 gap-2 px-4 py-8 mb-4">
+                <div class="grid grid-cols-6 gap-2 px-4 py-8">
                     <!-- Logo -->
-                    <div class="inline-flex items-center justify-center">
+                    <div class="items-center justify-center">
                         <a href="{{ route('welcome') }}">
                             <x-jet-application-mark class="block w-auto h-9" />
                         </a>
                     </div>
-                    <div class="text-center">
+                    <div class="col-span-6">
                         <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Emaús Nacional</h2>
                         <p class="mt-1 text-sm font-medium text-gray-900">Você está no portal emaus.org.br</p>
                     </div>
                     @if (Route::has('login'))
                     <!--<div class="fixed top-0 right-0 px-6 py-4">-->
                     @auth
-                    <div class="inline-flex items-center justify-center">
+                    <div class="col-span-6 mt-4">
                         <a href="{{ url('/dashboard') }}" class="p-4 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-700">
                             Ir para a área restrita
                             <span class="text-indigo-200" aria-hidden="true">&rarr;</span>
                         </a>
                     </div>
                     @else
-                    <div class="inline-flex items-center justify-center">
+                    <div class="col-span-6 mt-4">
                         <a href="{{ route('login') }}" class="inline-flex items-center justify-center p-4 mr-2 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-700">
                             Acesso
                             <span class="text-indigo-200" aria-hidden="true">&rarr;</span>

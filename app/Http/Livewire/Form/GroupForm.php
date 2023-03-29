@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Form;
 
 use App\Models\Group;
 use App\Models\Option;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Livewire\Component;
 
@@ -15,7 +14,7 @@ class GroupForm extends Component
     public $community_id;
     public $frequency_id;
     public $information;
-    public $showingModal = false;
+    public $isVisible = false;
 
     protected $rules = [
         'community_id' => 'required|numeric',
@@ -30,22 +29,21 @@ class GroupForm extends Component
     ];
 
     protected $listeners = [
-        'showingModal'  => 'open',
-        'edit'          => 'edit',
-        'destroy'       => 'destroy',
-        'refresh'       => '$refresh',
+        'open'      => 'show',
+        'edit'      => 'edit',
+        'destroy'   => 'destroy',
     ];
     
     public function render() : View
     {
-        return view('livewire.group-form')
+        return view('livewire.form.group-form')
             ->with('communities', Option::where('group', "SEC")->get())
             ->with('frequencies', Option::where('group', "FRQ")->get());
     }
 
-    public function open() : void
+    public function show() : void
     {
-        $this->showingModal = true;
+        $this->isVisible = true;
     }
 
     public function edit($id) : void
@@ -57,7 +55,7 @@ class GroupForm extends Component
         $this->community_id = $group->community_id;
         $this->frequency_id = $group->frequency_id;
         $this->information = $group->information;
-        $this->showingModal = true;
+        $this->isVisible = true;
     }
 
     public function save() : RedirectResponse
@@ -75,7 +73,6 @@ class GroupForm extends Component
  
         );
         session()->flash('success', 'Reunião de grupo salva com sucesso');
-        $this->reset();
         return redirect()->route('groups.index');
     }
 

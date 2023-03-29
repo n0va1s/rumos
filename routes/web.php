@@ -6,17 +6,8 @@ use App\Http\Controllers\Admin\{
     LeverController,
     PersonController,
     RecordController,
-    OptionController
-};
-use App\Http\Controllers\Rumo\{
-    RumoController,
-    PhotoController,
-    OrientationController,
-    SupportController,
-    MemberController
-};
-use App\Http\Livewire\{
-    GroupForm
+    OptionController,
+    RumoController
 };
 
 /*
@@ -33,7 +24,8 @@ use App\Http\Livewire\{
 Route::middleware(['web'])->group(
     function () {
         Route::get(
-            '/', function () {
+            '/',
+            function () {
                 return view('welcome');
             }
         )->name('welcome');
@@ -89,9 +81,11 @@ Route::middleware(['web'])->group(
 Route::middleware(['auth'])->group(
     function () {
         Route::get(
-            '/dashboard', function () {
-            return view('dashboard');
-        })->name('dashboard');
+            '/dashboard',
+            function () {
+                return view('dashboard');
+            }
+        )->name('dashboard');
         Route::get(
             '/groups',
             [GroupController::class, 'index']
@@ -101,71 +95,14 @@ Route::middleware(['auth'])->group(
             [LeverController::class, 'index']
         )->name('levers.index');
         Route::resource('people', PersonController::class);
-        Route::resource('rumos', RumoController::class);
         Route::resource('records', RecordController::class)
-        ->only('index', 'edit', 'update', 'destroy');
+            ->only('index', 'edit', 'update', 'destroy');
         Route::resource('options', OptionController::class);
 
-        Route::post(
-            '/rumos/search',
-            [RumoController::class, 'search']
-        )->name('rumos.search');
-        Route::get(
-            '/rumos/{id}/show',
-            [RumoController::class, 'show']
-        )->name('rumos.show');
-        Route::get(
-            '/rumos/{id}/back',
-            [RumoController::class, 'back']
-        )->name('rumos.back');
-        
-        Route::get(
-            '/rumos/{id}/orientation',
-            [OrientationController::class, 'create']
-        )->name('rumos.orientation.create');
-        Route::post(
-            '/rumos/orientation',
-            [OrientationController::class, 'store']
-        )->name('rumos.orientation.store');
-        
-        Route::get(
-            '/rumos/{id}/support',
-            [SupportController::class, 'create']
-        )->name('rumos.support.create');
-        Route::post(
-            '/rumos/support',
-            [SupportController::class, 'store']
-        )->name('rumos.support.store');
-
-        Route::get(
-            '/rumos/{id}/member',
-            [MemberController::class, 'create']
-        )->name('rumos.member.create');
-        Route::post(
-            '/rumos/member',
-            [MemberController::class, 'store']
-        )->name('rumos.member.store');
-        
-        Route::get(
-            '/rumos/{id}/photo',
-            [PhotoController::class, 'create']
-        )->name('rumos.photo.create');
-        Route::post(
-            '/rumos/photo',
-            [PhotoController::class, 'store']
-        )->name('rumos.photo.store');
-/*
-        Route::get(
-            '/levers',
-            [PrintLeverController::class, 'index']
-        )->name('levers.index');
-        
-        Route::post(
-            '/levers',
-            [PrintLeverController::class, 'search']
-        )->name('levers.search');
-*/        
-});
+        Route::get('rumos', [RumoController::class, 'index'])->name('rumos.index');
+        Route::get('rumos/{id}', [RumoController::class, 'course'])->name('rumos.course');
+    }
+);
 
 Route::get('/mail/birthday', function () {
     $person = [

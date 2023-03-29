@@ -11,6 +11,7 @@ class Heading extends Component
     public string $description;
     public string $label = '';
     public string $form = '';
+    public string $event = '';
     
     public function render() : View
     {

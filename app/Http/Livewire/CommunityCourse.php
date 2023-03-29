@@ -11,15 +11,18 @@ class CommunityCourse extends Component
 {
     public $communities;
     public $courses;
-    public $levers;
     public $community = NULL;
     public $course = NULL;
+
+    /*protected $queryString = [
+        'community' => ['except' => '', 'as' => 'cm'],
+        'course' => ['except' => '', 'as' => 'cr'],
+    ];*/
   
     public function mount() : void
     {
         $this->communities = Option::where('group', "SEC")->get();
         $this->courses = collect();
-        $this->levers = collect();
     }
 
     public function updatedCommunity($selected) : void

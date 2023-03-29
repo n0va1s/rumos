@@ -18,7 +18,7 @@ class OrientationController extends Controller
     public function create($id)
     {
         $course = Course::find($id);
-        $roles = Option::where('group', "RLE")->get();
+        $roles = Option::where('group', "FCT")->get();
         $people = Person::with('address')->get();
         return view('rumo.orientation', compact('course', 'roles', 'people'));
     }
@@ -43,7 +43,7 @@ class OrientationController extends Controller
             ]
         );
 
-        $roles = Option::where('group', "RLE")->get();
+        $roles = Option::where('group', "FCT")->get();
         $people = Person::with('address')->get();
         return view('rumo.orientation', compact('course', 'roles', 'people'));
     }

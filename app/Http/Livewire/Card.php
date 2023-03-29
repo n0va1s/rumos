@@ -11,16 +11,26 @@ class Card extends Component
     public string $resource;
     //Model key 
     public string $field;
-    //Data to mount card list
+
     protected $data;
     protected $listeners = ['courseSelected' => 'setCourse'];
 
-    public function mount() : void
+    public function mount()
     {
-        $this->data = collect();        
+        $this->data = collect();
     }
-    
-    public function setCourse($id) : void
+
+    public function render(): View
+    {
+        return view(
+            'livewire.card',
+            [
+                'items' => $this->data
+            ]
+        );
+    }
+
+    public function setCourse($id): void
     {
         $this->data = app(
             "App\Models\\" . $this->resource
@@ -29,15 +39,5 @@ class Card extends Component
             "=",
             $id
         )->paginate(10);
-    }
-
-    public function render() : View
-    {
-        return view(
-            'livewire.card',
-            [
-                'items' => $this->data
-            ]
-        );
     }
 }

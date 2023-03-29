@@ -9,7 +9,7 @@
                     title="Alavancas" 
                     description="Selecione um secretariado, um curso e imprima as alavancas enviadas para um curso" 
                     label=""
-                    form="" 
+                    form=""
                 />
             </div>
             <div class="py-2">

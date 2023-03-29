@@ -1,7 +1,7 @@
 <div>
     <form method="POST" wire:submit.prevent="save()">
     @csrf
-    <x-jet-dialog-modal wire:model="showingModal">
+    <x-jet-dialog-modal wire:model="isVisible">
         <x-slot name="title">
             Nova Reunião de Grupo
         </x-slot>

@@ -22,7 +22,6 @@ class OptionsSeeder extends Seeder
         Option::create(['title' => 'Médio', 'group' => 'LVL']);
         Option::create(['title' => 'Superior', 'group' => 'LVL']);
         Option::create(['title' => 'Pós-Graduação', 'group' => 'LVL']);
-        Option::create(['title' => 'Nacional', 'group' => 'SEC']);
         Option::create(['title' => 'Bagé', 'group' => 'SEC']);
         Option::create(['title' => 'Brasília', 'group' => 'SEC']);
         Option::create(['title' => 'Brusque', 'group' => 'SEC']);
@@ -44,12 +43,12 @@ class OptionsSeeder extends Seeder
         Option::create(['title' => 'São João Del-Rei', 'group' => 'SEC']);
         Option::create(['title' => 'São Paulo', 'group' => 'SEC']);
         Option::create(['title' => 'Sorocaba', 'group' => 'SEC']);
-        Option::create(['title' => 'Diretor Espiritual', 'group' => 'RLE']);
-        Option::create(['title' => 'Timoneiro', 'group' => 'RLE']);
-        Option::create(['title' => 'Cerimoniário', 'group' => 'RLE']);
-        Option::create(['title' => 'Monitor', 'group' => 'RLE']);
-        Option::create(['title' => 'Palestrante', 'group' => 'RLE']);
-        Option::create(['title' => 'Cantor', 'group' => 'RLE']);
+        Option::create(['title' => 'Diretor Espiritual', 'group' => 'FCT']);
+        Option::create(['title' => 'Timoneiro', 'group' => 'FCT']);
+        Option::create(['title' => 'Cerimoniário', 'group' => 'FCT']);
+        Option::create(['title' => 'Monitor', 'group' => 'FCT']);
+        Option::create(['title' => 'Palestrante', 'group' => 'FCT']);
+        Option::create(['title' => 'Cantor', 'group' => 'FCT']);
         Option::create(['title' => 'Cozinha', 'group' => 'TEM']);
         Option::create(['title' => 'Apoio', 'group' => 'TEM']);
         Option::create(['title' => 'Semanal', 'group' => 'FRQ']);
@@ -83,5 +82,8 @@ class OptionsSeeder extends Seeder
         Option::create(['title' => 'SP', 'group' => 'UFS']);
         Option::create(['title' => 'SE', 'group' => 'UFS']);
         Option::create(['title' => 'TO', 'group' => 'UFS']);
+        Option::create(['title' => 'Administrador', 'group' => 'RLE']);
+        Option::create(['title' => 'Editor', 'group' => 'RLE']);
+        Option::create(['title' => 'User', 'group' => 'RLE']);
     }
 }

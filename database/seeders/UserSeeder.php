@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
                 'email'=>'jp.trabalho@gmail.com',
                 'password'=> Hash::make('linux1'),
                 'community_id' => Option::where('group', 'SEC')->first()->id,
+                'role_id' => Option::where('group', 'RLE')->first()->id,
             ]
         );
     }

@@ -13,8 +13,6 @@ class LeverController extends Controller
 {
     public function index()
     {
-        //$communities = Option::where('group', "SEC")->get();
-        //return view('lever.index', compact('communities'));
         return view('admin.lever');
     }
 

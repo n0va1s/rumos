@@ -8,10 +8,18 @@
 
         <form method="POST" action="{{ route('register') }}">
             @csrf
-
             <div>
+                <x-jet-label for="community_id" value="{{ __('Secretariado') }}" />
+                <select name="community_id" class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" required autofocus>
+                    <option value="" selected>Selecione</option>
+                    @foreach ($communities as $community)
+                    <option value="{{ $community->id }}">{{ $community->title }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="mt-3">
                 <x-jet-label for="name" value="{{ __('Name') }}" />
-                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autocomplete="name" />
             </div>
 
             <div class="mt-4">

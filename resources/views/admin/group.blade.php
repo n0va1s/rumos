@@ -9,7 +9,7 @@
                 title="Reuniões de Grupo" 
                 description="Crie uma nova reunião de grupo" 
                 label="Cadastrar" 
-                form="group-form" 
+                form="form.group-form"
             />
             </div>
             <div>
@@ -19,7 +19,7 @@
                 ]" edit="Editar" delete="Apagar" />
             </div>
             <div class="mt-6 divide-y">
-                <livewire:group-form />
+                <livewire:form.group-form />
             </div>
         </div>
     </div>
