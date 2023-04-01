@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use App\Services\UtilService;
+use App\Traits\UsesMultiTenancy;
 use App\Traits\UsesUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Person extends Model
 {
-    use HasFactory, UsesUuid;
+    use HasFactory, UsesUuid, UsesMultiTenancy;
 
     public $timestamps = false;
     protected $table = 'person';
@@ -76,6 +77,31 @@ class Person extends Model
         }
         return $person;
     }
+
+    public function scopeSearch($query, $term)
+    {
+        return $query->with(['community'])
+        ->where('communities.title','like','%' . $term . '%'
+        )->orWhere('first_name', 'like', '%' . $term . '%'
+        )->orWhere('last_name', 'like', '%' . $term . '%'
+        )->orWhere('email', 'like', '%' . $term . '%'
+        )->orWhere('community', 'like', '%' . $term . '%');
+    }
+
+    public function scopeSort($query, $sortField, $sortAsc)
+    {
+        $direction = $sortAsc ? 'asc' : 'desc';
+        return $query->select(
+            [
+                'person.*', 
+                'communities.title as community', 
+            ]
+        )->join('options as communities', 'person.community_id', '=', 'communities.id')
+        ->get()
+        ->sortBy([
+            [$sortField, $direction]
+        ]);
+    }
     
     public function otherGroup()
     {
@@ -122,7 +148,7 @@ class Person extends Model
         return $this->hasMany(Member::class, "person_id");
     }
 
-    public function yougers()
+    public function youngers()
     {
         return $this->hasMany(Record::class, "person_id");
     }

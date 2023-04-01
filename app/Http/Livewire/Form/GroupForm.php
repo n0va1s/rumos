@@ -4,28 +4,19 @@ namespace App\Http\Livewire\Form;
 
 use App\Models\Group;
 use App\Models\Option;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Livewire\Component;
+use Livewire\Redirector;
 
 class GroupForm extends Component
 {
-    public $group_id;
-    public $community_id;
-    public $frequency_id;
-    public $information;
+    public Group $group;
     public $isVisible = false;
 
     protected $rules = [
-        'community_id' => 'required|numeric',
-        'frequency_id' => 'required|numeric',
-        'information' => 'required|string|min:10',
-    ];
-
-    protected $validationAttributes = [
-        'community_id' => 'secretariado',
-        'frequency_id' => 'frequência',
-        'information' => 'informação',
+        'group.community_id' => 'required|numeric',
+        'group.frequency_id' => 'required|numeric',
+        'group.information' => 'required|string|min:10',
     ];
 
     protected $listeners = [
@@ -33,6 +24,11 @@ class GroupForm extends Component
         'edit'      => 'edit',
         'destroy'   => 'destroy',
     ];
+
+    public function mount() : void
+    {
+        $this->group = new Group();
+    }
     
     public function render() : View
     {
@@ -46,44 +42,35 @@ class GroupForm extends Component
         $this->isVisible = true;
     }
 
+    public function close() : void
+    {
+        $this->isVisible = false;
+    }
+
     public function edit($id) : void
     {
-        if(! $group = Group::find($id)){
+        if(! $this->group = Group::find($id)){
             abort(404, "Reunião de grupo não encontrada. Fale com alguém da Comunicação");
         }
-        $this->group_id = $group->id;
-        $this->community_id = $group->community_id;
-        $this->frequency_id = $group->frequency_id;
-        $this->information = $group->information;
         $this->isVisible = true;
     }
 
-    public function save() : RedirectResponse
+    public function save() : Redirector
     {
-        $validated = $this->validate();
-        Group::updateOrCreate(
-            [
-                'id'   => $this->group_id,
-            ],
-            [
-                'community_id' => $validated['community_id'],
-                'frequency_id' => $validated['frequency_id'],
-                'information' => $validated['information'],
-            ],
- 
-        );
+        $this->validate();
+        $this->group->save();
         session()->flash('success', 'Reunião de grupo salva com sucesso');
+        $this->close();
         return redirect()->route('groups.index');
     }
 
-    public function destroy($id) : RedirectResponse
+    public function destroy($id) : Redirector
     {
         if(! $group = Group::find($id)){
             abort(404, "Reunião de grupo não encontrada. Fale com alguém da Comunicação");
         }
         $group->delete();
         session()->flash('success', 'Reunião de grupo excluída com sucesso');
-        
         return redirect()->route('groups.index');
     }
 }

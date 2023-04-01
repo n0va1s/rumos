@@ -82,8 +82,5 @@ class OptionsSeeder extends Seeder
         Option::create(['title' => 'SP', 'group' => 'UFS']);
         Option::create(['title' => 'SE', 'group' => 'UFS']);
         Option::create(['title' => 'TO', 'group' => 'UFS']);
-        Option::create(['title' => 'Administrador', 'group' => 'RLE']);
-        Option::create(['title' => 'Editor', 'group' => 'RLE']);
-        Option::create(['title' => 'User', 'group' => 'RLE']);
     }
 }

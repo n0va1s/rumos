@@ -1,25 +1,27 @@
 <x-app-layout>
-    @section('title', 'Reuniões de Grupo')
+    @section('title', 'Pessoas')
     <div class="max-w-2xl p-4 mx-auto sm:p-6 lg:p-8">
         <div><livewire:success-message /></div>
         <div><livewire:offline /></div>
         <div class="bg-white divide-y rounded-lg shadow-sm">
             <div>
                 <livewire:heading 
-                title="Reuniões de Grupo" 
-                description="Crie uma nova reunião de grupo" 
+                title="Cursistas e Membros" 
+                description="Cadastre alguém que trabalhou no Curso de Emaús ou novo(a) cursista" 
                 label="Cadastrar" 
-                form="form.group-form"
+                form="form.person-form"
             />
             </div>
             <div>
-                <livewire:table resource="Group" :columns="[
+                <livewire:table resource="Person" :columns="[
                     ['label' => 'Secretariado', 'column' => 'community'],
-                    ['label' => 'Frequência', 'column' => 'frequency'],
+                    ['label' => 'Nome', 'column' => 'first_name'],
+                    ['label' => 'Email', 'column' => 'email'],
+                    ['label' => 'Telefone', 'column' => 'phone'],
                 ]" edit="Editar" delete="Apagar" />
             </div>
             <div>
-                <livewire:form.group-form />
+                <livewire:form.person-form />
             </div>
         </div>
     </div>

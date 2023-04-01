@@ -30,6 +30,7 @@ class CreateDatabase extends Migration
                 $table->unsignedInteger('other_group_id')->nullable()->comment('Identifica outro grupo jovem que a pessoa já frequentou. Ex: Segue-me, EJC');
                 $table->unsignedInteger('level_id')->nullable()->comment('Identfica o grau de escolaridade. Ex: Fundamental, Médio, Superior');
                 $table->unsignedInteger('gender_id')->comment('Identifica o genero. Ex: Masculino ou Feminino');
+                $table->unsignedInteger('community_id')->nullable()->comment('Identifica o secretariado pra permitir o multi-tenancy. Ex: Só visualizar pessoas do secretariado do usuário logado');
                 $table->string('first_name')->comment('Descreve o primeiro da pessoa. Ex: João Paulo');
                 $table->string('last_name')->comment('Descreve os sobrenomes da pessoa. Ex: de Novais');
                 $table->string('email', 50)->unique()->comment('Descreve o email da pessoa. Ex: fulano@gmail.com');
@@ -45,6 +46,7 @@ class CreateDatabase extends Migration
                 $table->foreign('other_group_id')->references('id')->on('options');
                 $table->foreign('level_id')->references('id')->on('options');
                 $table->foreign('gender_id')->references('id')->on('options');
+                $table->foreign('community_id')->references('id')->on('options');
                 $table->softDeletes();
             }
         );

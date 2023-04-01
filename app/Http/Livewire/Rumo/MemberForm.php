@@ -35,7 +35,7 @@ class MemberForm extends Component
             )
             ->with(
                 'members',
-                Person::with('user')->where(
+                Person::where(
                     'user.community_id',
                     Auth::user()->community_id
                 )
