@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\{
     OptionController,
     RumoController
 };
+use App\Http\Controllers\Auth\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,9 +83,7 @@ Route::middleware(['auth'])->group(
     function () {
         Route::get(
             '/dashboard',
-            function () {
-                return view('dashboard');
-            }
+            [DashboardController::class, 'index']
         )->name('dashboard');
         Route::get(
             '/groups',

@@ -29,7 +29,6 @@ class User extends Authenticatable
         'email',
         'password',
         'community_id',
-        'is_admin',
     ];
 
     /**
@@ -42,6 +41,7 @@ class User extends Authenticatable
         'remember_token',
         'two_factor_recovery_codes',
         'two_factor_secret',
+        'is_admin',
     ];
 
     /**
@@ -51,6 +51,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'is_admin' => 'boolean',
     ];
 
     /**

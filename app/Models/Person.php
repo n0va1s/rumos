@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Person extends Model
 {
-    use HasFactory, UsesUuid, UsesMultiTenancy;
+    use HasFactory, UsesUuid;//, UsesMultiTenancy;
 
     public $timestamps = false;
     protected $table = 'person';
@@ -161,5 +161,10 @@ class Person extends Model
     public function teams()
     {
         return $this->hasMany(Team::class, "person_id");
+    }
+
+    public function records()
+    {
+        return $this->hasMany(Record::class, "person_id");
     }
 }

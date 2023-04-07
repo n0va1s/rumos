@@ -11,9 +11,4 @@ class RumoController extends Controller
     {
         return view('admin.rumo');
     }
-
-    public function course($id)
-    {
-        return view ('admin.rumo');
-    }
 }

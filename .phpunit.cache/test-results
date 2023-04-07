@@ -1,0 +1,1 @@
+{"version":1,"defects":{"Tests\\Feature\\Admin\\GroupTest::test_insert_group":8,"Tests\\Feature\\Admin\\GroupTest::test_delete_group":8},"times":{"Tests\\Feature\\Admin\\GroupTest::test_homepage_group":0.182,"Tests\\Feature\\Admin\\GroupTest::test_insert_group":0.005,"Tests\\Feature\\Admin\\GroupTest::test_delete_group":0.005}}

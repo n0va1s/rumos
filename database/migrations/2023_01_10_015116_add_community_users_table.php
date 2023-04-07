@@ -16,7 +16,7 @@ class AddCommunityUsersTable extends Migration
         Schema::table(
             'users',
             function (Blueprint $table) {
-                $table->unsignedInteger('community_id')->comment('Identifica o secretariado que está realizando o curso. Ex: Florianópolis')->nullable();
+                $table->foreignId('community_id')->nullable()->comment('Identifica o secretariado que está realizando o curso. Ex: Florianópolis')->nullable();
                 $table->boolean('is_admin')->default(false)->comment('Identifica se o usuário é administrador. Ex: Equipe Nacional');
                 $table->foreign('community_id')->references('id')->on('options');
             }

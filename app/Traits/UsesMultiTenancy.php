@@ -3,7 +3,6 @@
 namespace App\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Auth;
 
 trait UsesMultiTenancy
 {
@@ -11,12 +10,12 @@ trait UsesMultiTenancy
     {
         static::creating(function ($model) {
             if ($model->id) {
-                $model->community_id = Auth::user()->community_id;
+                $model->community_id = auth()->user()->community_id;
             }
         });
-        if(!Auth::user()->is_admin) {
+        if(! auth()->user()->is_admin) {
             static::addGlobalScope('filtering_by_community_id', function(Builder $builder){
-                $builder->where('community_id', Auth::user()->community_id);
+                $builder->where('community_id', auth()->user()->community_id);
             });
         }        
     }
