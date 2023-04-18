@@ -85,17 +85,24 @@ Route::middleware(['auth'])->group(
             '/dashboard',
             [DashboardController::class, 'index']
         )->name('dashboard');
+        
         Route::get(
             '/groups',
             [GroupController::class, 'index']
         )->name('groups.index');
+        
         Route::get(
             '/levers',
             [LeverController::class, 'index']
         )->name('levers.index');
+        
+        Route::get(
+            '/records',
+            [RecordController::class, 'index']
+        )->name('records.index');
+
         Route::resource('people', PersonController::class);
-        Route::resource('records', RecordController::class)
-            ->only('index', 'edit', 'update', 'destroy');
+        
         Route::resource('options', OptionController::class);
 
         Route::get('rumos', [RumoController::class, 'index'])->name('rumos.index');

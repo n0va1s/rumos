@@ -1,17 +1,17 @@
 <x-app-layout>
     @section('title', 'Rumos')
     <div class="max-w-2xl p-4 mx-auto sm:p-6 lg:p-8">
-        <div><livewire:success-message /></div>
-        <div><livewire:offline /></div>
+        <div><livewire:components.success-message /></div>
+        <div><livewire:components.offline /></div>
         <div class="bg-white divide-y rounded-lg shadow-sm">
             <div>
-                <livewire:heading title="Rumos"
+                <livewire:components.heading title="Rumos"
                     description="Veja um rumo ou cadastre as informações de cursos já realizados" 
                     label="Cadastrar"
                     form="form.course-form" />
             </div>
             <div class="py-2">
-                <livewire:community-course />
+                <livewire:components.community-course />
             </div>
             <div>
                 <livewire:rumo.menu />

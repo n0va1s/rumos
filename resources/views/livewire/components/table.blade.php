@@ -27,12 +27,12 @@
                         </th>
                     @endforeach
                     @if ($edit)
-                        <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                        <th scope="col" class="relative">
                             <span class="sr-only">{{ $edit }}</span>
                         </th>
                     @endif
                     @if ($delete)
-                        <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                        <th scope="col" class="relative">
                             <span class="sr-only">{{ $delete }}</span>
                         </th>
                     @endif
@@ -42,16 +42,20 @@
                 @foreach ($items as $item)
                     <tr class="bg-white dark:bg-gray-700">
                         @foreach ($columns as $column)
-                            <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap dark:text-white">
+                            <td class="p-4 text-sm text-gray-500 whitespace-nowrap dark:text-white">
                                 {{ data_get($item, $column['column']) }}</td>
                         @endforeach
-                        @if ($edit)
-                            <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap dark:text-white">
+                        @if ($event)
+                            <td class="flex-block justify-center items-center text-sm text-gray-500 dark:text-white">
+                                <x-button.scdr wire:click.prevent="$emit('{{ $event }}', '{{ $item->id }}')" :label="$edit" />
+                            </td>
+                        @else
+                            <td class="flex-block justify-center items-center text-sm text-gray-500 dark:text-white">
                                 <x-button.edit wire:click.prevent="$emit('edit', '{{ $item->id }}')" />
                             </td>
                         @endif
                         @if ($delete)
-                            <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap dark:text-white">
+                            <td class="flex-block justify-center items-center p-2 text-sm text-gray-500 dark:text-white">
                                 <x-button.del wire:click.prevent="$emit('destroy', '{{ $item->id }}')" />
                             </td>
                         @endif

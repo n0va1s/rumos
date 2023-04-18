@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Components;
 
 use App\Models\Course;
 use App\Models\Option;
@@ -41,6 +41,6 @@ class CommunityCourse extends Component
     
     public function render() : View
     {
-        return view('livewire.community-course');
+        return view('livewire.components.community-course');
     }
 }

@@ -7,10 +7,11 @@ use App\Traits\UsesMultiTenancy;
 use App\Traits\UsesUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Person extends Model
 {
-    use HasFactory, UsesUuid;//, UsesMultiTenancy;
+    use HasFactory, UsesUuid, UsesMultiTenancy, SoftDeletes;
 
     public $timestamps = false;
     protected $table = 'person';
@@ -39,9 +40,9 @@ class Person extends Model
         'deleted_at',
     ];
 
-    public function getFullName(User $user)
+    public function getFullName()
     {
-        return $user->first_name.' '.$user->last_name;
+        return $this->first_name.' '.$this->last_name;
     }
     
     public static function saveOrUpdate(array $data)

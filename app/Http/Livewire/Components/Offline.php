@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Components;
 
 use Illuminate\View\View;
 use Livewire\Component;
@@ -9,6 +9,6 @@ class Offline extends Component
 {
     public function render() : View
     {
-        return view('livewire.offline');
+        return view('livewire.components.offline');
     }
 }

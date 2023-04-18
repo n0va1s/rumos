@@ -22,11 +22,11 @@ class LeverController extends Controller
         return view('public.lever-course', compact('courses'));
     }
 
-    public function message($id)
+    public function message(Course $course)
     {
-        $members = Leader::where('course_id', $id)->with('members');
-        $course = Course::find($id);
-        return view('public.lever-message', compact('members', 'course'));
+        return view('public.lever-message')
+        ->with('members', Leader::where('course_id', $course->id)->with('members'))
+        ->with('course', $course);
     }
 
     public function store(Request $request)

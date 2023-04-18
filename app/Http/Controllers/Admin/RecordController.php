@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Admin\RecordRequest;
 use App\Models\Option;
 use App\Models\Person;
-//use App\Models\Person;
 use App\Models\Record;
 
 /**
@@ -15,22 +14,13 @@ use App\Models\Record;
  */
 class RecordController extends CrudController
 {
-    public function __construct()
+    public function index()
     {
-        $this->className = Record::class;
-        //$this->options['people'] = Person::all();
-        $this->options['genders'] = Option::where('group', "GND")->get();
-        $this->options['ufs'] = Option::where('group', "UFS")->get();
-        $this->viewName = 'record';
-        $this->routeIndex = 'records.index';
-        $this->validatorName = RecordRequest::class;
-        $this->listGrid = Record::with(
-            ['person', 'presenter', 'person.community']
-        )->where('is_approved', '0')->get();
-        $this->title = 'Ficha';
+        return view('admin.record');
     }
 
-    public function storeCandidate(Request $request) {
+    public function storeCandidate(Request $request)
+    {
         $data = $this->validate($request, (new PersonRequest)->rules());
         $person = Person::saveOrUpdate($data);
         $options['genders'] = $this->options['genders'];
@@ -38,7 +28,8 @@ class RecordController extends CrudController
         return view('record.presenter', compact('person', 'options'));
     }
 
-    public function storePresenter(Request $request) {
+    public function storePresenter(Request $request)
+    {
         $person_id = $request->input('person_id');
         if (empty($request->input('first_name'))) {
             return view('record.religion', compact('person_id'));
@@ -46,7 +37,7 @@ class RecordController extends CrudController
         $data = $this->validate($request, (new PersonRequest)->rules());
         $presenter = Person::saveOrUpdate($data);
         return view('record.religion', compact('presenter', 'person_id'));
-    }    
+    }
 
     public function store(Request $request)
     {
@@ -60,12 +51,5 @@ class RecordController extends CrudController
         return view('record.done');
     }
 
-    public function update(Request $request, $id)
-    {
-        if (! $model = $this->className::find($id)) {
-            return redirect()->back();
-        }
-        $model->update(['is_approved'=>1]);
-        return redirect()->route($this->routeIndex);
-    }
+    
 }

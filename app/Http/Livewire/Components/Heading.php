@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Components;
 
 use Illuminate\View\View;
 use Livewire\Component;
@@ -15,6 +15,6 @@ class Heading extends Component
     
     public function render() : View
     {
-        return view('livewire.heading');
+        return view('livewire.components.heading');
     }
 }

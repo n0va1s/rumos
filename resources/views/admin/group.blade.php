@@ -1,11 +1,11 @@
 <x-app-layout>
     @section('title', 'Reuniões de Grupo')
     <div class="max-w-2xl p-4 mx-auto sm:p-6 lg:p-8">
-        <div><livewire:success-message /></div>
-        <div><livewire:offline /></div>
+        <div><livewire:components.success-message /></div>
+        <div><livewire:components.offline /></div>
         <div class="bg-white divide-y rounded-lg shadow-sm">
             <div>
-                <livewire:heading 
+                <livewire:components.heading 
                 title="Reuniões de Grupo" 
                 description="Crie uma nova reunião de grupo" 
                 label="Cadastrar" 
@@ -13,7 +13,7 @@
             />
             </div>
             <div>
-                <livewire:table resource="Group" :columns="[
+                <livewire:components.table resource="Group" :columns="[
                     ['label' => 'Secretariado', 'column' => 'community'],
                     ['label' => 'Frequência', 'column' => 'frequency'],
                 ]" edit="Editar" delete="Apagar" />

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Components;
 
 use Illuminate\View\View;
 use Livewire\Component;
@@ -23,7 +23,7 @@ class Card extends Component
     public function render(): View
     {
         return view(
-            'livewire.card',
+            'livewire.components.card',
             [
                 'items' => $this->data
             ]

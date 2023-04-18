@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Components;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
@@ -16,6 +16,6 @@ class SuccessMessage extends Component
 
     public function render() : View
     {
-        return view('livewire.success-message');
+        return view('livewire.components.success-message');
     }
 }

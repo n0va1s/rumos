@@ -2,8 +2,6 @@
 
 namespace Tests\Feature\Admin;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class RumoTest extends TestCase
@@ -17,4 +15,6 @@ class RumoTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+   
 }

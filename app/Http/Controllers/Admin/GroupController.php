@@ -9,7 +9,6 @@ class GroupController extends Controller
 {
     public function index()
     {
-        return view('admin.group')
-        ->with('groups', Group::paginate(10));
+        return view('admin.group');
     }    
 }

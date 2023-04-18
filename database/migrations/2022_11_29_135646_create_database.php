@@ -90,8 +90,9 @@ class CreateDatabase extends Migration
                 $table->boolean('has_first_communion')->default(false)->comment('Indica se o candidato fez primeira comunhão. Ex: sim/não');
                 $table->boolean('has_chrism')->default(false)->comment('Indica se o candidato fez crisma. Ex: sim/não');
                 $table->boolean('is_approved')->default(false)->comment('Indica se a ficha está aprovada pelo secretariado. Ex: sim/não');
-                $table->softDeletes();
-
+                $table->timestamp('created_at')->useCurrent();
+                $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
+                $table->timestamp('deleted_at')->nullable()->useCurrentOnDelete();
             }
         );
         //DB::statement("ALTER TABLE `person_records` comment 'Armazena a ficha de uma pessoa. Ela pode ter uma ficha cancelada e uma nova ficha pendente de aprovação. Ex: Por que quer fazer Emaús, se fez primeira comunhão'");

@@ -9,12 +9,6 @@ class PersonController extends CrudController
 {
     public function index() 
     {
-        return view('admin.person')
-        ->with(
-            'people', 
-            Person::where(
-                'community_id',
-                Auth::user()->community_id
-            )->paginate(10));
+        return view('admin.person');
     }   
 }

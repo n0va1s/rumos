@@ -2,19 +2,37 @@
 
 namespace Tests\Feature\Admin;
 
+use App\Models\Person;
+use App\Models\User;
+use Database\Seeders\OptionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class PersonTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
-    public function test_example(): void
-    {
-        $response = $this->get('/');
+    use RefreshDatabase;
+    protected $seed = true;
+    protected $seeder = OptionsSeeder::class;
 
+    public function test_homepage_person(): void
+    {
+        $user = User::factory()->make();
+        $response = $this->actingAs($user)->get('/people');
         $response->assertStatus(200);
+        $response->assertSee('Cursistas e Membros');
+    }
+
+    public function test_insert_person(): void
+    {
+        $person = Person::factory()->create();
+        $this->assertDatabaseCount('person', 1);
+        $this->assertModelExists($person);
+    }
+
+    public function test_delete_person(): void
+    {
+        $person = Person::factory()->create();
+        $person->delete();
+        $this->assertModelMissing($person);
     }
 }

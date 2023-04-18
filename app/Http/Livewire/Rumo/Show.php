@@ -32,7 +32,7 @@ class Show extends Component
         $this->course = Course::with(
             ['leaders', 'teams', 'type', 'community']
         )->findOrFail($this->course->id);
-        dd($this->course);
+        
         $this->members = $this->course->getMembers($this->course->id);
         $this->readyToLoad = true;
     }

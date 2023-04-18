@@ -6,10 +6,11 @@ use App\Traits\UsesUuid;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Course extends Model
 {
-    use HasFactory, UsesUuid;
+    use HasFactory, UsesUuid, SoftDeletes;
 
     public $timestamps = false;
 
