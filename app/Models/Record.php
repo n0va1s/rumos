@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\UsesMultiTenancy;
 use App\Traits\UsesUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class Record extends Model
 {
-    use HasFactory, UsesUuid, SoftDeletes;
+    use HasFactory, UsesUuid, SoftDeletes, UsesMultiTenancy;
 
     public $timestamps = false;
     protected $table = 'person_records';
@@ -29,6 +30,7 @@ class Record extends Model
 
     protected $hidden = [
         'id',
+        'community_id',
     ];
 
     protected $casts = [
@@ -65,14 +67,13 @@ class Record extends Model
         $direction = $sortAsc ? 'asc' : 'desc';
         return $query->select(
             [
-                'person_records.id',
+                'person_records.id','community.title as community',
                 DB::raw('DATE_FORMAT(person_records.created_at, "%d/%m/%Y") as created_at_fmt'),
-                DB::raw("CONCAT(member.first_name,' ',member.last_name) as full_name"), 
-                'community.title as community',
+                DB::raw("CONCAT(member.first_name,' ',member.last_name) as full_name")
             ]
         )->join('person as member', 'person_records.person_id', '=', 'member.id')
         ->join('person as presenter', 'person_records.presenter_id', '=', 'presenter.id')
-        ->join('options as community', 'member.community_id', '=', 'community.id')
+        ->join('options as community', 'person_records.community_id', '=', 'community.id')
         ->get()
         ->sortBy([
             [$sortField, $direction]

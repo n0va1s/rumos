@@ -9,13 +9,18 @@ use Livewire\Redirector;
 class RecordForm extends Component
 {
     public Record $record;
-    public $isVisible = false;
+    public bool $isAdmin = false;
+    public bool $isVisible = false;    
     
-    protected $listeners = ['show', 'destroy'];
+    protected $listeners = [
+        'open', 'destroy'
+    ];
 
-    public function mount() : void
+    public function mount(Record $record) : void
     {
-        $this->record = new Record();
+        $this->record = $record;
+        $this->record->community_id = auth()->user()->community_id;
+        $this->isAdmin = auth()->user()->is_admin;
     }
     
     public function render()
@@ -23,13 +28,13 @@ class RecordForm extends Component
         return view('livewire.form.record-form');
     }
 
-    public function show(Record $record) : void
+    public function open(Record $record) : void
     {
         if($record->presenter_id === 0){
             abort(404, "Ficha não encontrada. Fale com alguém da Comunicação");
         }
-        //$record->load('person', 'presenter');
         $this->record = $record;
+        $this->record->community_id = auth()->user()->community_id;
         $this->isVisible = true;
     }
 

@@ -4,10 +4,10 @@
             {{ __('Emaús Nacional') }}
         </h2>
     </x-slot>
-    @section('title', 'Nossos números')
-    <div class="w-full p-4 max-w-7xl">
-        <div class="grid grid-cols-3 gap-2 sm:grid-cols-1">
-            <div class="flex items-center p-4 bg-white rounded">
+    @section('title', 'Painel')
+    <div class="p-6">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-2">
+            <div class="flex items-center p-2 bg-white rounded">
                 <div class="flex items-center justify-center flex-shrink-0 w-16 h-16 bg-green-200 rounded">
                     <svg class="w-6 h-6 text-green-700 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                         fill="currentColor">

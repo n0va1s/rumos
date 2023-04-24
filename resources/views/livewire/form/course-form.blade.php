@@ -18,7 +18,7 @@
                                     <option value="">Selecione</option>
                                     @foreach ($communities as $community)
                                         <option value="{{ $community->id }}"
-                                            @if (isset($community_id) and $community->id == old('community_id')) selected @endif>{{ $community->title }}
+                                            @if ($community->id === Auth::user()->community_id) selected @endif>{{ $community->title }}
                                         </option>
                                     @endforeach
                                 </select>

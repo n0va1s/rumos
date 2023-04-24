@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use Illuminate\Database\Eloquent\Builder;
+use App\Models\Scopes\MultiTenancyScope;
 
 trait UsesMultiTenancy
 {
@@ -13,10 +13,7 @@ trait UsesMultiTenancy
                 $model->community_id = auth()->user()->community_id;
             }
         });
-        if(! auth()->user()->is_admin) {
-            static::addGlobalScope('filtering_by_community_id', function(Builder $builder){
-                $builder->where('community_id', auth()->user()->community_id);
-            });
-        }        
+        
+        static::addGlobalScope(new MultiTenancyScope);
     }
 }

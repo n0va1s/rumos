@@ -4,12 +4,14 @@ namespace App\Http\Livewire\Form;
 
 use App\Models\Course;
 use App\Models\Option;
-use Illuminate\Http\RedirectResponse;
 use Livewire\Component;
 
 class CourseForm extends Component
 {
     public Course $course;
+    public $communities;
+    public $types;
+    public bool $isAdmin = false;
     public bool $isVisible = false;
     
     protected $rules = [
@@ -23,15 +25,23 @@ class CourseForm extends Component
 
     protected $listeners = ['open'];
 
+    public function mount(Course $course) : void
+    {
+        $this->course = $course;
+        $this->communities = Option::where('group', "SEC")->get();
+        $this->types = Option::where('group', "GND")->get();
+        $this->course->community_id = auth()->user()->community_id;
+        $this->isAdmin = auth()->user()->is_admin;
+    }
+
     public function render()
     {
-        return view('livewire.form.course-form')
-            ->with('communities', Option::where('group', "SEC")->get())
-            ->with('types', Option::where('group', "GND")->get());
+        return view('livewire.form.course-form');
     }
 
     public function open(): void
     {
+        $this->course->community_id = auth()->user()->community_id;
         $this->isVisible = true;
     }
 

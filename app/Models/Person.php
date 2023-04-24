@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Person extends Model
 {
-    use HasFactory, UsesUuid, UsesMultiTenancy, SoftDeletes;
+    use HasFactory, UsesUuid, SoftDeletes, UsesMultiTenancy;
 
     public $timestamps = false;
     protected $table = 'person';
@@ -20,7 +20,6 @@ class Person extends Model
         'other_group_id',
         'level_id',
         'gender_id',
-        'community_id',
         'first_name',
         'last_name',
         'email',
@@ -37,6 +36,7 @@ class Person extends Model
 
     protected $hidden = [
         'id',
+        'community_id',
         'deleted_at',
     ];
 

@@ -11,7 +11,10 @@ use Livewire\Redirector;
 class GroupForm extends Component
 {
     public Group $group;
-    public $isVisible = false;
+    public $communities;
+    public $frequencies;
+    public bool $isAdmin = false;
+    public bool $isVisible = false;
 
     protected $rules = [
         'group.community_id' => 'required|numeric',
@@ -20,25 +23,26 @@ class GroupForm extends Component
     ];
 
     protected $listeners = [
-        'open'      => 'show',
-        'edit'      => 'edit',
-        'destroy'   => 'destroy',
+        'open', 'edit', 'destroy',
     ];
 
-    public function mount() : void
+    public function mount(Group $group) : void
     {
-        $this->group = new Group();
+        $this->group = $group;
+        $this->communities = Option::where('group', "SEC")->get();
+        $this->frequencies = Option::where('group', "FRQ")->get();
+        $this->group->community_id = auth()->user()->community_id;
+        $this->isAdmin = auth()->user()->is_admin;
     }
     
     public function render() : View
     {
-        return view('livewire.form.group-form')
-            ->with('communities', Option::where('group', "SEC")->get())
-            ->with('frequencies', Option::where('group', "FRQ")->get());
+        return view('livewire.form.group-form');
     }
 
-    public function show() : void
+    public function open() : void
     {
+        $this->group->community_id = auth()->user()->community_id;
         $this->isVisible = true;
     }
 

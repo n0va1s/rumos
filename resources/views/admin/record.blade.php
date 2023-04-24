@@ -18,7 +18,7 @@
                     ['label' => 'Secretariado', 'column' => 'community'],
                     ['label' => 'Nome', 'column' => 'full_name'],
                     ['label' => 'Data', 'column' => 'created_at_fmt'],
-                ]" edit="Abrir" event="show" delete="Apagar" paginate="15" />
+                ]" edit="Abrir" event="open" delete="Apagar" paginate="15" />
             </div>
             <div>
                 <livewire:form.record-form />

@@ -19,6 +19,7 @@ class RecordFactory extends Factory
             'id' => fake()->uuid(),
             'person_id' => Person::factory(),
             'presenter_id' => Person::factory(),
+            'community_id' => fake()->numberBetween(14, 34),
             'reason' => fake()->paragraph(),
             'other_information' => fake()->paragraph(1),
             'has_agreement' => fake()->boolean(),

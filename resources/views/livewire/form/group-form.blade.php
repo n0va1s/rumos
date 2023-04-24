@@ -10,14 +10,13 @@
                     <div class="p-6 bg-white">
                         <div class="grid grid-cols-6 gap-6">
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="group.community_id" class="block text-sm font-bold text-gray-700">Secretariado
-                                    (obrigatório)</label>
-                                <select id="group.community_id" wire:model="group.community_id"
-                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                    required autofocus>
+                                <label for="group.community_id"
+                                    class="block text-sm font-bold text-gray-700">Secretariado (obrigatório)</label>
+                                <select wire:model="group.community_id" required {{ !$isAdmin ? 'disabled' : '' }}
+                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                                    <option value="">Selecione</option>
                                     @foreach ($communities as $community)
-                                        <option value="{{ $community->id }}"
-                                            {{ $community->id === Auth::user()->community_id ? 'selected' : '' }}>
+                                        <option value="{{ $community->id }}">
                                             {{ $community->title }}
                                         </option>
                                     @endforeach
@@ -33,7 +32,7 @@
                                     (obrigatório)</label>
                                 <select id="group.frequency_id" wire:model="group.frequency_id"
                                     class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                    required>
+                                    required autofocus>
                                     <option value="">Selecione</option>
                                     @foreach ($frequencies as $frequency)
                                         <option value="{{ $frequency->id }}">{{ $frequency->title }}</option>

@@ -11,8 +11,9 @@ class CommunityCourse extends Component
 {
     public $communities;
     public $courses;
-    public $community = NULL;
-    public $course = NULL;
+    public $community;
+    public $course;
+    public bool $isAdmin;
 
     /*protected $queryString = [
         'community' => ['except' => '', 'as' => 'cm'],
@@ -22,7 +23,11 @@ class CommunityCourse extends Component
     public function mount() : void
     {
         $this->communities = Option::where('group', "SEC")->get();
-        $this->courses = collect();
+        
+        if(! $this->isAdmin = auth()->user()->is_admin){
+            $this->community = auth()->user()->community_id;
+        }
+        $this->courses = Course::where('community_id',  auth()->user()->community_id)->get();
     }
 
     public function updatedCommunity($selected) : void

@@ -193,7 +193,7 @@
                     @if (isset($course->photo))
                         <div class="px-4 py-5 sm:px-6">
                             <img src="{{ asset('storage/' . $course->photo->url) }}"
-                                alt="Foto oficial do Curso de {{ $course->community->title }}-{{ $course->number }}/{{ $course->year }}">
+                                alt="Foto oficial do Curso de {{ $course->community->title }}-{{ $course->number }}/{{ $course->start_at|date("Y") }}">
                         </div>
                     @else
                         <div class="flex justify-center rounded-md">

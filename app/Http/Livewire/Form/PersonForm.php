@@ -10,7 +10,11 @@ use Livewire\Component;
 class PersonForm extends Component
 {
     public Person $person;
+    public $genders;
+    public $ufs;
     public bool $isVisible = false;
+    public bool $isAdmin = false;
+    
     
     protected $rules = [
         'person.first_name' => 'required|string|max:100',
@@ -28,25 +32,27 @@ class PersonForm extends Component
     ];
 
     protected $listeners = [
-        'open' => 'openPersonForm',
-        'edit'      => 'edit',
-        'destroy'   => 'destroy',
+        'open','edit','destroy'
     ];
 
-    public function mount() : void
+    public function mount(Person $person) : void
     {
-        $this->person = new Person();
+        $this->person = $person;
+        $this->genders = Option::where('group', "GND")->get();
+        $this->ufs = Option::where('group', "UFS")->get();
+        $this->person->community_id = auth()->user()->community_id;
+        $this->isAdmin = auth()->user()->is_admin;
+        
     }
 
     public function render()
     {
-        return view('livewire.form.person-form')
-        ->with('genders', Option::where('group', "GND")->get())
-        ->with('ufs', Option::where('group', "UFS")->get());
+        return view('livewire.form.person-form');
     }
 
-    public function openPersonForm() : void
+    public function open() : void
     {
+        $this->person->community_id = auth()->user()->community_id;
         $this->isVisible = true;
     }
 

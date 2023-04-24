@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Rumo;
 use App\Models\Leader;
 use App\Models\Member;
 use App\Models\Person;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class MemberForm extends Component
@@ -37,7 +36,7 @@ class MemberForm extends Component
                 'members',
                 Person::where(
                     'user.community_id',
-                    Auth::user()->community_id
+                    auth()->user()->community_id
                 )
             );
     }

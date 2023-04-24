@@ -83,6 +83,7 @@ class CreateDatabase extends Migration
                 $table->uuid('id')->primary();
                 $table->foreignUuid('person_id')->constrained('person')->comment('Identifica o dono da ficha. Ex: Fulana');
                 $table->foreignUuid('presenter_id')->nullable()->constrained('person')->comment('Identifica quem está apresentando a ficha. Ex: Apresentante');
+                $table->foreignId('community_id')->comment('Identifica o secretariado resposavel por este grupo. Ex: Florianopolis');
                 $table->text('reason')->comment('Descreve o porquê o dono da ficha deseja fazer Emaús. Ex: Quero crescer na fé católica');
                 $table->text('other_information')->nullable()->comment('Descreve alguma outra observação. Ex: Candidato já teve contato com drogas ilíticas ');
                 $table->boolean('has_agreement')->default(false)->comment('Indica se o candidato concordou com as regras do curso. Ex: sim/não');
@@ -93,6 +94,7 @@ class CreateDatabase extends Migration
                 $table->timestamp('created_at')->useCurrent();
                 $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
                 $table->timestamp('deleted_at')->nullable()->useCurrentOnDelete();
+                $table->foreign('community_id')->references('id')->on('options');
             }
         );
         //DB::statement("ALTER TABLE `person_records` comment 'Armazena a ficha de uma pessoa. Ela pode ter uma ficha cancelada e uma nova ficha pendente de aprovação. Ex: Por que quer fazer Emaús, se fez primeira comunhão'");
