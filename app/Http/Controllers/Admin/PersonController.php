@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Person;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 
-class PersonController extends CrudController
+class PersonController extends Controller
 {
     public function index() 
     {
