@@ -1,6 +1,6 @@
 <div>
     <div class="mt-6 bg-white divide-y rounded-lg shadow-sm">
-        <x-jet-dialog-modal id="rumo-{{ now() }}" wire:init='loadRumo()' wire:model="isVisible">
+        <x-jet-dialog-modal id="rumo-{{ now() }}" wire:init='loadingRumo()' wire:model="isVisible">
             <x-slot name="title">
                 Rumo do Curso
                 @if (!empty($course))

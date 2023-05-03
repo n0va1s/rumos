@@ -22,7 +22,7 @@ class PersonFactory extends Factory
             'community_id' => fake()->numberBetween(14, 34),
             'first_name' => fake()->name(),
             'last_name' => fake()->lastName(),
-            'email' => fake()->safeEmail(),
+            'email' => fake()->unique()->email(),
             'phone' => fake()->phoneNumber(),
             'social' => fake()->url(),
             'birth_at' => fake()->date(),

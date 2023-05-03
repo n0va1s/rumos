@@ -2,7 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Address;
+use App\Models\Contact;
 use App\Models\Person;
+use App\Models\Record;
 use Illuminate\Database\Seeder;
 
 class PersonSeeder extends Seeder
@@ -12,11 +15,12 @@ class PersonSeeder extends Seeder
      */
     public function run(): void
     {
-        Person::factory()
-        ->count(20)
-        ->hasAddress(1)
-        ->hasContacts(5)
-        ->hasRecords(10)
-        ->create();
+        Person::factory(1000)->create();
+
+        Address::factory(100)->create();
+
+        Contact::factory(500)->create();
+
+        Record::factory(10000)->create();
     }
 }

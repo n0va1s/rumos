@@ -10,6 +10,9 @@ use Livewire\Component;
 class MemberForm extends Component
 {
     public Member $member;
+    public $leaders;
+    public $members;
+    public $readyToLoad = false;
     public $isVisible = false;
 
     protected $rules = [
@@ -20,25 +23,23 @@ class MemberForm extends Component
 
     protected $listeners = ['openMemberForm'];
 
-    public function mount() : void
+    public function mount(): void
     {
         $this->member = new Member();
+        $this->leaders = collect();
+        $this->members = collect();
     }
 
     public function render()
     {
+        if(!$this->readyToLoad) {
+            return view('livewire.rumo.member-form')
+            ->with('leaders', [])
+            ->with('members', []);
+        }
         return view('livewire.rumo.member-form')
-            ->with(
-                'leaders',
-                Leader::where('course_id', $this->member->course_id)
-            )
-            ->with(
-                'members',
-                Person::where(
-                    'user.community_id',
-                    auth()->user()->community_id
-                )
-            );
+            ->with('leaders', $this->leaders)
+            ->with('members', $this->members);
     }
 
     public function openMemberForm(string $id): void
@@ -52,7 +53,14 @@ class MemberForm extends Component
         $this->isVisible = false;
     }
 
-    public function save() : void
+    public function loadingData(): void
+    {
+        $this->leaders = Leader::where('course_id', $this->member->course_id);
+        $this->members = Person::where('user.community_id',auth()->user()->community_id);
+        $this->readyToLoad = true;
+    }
+
+    public function save(): void
     {
         $this->validate();
         $this->member->save();

@@ -16,28 +16,27 @@ class Show extends Component
 
     public function render()
     {
-        if($this->readyToLoad) {
+        if (!$this->readyToLoad) {
             return view('livewire.rumo.show')
+                ->with('members', [])
+                ->with('course', []);
+        }
+        return view('livewire.rumo.show')
             ->with('members', $this->members)
             ->with('course', $this->course);
-        }
-        
-        return view('livewire.rumo.show')
-        ->with('members', [])
-        ->with('course', []);
     }
 
-    public function loadRumo() : void
+    public function loadingRumo(): void
     {
         $this->course = Course::with(
             ['leaders', 'teams', 'type', 'community']
         )->findOrFail($this->course->id);
-        
+
         $this->members = $this->course->getMembers($this->course->id);
         $this->readyToLoad = true;
     }
 
-    public function openRumo(Course $course_id) : void
+    public function openRumo(Course $course_id): void
     {
         $this->course = $course_id;
         $this->isVisible = true;

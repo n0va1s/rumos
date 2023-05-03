@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Admin;
+namespace Tests\Feature\Public;
 
 use App\Models\Lever;
 use Database\Seeders\OptionsSeeder;
@@ -11,7 +11,7 @@ class LeverCreateTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected $seed = true;
+    //protected $seed = true;
     protected $seeder = OptionsSeeder::class;
         
     public function test_homepage_lever(): void
@@ -30,7 +30,7 @@ class LeverCreateTest extends TestCase
 
     public function test_delete_lever(): void
     {
-        $lever = Lever::factory()->create();
+        $lever = Lever::factory()->make();
         $lever->delete();
         $this->assertModelMissing($lever);
     }

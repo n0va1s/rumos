@@ -10,6 +10,9 @@ use Livewire\Component;
 class SupportForm extends Component
 {
     public Team $team;
+    public $teams;
+    public $people;
+    public $readyToLoad = false;
     public $isVisible = false;
 
     protected $rules = [
@@ -24,13 +27,20 @@ class SupportForm extends Component
     public function mount() : void
     {
         $this->team = new Team();
+        $this->teams = collect();
+        $this->people = collect();
     }
 
     public function render()
     {
+        if(!$this->readyToLoad){
+            return view('livewire.rumo.support-form')
+            ->with('teams', [])
+            ->with('people', []);
+        }
         return view('livewire.rumo.support-form')
-        ->with('teams', Option::where('group', "TEM")->get())
-        ->with('people', Person::all());
+        ->with('teams', $this->teams)
+        ->with('people', $this->people);
     }
 
     public function openSupportForm(string $id) : void
@@ -43,6 +53,13 @@ class SupportForm extends Component
     {
         $this->isVisible = false;
 
+    }
+
+    public function loadingData(): void
+    {
+        $this->teams = Option::where('group', "TEM")->get();
+        $this->people = Person::where('community_id', auth()->user()->community_id);
+        $this->readyToLoad = true;
     }
 
     public function save() : void

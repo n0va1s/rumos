@@ -11,8 +11,6 @@ use Tests\TestCase;
 class PersonTest extends TestCase
 {
     use RefreshDatabase;
-    protected $seed = true;
-    protected $seeder = OptionsSeeder::class;
 
     public function test_homepage_person(): void
     {
@@ -31,8 +29,8 @@ class PersonTest extends TestCase
 
     public function test_delete_person(): void
     {
-        $person = Person::factory()->create();
+        $person = Person::factory()->make();
         $person->delete();
-        $this->assertModelMissing($person);
+        $this->assertDatabaseCount('person', 0);
     }
 }

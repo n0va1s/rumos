@@ -10,8 +10,11 @@ use Livewire\Component;
 class OrientationForm extends Component
 {
     public Leader $leader;
-    public bool $isVisible = false;
-    
+    public $roles;
+    public $people;
+    public $readyToLoad = false;
+    public $isVisible = false;
+
     protected $rules = [
         'leader.role_id' => 'required|numeric',
         'leader.person_id' => 'required|string',
@@ -21,30 +24,45 @@ class OrientationForm extends Component
 
     protected $listeners = ['openOrientationForm'];
 
-    public function mount() : void
+    public function mount(): void
     {
         $this->leader = new Leader();
+        $this->roles = collect();
+        $this->people = collect();
     }
 
     public function render()
     {
+        if (!$this->readyToLoad) {
+            return view('livewire.rumo.orientation-form')
+            ->with('roles', [])
+            ->with('people', []);
+        }
+        
         return view('livewire.rumo.orientation-form')
-            ->with('roles', Option::where('group', "FCT")->get())
-            ->with('people', Person::all());
+            ->with('roles', $this->roles)
+            ->with('people', $this->people);
     }
 
-    public function openOrientationForm(string $id) : void
+    public function openOrientationForm(string $id): void
     {
         $this->leader->course_id = $id;
         $this->isVisible = true;
     }
 
-    public function closeOrientationForm() : void
+    public function closeOrientationForm(): void
     {
         $this->isVisible = false;
     }
 
-    public function save() : void
+    public function loadingData(): void
+    {
+        $this->roles = Option::where('group', "FCT")->get();
+        $this->people = Person::where('community_id', auth()->user()->community_id);
+        $this->readyToLoad = true;
+    }
+
+    public function save(): void
     {
         $this->validate();
         $this->leader->save();

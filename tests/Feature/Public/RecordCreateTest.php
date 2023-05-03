@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Admin;
+namespace Tests\Feature\Public;
 
 use App\Models\Record;
 use Database\Seeders\OptionsSeeder;
@@ -11,7 +11,7 @@ class RecordCreateTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected $seed = true;
+    //protected $seed = true;
     protected $seeder = OptionsSeeder::class;
         
     public function test_homepage_record(): void
@@ -30,7 +30,7 @@ class RecordCreateTest extends TestCase
 
     public function test_delete_record(): void
     {
-        $record = Record::factory()->create();
+        $record = Record::factory()->make(); 
         $record->delete();
         $this->assertModelMissing($record);
     }

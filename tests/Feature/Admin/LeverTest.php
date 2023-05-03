@@ -4,9 +4,7 @@ namespace Tests\Feature\Admin;
 
 use App\Models\Lever;
 use App\Models\User;
-use Database\Seeders\CourseSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class LeverTest extends TestCase
@@ -23,7 +21,7 @@ class LeverTest extends TestCase
 
     public function test_list_levers(): void
     {
-        $this->seed();
-        $this->assertDatabaseCount('course_levers', 200);
+        Lever::factory()->count(100)->create();
+        $this->assertDatabaseCount('course_levers', 100);
     }
 }

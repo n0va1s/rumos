@@ -1,7 +1,7 @@
 <div>
     <form method="POST" wire:submit.prevent="save()">
         {{-- There are many forms in the same page. ID is necessary --}}
-        <x-jet-dialog-modal id="orientation-{{now()}}" wire:model="isVisible">
+        <x-jet-dialog-modal id="orientation-{{now()}}" wire:init="loadingData()" wire:model="isVisible">
             <x-slot name="title">
                 Equipe de Orientação
             </x-slot>

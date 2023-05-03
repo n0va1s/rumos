@@ -1,6 +1,6 @@
 <div>
     <form method="POST" wire:submit.prevent="save()">
-        <x-jet-dialog-modal id="member-{{now()}}" wire:model="isVisible">
+        <x-jet-dialog-modal id="member-{{now()}}" wire:init='loadingData()' wire:model="isVisible">
             <x-slot name="title">
                 Cursistas
             </x-slot>

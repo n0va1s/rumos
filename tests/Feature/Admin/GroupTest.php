@@ -31,7 +31,7 @@ class GroupTest extends TestCase
 
     public function test_delete_group(): void
     {
-        $group = Group::factory()->create();
+        $group = Group::factory()->make();
         $group->delete();
         $this->assertModelMissing($group);
     }

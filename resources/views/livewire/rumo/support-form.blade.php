@@ -1,6 +1,6 @@
 <div>
     <form method="POST" wire:submit.prevent="save()">
-        <x-jet-dialog-modal id="support-{{now()}}" wire:model="isVisible">
+        <x-jet-dialog-modal id="support-{{now()}}" wire:init='loadingData()' wire:model="isVisible">
             <x-slot name="title">
                 Equipe de Apoio ou Serviço
             </x-slot>

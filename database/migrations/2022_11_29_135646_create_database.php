@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateDatabase extends Migration
@@ -20,6 +19,7 @@ class CreateDatabase extends Migration
                 $table->string('title')->unique()->comment('Descrição do domínio que será usado em diversas tabelas. Ex: Fixo, Celular, Email');
                 $table->char('group', 3)->comment('Identificador para determinar a que grupo pertence o domíno. Ex: CNT (Contact), OTG (Other Group)');
                 $table->softDeletes();
+                $table->index('group');
             }
         );
         //DB::statement("ALTER TABLE `options` comment 'Armazena todos os dominios da aplicação agrupados por uma chave com 3 letras'");

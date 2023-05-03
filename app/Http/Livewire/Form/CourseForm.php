@@ -11,8 +11,8 @@ class CourseForm extends Component
     public Course $course;
     public $communities;
     public $types;
-    public bool $isAdmin = false;
-    public bool $isVisible = false;
+    public $isAdmin = false;
+    public $isVisible = false;
     
     protected $rules = [
         "course.community_id" => 'required|numeric',

@@ -9,8 +9,8 @@ use Livewire\Redirector;
 class RecordForm extends Component
 {
     public Record $record;
-    public bool $isAdmin = false;
-    public bool $isVisible = false;    
+    public $isAdmin = false;
+    public $isVisible = false;    
     
     protected $listeners = [
         'open', 'destroy'
@@ -19,8 +19,10 @@ class RecordForm extends Component
     public function mount(Record $record) : void
     {
         $this->record = $record;
-        $this->record->community_id = auth()->user()->community_id;
-        $this->isAdmin = auth()->user()->is_admin;
+        if(auth()->check()) {
+            $this->record->community_id = auth()->user()->community_id;
+            $this->isAdmin = auth()->user()->is_admin;
+        }
     }
     
     public function render()

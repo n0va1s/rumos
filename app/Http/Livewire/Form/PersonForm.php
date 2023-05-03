@@ -12,8 +12,8 @@ class PersonForm extends Component
     public Person $person;
     public $genders;
     public $ufs;
-    public bool $isVisible = false;
-    public bool $isAdmin = false;
+    public $isVisible = false;
+    public $isAdmin = false;
     
     
     protected $rules = [

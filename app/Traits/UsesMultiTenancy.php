@@ -9,7 +9,7 @@ trait UsesMultiTenancy
     protected static function bootUsesMultiTenancy() : void
     {
         static::creating(function ($model) {
-            if ($model->id) {
+            if ($model->id && auth()->check()) {
                 $model->community_id = auth()->user()->community_id;
             }
         });

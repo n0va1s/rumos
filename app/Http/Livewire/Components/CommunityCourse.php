@@ -13,38 +13,42 @@ class CommunityCourse extends Component
     public $courses;
     public $community;
     public $course;
-    public bool $isAdmin;
+    public $isAdmin = false;
 
     /*protected $queryString = [
         'community' => ['except' => '', 'as' => 'cm'],
         'course' => ['except' => '', 'as' => 'cr'],
     ];*/
-  
-    public function mount() : void
+
+    public function mount(): void
     {
+        if (! auth()->check()) {
+            redirect()->route('login');
+        }
+
         $this->communities = Option::where('group', "SEC")->get();
-        
-        if(! $this->isAdmin = auth()->user()->is_admin){
+
+        if (!$this->isAdmin = auth()->user()->is_admin) {
             $this->community = auth()->user()->community_id;
         }
         $this->courses = Course::where('community_id',  auth()->user()->community_id)->get();
     }
 
-    public function updatedCommunity($selected) : void
+    public function updatedCommunity($selected): void
     {
         if (!is_null($selected)) {
             $this->courses = Course::where('community_id', $selected)->get();
         }
     }
 
-    public function updatedCourse($selected) : void
+    public function updatedCourse($selected): void
     {
         if (!is_null($selected)) {
             $this->emit('courseSelected', $selected);
         }
     }
-    
-    public function render() : View
+
+    public function render(): View
     {
         return view('livewire.components.community-course');
     }

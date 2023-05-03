@@ -2,18 +2,20 @@
 
 namespace Tests\Feature\Admin;
 
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class RumoTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
-    public function test_example(): void
+    use RefreshDatabase;
+    
+    public function test_homepage_rumo(): void
     {
-        $response = $this->get('/');
-
+        $user = User::factory()->make();
+        $response = $this->actingAs($user)->get('/rumos');
         $response->assertStatus(200);
+        $response->assertSee('Rumos');
     }
 
    

@@ -13,8 +13,8 @@ class GroupForm extends Component
     public Group $group;
     public $communities;
     public $frequencies;
-    public bool $isAdmin = false;
-    public bool $isVisible = false;
+    public $isAdmin = false;
+    public $isVisible = false;
 
     protected $rules = [
         'group.community_id' => 'required|numeric',
@@ -31,8 +31,10 @@ class GroupForm extends Component
         $this->group = $group;
         $this->communities = Option::where('group', "SEC")->get();
         $this->frequencies = Option::where('group', "FRQ")->get();
-        $this->group->community_id = auth()->user()->community_id;
-        $this->isAdmin = auth()->user()->is_admin;
+        if(auth()->check()) {
+            $this->group->community_id = auth()->user()->community_id;
+            $this->isAdmin = auth()->user()->is_admin;
+        }
     }
     
     public function render() : View
