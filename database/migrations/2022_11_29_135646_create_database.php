@@ -39,7 +39,7 @@ class CreateDatabase extends Migration
                 $table->date('birth_at')->comment('Data de aniversário. Ex: 01/07/1980');
                 $table->string('father', 150)->nullable()->comment('Nome completo do pai. Ex: José da Silva');
                 $table->string('mother', 150)->nullable()->comment('Nome completo da mãe. Ex: Maria da Silva');
-                $table->string('community')->nullable()->comment('Nome da paróquia ou comunidade que participa. Ex: Paróquia Nossa Senhora do Lago');
+                $table->string('congregation')->nullable()->comment('Nome da paróquia ou comunidade que participa. Ex: Paróquia Nossa Senhora do Lago');
                 $table->string('college')->nullable()->comment('Nome da escola ou faculdade que estuda. Ex: Universidade de Brasília');
                 $table->string('course')->nullable()->comment('Nome do curso de graduação que realização. Ex: Ciências Sociais');
                 $table->string('company')->nullable()->comment('Nome da empresa em que trabalha. Ex: A&F Advogados Associados');
@@ -48,6 +48,7 @@ class CreateDatabase extends Migration
                 $table->foreign('level_id')->references('id')->on('options');
                 $table->foreign('gender_id')->references('id')->on('options');
                 $table->foreign('community_id')->references('id')->on('options');
+                $table->index('deleted_at');
             }
         );
         //DB::statement("ALTER TABLE `person` comment 'Armazena todos as pessoas que fizeram ou que querem fazer os cursos de Emaús. A partir desta tabela é possível cadastrar endereço, contatos e a ficha'");
@@ -113,6 +114,7 @@ class CreateDatabase extends Migration
                 $table->softDeletes();
                 $table->foreign('community_id')->references('id')->on('options');
                 $table->foreign('type_id')->references('id')->on('options');
+                $table->index('deleted_at');
             }
         );
         //DB::statement("ALTER TABLE `courses` comment 'Armazena as informações básicas do Curso de Emaús. Ex: numero, ano, secretariado, foto'");

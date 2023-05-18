@@ -14,7 +14,7 @@
             </div>
             <div>
                 <livewire:components.table resource="Person" :columns="[
-                    ['label' => 'Secretariado', 'column' => 'community'],
+                    ['label' => 'Secretariado', 'column' => 'community.title'],
                     ['label' => 'Nome', 'column' => 'first_name'],
                     ['label' => 'Email', 'column' => 'email'],
                     ['label' => 'Telefone', 'column' => 'phone'],

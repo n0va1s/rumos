@@ -35,30 +35,37 @@ class Group extends Model
 
     public function scopeSearch($query, $term)
     {
-        return $query->with(['community', 'frequency'])
-        ->where(
-            'information',
-            'like',
-            '%' . $term . '%'
-        )->orWhere('communities.title', 'like', '%' . $term . '%'
-        )->orWhere('frequencies.title', 'like', '%' . $term . '%'
-        );
+        return $query
+            ->where(
+                'information',
+                'like',
+                '%' . $term . '%'
+            )->orWhere(
+                'community.title',
+                'like',
+                '%' . $term . '%'
+            )->orWhere(
+                'frequency.title',
+                'like',
+                '%' . $term . '%'
+            );
     }
 
     public function scopeSort($query, $sortField, $sortAsc)
     {
         $direction = $sortAsc ? 'asc' : 'desc';
         return $query->select(
-            [
-                'groups.*', 
-                'communities.title as community', 
-                'frequencies.title as frequency',
-            ]
-        )->join('options as communities', 'groups.community_id', '=', 'communities.id')
-        ->join('options as frequencies', 'groups.frequency_id','=', 'frequencies.id')
-        ->get()
-        ->sortBy([
-            [$sortField, $direction]
-        ]);
+            ['groups.*', 'community.title', 'frequency.title']
+        )->join(
+            'options as community',
+            'groups.community_id',
+            '=',
+            'community.id'
+        )->join(
+            'options as frequency',
+            'groups.frequency_id',
+            '=',
+            'frequency.id'
+        )->orderBy($sortField, $direction);
     }
 }

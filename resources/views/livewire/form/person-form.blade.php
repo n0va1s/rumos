@@ -14,7 +14,7 @@
                                     (obrigatório)</label>
                                 <input type="text" wire:model.lazy="person.first_name" id="person.first_name"
                                     placeholder="José Pedro" autocomplete="nome"
-                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                     value="{{ old('person.first_name') }}" required autofocus>
                                 <div>
                                     @error('person.first_name')
@@ -27,7 +27,7 @@
                                     (obrigatório)</label>
                                 <input type="text" wire:model.lazy="person.last_name" id="person.last_name"
                                     placeholder="da Silva" autocomplete="sobrenome"
-                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                     value="{{ old('person.last_name') }}" required>
                                 <div>
                                     @error('person.last_name')
@@ -40,7 +40,7 @@
                                     Nascimento (obrigatória)</label>
                                 <input type="date" wire:model.defer="person.birth_at" id="person.birth_at"
                                     autocomplete="nascimento"
-                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                     value="{{ old('person.birth_at') }}" required>
                                 <div>
                                     @error('person.birth_at')
@@ -52,7 +52,7 @@
                                 <label for="person.gender_id" class="block text-sm font-bold text-gray-700">Gênero
                                     (obrigatório)</label>
                                 <select wire:model="person.gender_id" id="person.gender_id" autocomplete="gênero"
-                                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                     required>
                                     <option value="">Selecione</option>
                                     @foreach ($genders as $gender)
@@ -71,7 +71,7 @@
                                     (obrigatório)</label>
                                 <input type="email" wire:model.lazy="person.email" id="person.email"
                                     placeholder="nome@gmail.com" autocomplete="nascimento"
-                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                     value="{{ old('person.email') }}" required>
                                 <div>
                                     @error('person.email')
@@ -84,7 +84,7 @@
                                     (obrigatório)</label>
                                 <input type="tel" wire:model.lazy="person.phone" id="person.phone"
                                     placeholder="(00)988776655" autocomplete="nascimento"
-                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                     value="{{ old('person.phone') }}" required>
                                 <div>
                                     @error('person.phone')
@@ -97,7 +97,7 @@
                                     (opcional)</label>
                                 <input type="url" wire:model.lazy="person.social" id="person.social"
                                     placeholder="https://instagram.com/XXXX" autocomplete="rede social"
-                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                     value="{{ old('person.social') }}">
                                 <div>
                                     @error('person.social')
@@ -109,7 +109,7 @@
                                 <label for="person.address.state_id" class="block text-sm font-bold text-gray-700">UF
                                     (opcional)</label>
                                 <select wire:model="person.address.state_id" id="person.address.state_id" autocomplete="uf"
-                                    class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
                                     <option value="">Selecione</option>
                                     @foreach ($ufs as $uf)
                                         <option wire:key="state-{{ $uf->id }}" value="{{ $uf->id }}">
@@ -128,7 +128,7 @@
                                     (opcional)</label>
                                 <input type="text" wire:model.lazy="person.address.description" id="person.address.description"
                                     autocomplete="logradouro"
-                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                     value="{{ old('person.address.description') }}">
                                 <div>
                                     @error('person.address.description')
@@ -141,7 +141,7 @@
                                     (opcional)</label>
                                 <input type="text" wire:model.lazy="person.address.number" id="person.address.number"
                                     autocomplete="número"
-                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                     value="{{ old('person.address.number') }}">
                                 <div>
                                     @error('person.address.number')
@@ -154,7 +154,7 @@
                                     (opcional)</label>
                                 <input type="text" wire:model.lazy="person.address.city" id="person.address.city"
                                     autocomplete="cidade"
-                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                     value="{{ old('person.address.city') }}">
                                 <div>
                                     @error('person.address.city')
@@ -167,7 +167,7 @@
                                     (opcional)</label>
                                 <input type="text" wire:model.lazy="person.address.zipcode" id="person.address.zipcode"
                                     autocomplete="CEP"
-                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                     value="{{ old('person.address.zipcode') }}">
                                 <div>
                                     @error('person.zipcode')
@@ -181,7 +181,7 @@
             </x-slot>
             <x-slot name="footer">
                 <x-button.save wire:loading.class="bg-gray" wire:offline.attr="disabled">Salvar</x-button.save>
-                <x-button.close wire:click="closePersonForm()" />
+                <x-button.close wire:click="close()" />
             </x-slot>
         </x-jet-dialog-modal>
     </form>

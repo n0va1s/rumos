@@ -17,7 +17,7 @@
             </div>
             <div>
                 <livewire:components.card resource="Lever" field="course_id" :columns="[
-                    ['label' => 'Secretariado', 'column' => 'community'],
+                    ['label' => 'Secretariado', 'column' => 'community.title'],
                     ['label' => 'Curso', 'column' => 'course'],
                     ['label' => 'Remetente', 'column' => 'sender'],
                     ['label' => 'Mensagem', 'column' => 'information'],

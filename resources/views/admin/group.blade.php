@@ -14,8 +14,8 @@
             </div>
             <div>
                 <livewire:components.table resource="Group" :columns="[
-                    ['label' => 'Secretariado', 'column' => 'community'],
-                    ['label' => 'Frequência', 'column' => 'frequency'],
+                    ['label' => 'Secretariado', 'column' => 'community.title'],
+                    ['label' => 'Frequência', 'column' => 'frequency.title'],
                 ]" edit="Editar" delete="Apagar" />
             </div>
             <div>

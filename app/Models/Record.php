@@ -19,6 +19,7 @@ class Record extends Model
     protected $fillable = [
         'person_id',
         'presenter_id',
+        'community_id',
         'reason',
         'other_information',
         'has_agreement',
@@ -29,8 +30,7 @@ class Record extends Model
     ];
 
     protected $hidden = [
-        'id',
-        'community_id',
+        'id',        
     ];
 
     protected $casts = [
@@ -52,14 +52,19 @@ class Record extends Model
         return $this->belongsTo(Person::class, "presenter_id");
     }
 
+    public function community()
+    {
+        return $this->belongsTo(Option::class, "community_id");
+    }
+
     public function scopeSearch($query, $term)
     {
         return $query
-        ->where('member.first_name','like','%' . $term . '%')
-        ->orWhere('member.last_name','like','%' . $term . '%')
-        ->orWhere('reason','like','%' . $term . '%')
-        ->orWhere('other_information','like','%' . $term . '%')
-        ->orWhere('community.title', 'like', '%' . $term . '%');
+            ->where('community.title', 'like', '%' . $term . '%')
+            ->orWhere('member.first_name', 'like', '%' . $term . '%')
+            ->orWhere('member.last_name', 'like', '%' . $term . '%')
+            ->orWhere('reason', 'like', '%' . $term . '%')
+            ->orWhere('other_information', 'like', '%' . $term . '%');
     }
 
     public function scopeSort($query, $sortField, $sortAsc)
@@ -67,16 +72,13 @@ class Record extends Model
         $direction = $sortAsc ? 'asc' : 'desc';
         return $query->select(
             [
-                'person_records.id','community.title as community',
-                DB::raw('DATE_FORMAT(person_records.created_at, "%d/%m/%Y") as created_at_fmt'),
-                DB::raw("CONCAT(member.first_name,' ',member.last_name) as full_name")
+                'person_records.id', 'community.title as community',
+                DB::raw("DATE_FORMAT(person_records.created_at, '%d/%m/%Y') as created_at_fmt"),
+                DB::raw("CONCAT(member.first_name,' ',member.last_name) as full_name"),
             ]
-        )->join('person as member', 'person_records.person_id', '=', 'member.id')
-        ->join('person as presenter', 'person_records.presenter_id', '=', 'presenter.id')
-        ->join('options as community', 'person_records.community_id', '=', 'community.id')
-        ->get()
-        ->sortBy([
-            [$sortField, $direction]
-        ]);
+        )->join('person as member', 'person_records.person_id', '=', 'member.id'
+        )->join('person as presenter', 'person_records.presenter_id', '=', 'presenter.id'
+        )->join('options as community', 'person_records.community_id', '=', 'community.id'
+        )->orderBy($sortField, $direction);
     }
 }

@@ -17,30 +17,30 @@ class Table extends Component
     public string $delete;
     public int $paginate = 10;
     public string $search = '';
-    public string $sortBy= 'id';
-    public bool $sortAsc= true;
+    public string $sortBy = 'id';
+    public bool $sortAsc = true;
 
-    public function resetSearch() : void
+    public function resetSearch(): void
     {
         $this->reset('search');
     }
-    
-    public function sortBy($name) : void
+
+    public function sortBy($name): void
     {
         $this->sortBy = $name;
         $this->sortAsc = !$this->sortAsc;
     }
 
-    public function render() : View
+    public function render(): View
     {
-        return view(
-            'livewire.components.table',
-            [
-                'items' => app("App\Models\\" . $this->resource)
-                    ->search($this->search)
-                    ->sort($this->sortBy, $this->sortAsc)
-                    ->paginate($this->paginate)
-            ]
-        );
+            return view(
+                'livewire.components.table',
+                [
+                    'items' => app("App\Models\\" . $this->resource)
+                        ->search($this->search)
+                        ->sort($this->sortBy, $this->sortAsc)
+                        ->paginate($this->paginate)
+                ]
+            );
     }
 }

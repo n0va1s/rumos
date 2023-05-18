@@ -28,7 +28,7 @@ class PersonFactory extends Factory
             'birth_at' => fake()->date(),
             'father' => fake()->firstName('M'),
             'mother' => fake()->firstName('F'),
-            'community' => fake()->word(),
+            'congregation' => fake()->word(),
             'college' => fake()->domainName(),
             'course' => fake()->word(),
             'company' => fake()->company(),

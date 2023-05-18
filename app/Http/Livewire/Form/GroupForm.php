@@ -53,11 +53,9 @@ class GroupForm extends Component
         $this->isVisible = false;
     }
 
-    public function edit($id) : void
+    public function edit(Group $group) : void
     {
-        if(! $this->group = Group::find($id)){
-            abort(404, "Reunião de grupo não encontrada. Fale com alguém da Comunicação");
-        }
+        $this->group = $group;
         $this->isVisible = true;
     }
 
@@ -70,11 +68,9 @@ class GroupForm extends Component
         return redirect()->route('groups.index');
     }
 
-    public function destroy($id) : Redirector
+    public function destroy(Group $group) : Redirector
     {
-        if(! $group = Group::find($id)){
-            abort(404, "Reunião de grupo não encontrada. Fale com alguém da Comunicação");
-        }
+        $this->group = $group;
         $group->delete();
         session()->flash('success', 'Reunião de grupo excluída com sucesso');
         return redirect()->route('groups.index');

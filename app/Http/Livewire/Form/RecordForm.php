@@ -32,9 +32,6 @@ class RecordForm extends Component
 
     public function open(Record $record) : void
     {
-        if($record->presenter_id === 0){
-            abort(404, "Ficha não encontrada. Fale com alguém da Comunicação");
-        }
         $this->record = $record;
         $this->record->community_id = auth()->user()->community_id;
         $this->isVisible = true;

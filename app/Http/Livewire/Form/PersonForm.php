@@ -40,9 +40,10 @@ class PersonForm extends Component
         $this->person = $person;
         $this->genders = Option::where('group', "GND")->get();
         $this->ufs = Option::where('group', "UFS")->get();
-        $this->person->community_id = auth()->user()->community_id;
-        $this->isAdmin = auth()->user()->is_admin;
-        
+        if(auth()->check()){
+            $this->person->community_id = auth()->user()->community_id;
+            $this->isAdmin = auth()->user()->is_admin;
+        }        
     }
 
     public function render()
@@ -56,16 +57,14 @@ class PersonForm extends Component
         $this->isVisible = true;
     }
 
-    public function closePersonForm() : void
+    public function close() : void
     {
         $this->isVisible = false;
     }
 
-    public function edit($id) : void
+    public function edit(Person $person) : void
     {
-        if(! $this->person = Person::find($id)){
-            abort(404, "Pessoa não encontrada. Fale com alguém da Comunicação");
-        }
+        $this->person = $person;
         $this->isVisible = true;
     }
 

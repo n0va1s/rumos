@@ -3,23 +3,26 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Course;
+use App\Models\Group;
+use App\Models\Option;
+use App\Models\Person;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        $male = DB::table('options')->where('group', 'GND')->first();
-        $data['total_courses'] = DB::table('courses')->get()->count();
-        $data['total_communities'] = DB::table('options')->where('group', 'SEC')->count();
-        $data['total_groups'] = DB::table('groups')->get()->count();
-        $data['total_men'] = DB::table('person')->where('gender_id', $male->id)->count();
-        $data['total_women'] = DB::table('person')->where('gender_id', $male->id + 1)->count();
-        $course = DB::table('courses')
-            ->join('options', 'courses.community_id', '=', 'options.id')
-            ->latest()
-            ->first();
-        $year = date('Y', strtotime($course->starts_at));
-        return view('dashboard', compact('data', 'course', 'year'));
+        $data['total_courses'] = Course::count();
+        $data['total_communities'] = Option::where('group', 'SEC')->count();
+        $data['total_groups'] = Group::count();
+        $course = Course::with('community')->latest()->first();
+        $quantityByGender = DB::table('person')
+        ->selectRaw('count(person.id) as qtd, gender_id, title')
+        ->join('options', 'options.id', '=', 'person.gender_id')
+        ->groupBy('gender_id')
+        ->having('gender_id', '>', 0)
+        ->get();
+        return view('dashboard', compact('data', 'course', 'quantityByGender'));
     }
 }
