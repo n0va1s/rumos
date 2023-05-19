@@ -22,11 +22,14 @@
     <link rel="manifest" href="/manifest.json">
     <meta name="description" content="Um sistema para a Comunidade de Emaús">
     <meta name="theme-color" content="#FFFFFF" />
-
+    
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Fidelix - voucher">
-    <link rel="apple-touch-icon" href="/img/icons/icon-100.png">
+    <meta name="apple-mobile-web-app-status-bar-style" content="blue">
+    <meta name="apple-mobile-web-app-title" content="Rumos - Emaús">
+    <link rel="apple-touch-icon" href="/img/icons/icon-100-100.png">
+
+    <!-- Icons -->
+    <!-- <a href="https://www.flaticon.com/br/icones-gratis/leme" title="leme ícones">Leme ícones criados por Good Ware - Flaticon</a> -->
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -58,6 +61,13 @@
     @livewireScripts
 </body>
 <!-- Scripts -->
+<!-- PWA -->
+<script>
+// Check that service workers are supported
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js');
+}
+</script>
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <script src=" {{ asset('/js/app.js') }}"></script>
 

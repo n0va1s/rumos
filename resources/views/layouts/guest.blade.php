@@ -34,6 +34,13 @@
         {{ $slot }}
     </div>
 </body>
+<!-- PWA -->
+<script>
+// Check that service workers are supported
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js');
+}
+</script>
 <script src=" {{ asset('/js/app.js') }}"></script>
 
 </html>
