@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Group;
 use App\Models\Option;
-use App\Models\Person;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller

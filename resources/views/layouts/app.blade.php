@@ -26,7 +26,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="blue">
     <meta name="apple-mobile-web-app-title" content="Rumos - Emaús">
-    <link rel="apple-touch-icon" href="/img/icons/icon-100-100.png">
+    <link rel="apple-touch-icon" href="img/icons/icon-100-100.png" />
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
 
     <!-- Icons -->
     <!-- <a href="https://www.flaticon.com/br/icones-gratis/leme" title="leme ícones">Leme ícones criados por Good Ware - Flaticon</a> -->
@@ -61,13 +62,6 @@
     @livewireScripts
 </body>
 <!-- Scripts -->
-<!-- PWA -->
-<script>
-// Check that service workers are supported
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js');
-}
-</script>
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <script src=" {{ asset('/js/app.js') }}"></script>
 

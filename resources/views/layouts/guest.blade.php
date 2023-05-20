@@ -23,7 +23,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="Fidelix - voucher">
-    <link rel="apple-touch-icon" href="/img/icons/icon-100.png">
+    <link rel="apple-touch-icon" href="img/icons/icon-100.png" />
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -34,13 +35,6 @@
         {{ $slot }}
     </div>
 </body>
-<!-- PWA -->
-<script>
-// Check that service workers are supported
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js');
-}
-</script>
 <script src=" {{ asset('/js/app.js') }}"></script>
 
 </html>
